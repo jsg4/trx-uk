@@ -661,7 +661,7 @@ let sortCol = "spend", sortDir = -1, query = "", showZero = false, minRoasOn = f
 // delivery filter: all | active | inactive. Active = Status "Active" AND spend>0 in the window.
 let deliverySel = "all";
 // global Demand Gen (TOF) fold-in — persisted so it survives page nav (default: Excluded)
-let inclDG = localStorage.getItem("trx_incl_dg") === "1";
+let inclDG = localStorage.getItem("uk_incl_dg") === "1";
 // Bucket visibility for ALL performance surfaces. App/Amazon (other) is never a
 // performance surface; Demand Gen (tof) is shown / folded into totals ONLY when
 // the sidebar DG toggle is on. Every row list + spend/perf total routes through
@@ -2527,28 +2527,33 @@ function render() {
   const fresh = m.data_through >= yesterday;
   foot.appendChild(el("div", fresh ? null : "stale",
     (fresh ? "Data through " : "STALE — data through ") + m.data_through));
-  /* global Demand Gen fold-in — applies to the whole dashboard, persisted across pages */
-  const dgCtl = el("div", "sb-ctl");
-  const dgLabel = el("span", "sb-ctl-l");
-  dgLabel.append("Demand Gen");
-  dgCtl.appendChild(dgLabel);
-  const dgSeg = el("div", "seg sb-seg");
-  dgSeg.setAttribute("role", "group");
-  dgSeg.setAttribute("aria-label", "Demand Gen — include in performance metrics");
-  [["Excluded", false], ["Included", true]].forEach(([lbl, val]) => {
-    const b = el("button", null, lbl);
-    b.type = "button";
-    b.setAttribute("aria-pressed", String(inclDG === val));
-    b.addEventListener("click", () => {
-      if (inclDG === val) return;
-      inclDG = val;
-      localStorage.setItem("trx_incl_dg", val ? "1" : "0");
-      render();
+  /* global Demand Gen fold-in — only shown if the account actually runs DG (tof) */
+  const hasDG = (DATA.levels.campaign || []).some(c => c.bucket === "tof")
+    || ((DATA.insights.summary || {}).tof_spend_l7 || 0) > 0;
+  if (!hasDG) inclDG = false;   // no DG in this market -> force core, hide the toggle + banner
+  if (hasDG) {
+    const dgCtl = el("div", "sb-ctl");
+    const dgLabel = el("span", "sb-ctl-l");
+    dgLabel.append("Demand Gen");
+    dgCtl.appendChild(dgLabel);
+    const dgSeg = el("div", "seg sb-seg");
+    dgSeg.setAttribute("role", "group");
+    dgSeg.setAttribute("aria-label", "Demand Gen — include in performance metrics");
+    [["Excluded", false], ["Included", true]].forEach(([lbl, val]) => {
+      const b = el("button", null, lbl);
+      b.type = "button";
+      b.setAttribute("aria-pressed", String(inclDG === val));
+      b.addEventListener("click", () => {
+        if (inclDG === val) return;
+        inclDG = val;
+        localStorage.setItem("uk_incl_dg", val ? "1" : "0");
+        render();
+      });
+      dgSeg.appendChild(b);
     });
-    dgSeg.appendChild(b);
-  });
-  dgCtl.appendChild(dgSeg);
-  foot.appendChild(dgCtl);
+    dgCtl.appendChild(dgSeg);
+    foot.appendChild(dgCtl);
+  }
   const th = el("button", "ghost", "Theme");
   th.addEventListener("click", () => {
     const r = document.documentElement;
