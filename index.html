@@ -658,7 +658,7 @@ const PAGE = "cockpit";
 let winSel = "L7", platSel = PAGE === "creative" ? "meta" : "all",
     levelSel = PAGE === "creative" ? "ad" : "campaign";
 let sortCol = "spend", sortDir = -1, query = "", showZero = false, minRoasOn = false;
-// delivery filter: all | active | inactive. Active = NB status "Active" AND spend>0 in the window.
+// delivery filter: all | active | inactive. Active = Status "Active" AND spend>0 in the window.
 let deliverySel = "all";
 // global Demand Gen (TOF) fold-in — persisted so it survives page nav (default: Excluded)
 let inclDG = localStorage.getItem("trx_incl_dg") === "1";
@@ -731,7 +731,7 @@ window.addEventListener("resize", () => {
 /* ---------- derived series ---------- */
 // Buckets are aggregated over ALL platforms (not tiktok-filtered) so that the
 // excl-DG rolling line reproduces the precomputed core numbers exactly, and the
-// incl-DG line folds Demand Gen (tof) in on NB Clicks + Modeled Views (mv_rev).
+// incl-DG line folds Demand Gen (tof) in on Clicks + Total Impact (mv_rev).
 function dailySeries() {
   const by = {};
   for (const c of DATA.levels.campaign) {
@@ -885,7 +885,7 @@ function trendChart(days) {
     vt.textContent = v.toFixed(2); svg.appendChild(vt);
   }
   const p1t = sv("text", {x:padL, y:14, fill:"var(--ink-2)", "font-size":11, "font-weight":600});
-  p1t.textContent = narrow ? "Core NB ROAS" : "Core NB ROAS by day — read the bold 7-day line, not the daily wiggle";
+  p1t.textContent = narrow ? "Core ROAS" : "Core ROAS by day — read the bold 7-day line, not the daily wiggle";
   svg.appendChild(p1t);
 
   /* panel 2: stacked spend bars by channel */
@@ -971,7 +971,7 @@ function trendChart(days) {
 /* ---------- tables (shared with v1) ---------- */
 function statusBadge(e) {
   const goal = DATA.meta.goal_roas;
-  if (e.platform === "tiktok") return ["b-na", "TikTok — NB broken"];
+  if (e.platform === "tiktok") return ["b-na", "TikTok — broken"];
   if (e.bucket === "tof") return ["b-na", "TOF"];
   if (e.bucket === "brand") return ["b-na", "Brand"];
   if (e.bucket === "other") return ["b-na", "App / Amazon"];
@@ -984,7 +984,7 @@ function statusBadge(e) {
   return ["b-fix", "Fix / cut"];
 }
 // --- delivery status (distinct from the performance verdict above) ------------
-// "Active" = the ad's Northbeam config status is Active AND it actually spent in
+// "Active" = the ad's Triple Whale config status is Active AND it actually spent in
 // the selected window. Everything else is inactive: Paused/Deleted, or enabled
 // but $0 in the window ("Idle" — on but not delivering).
 function isActive(e) {
@@ -1038,7 +1038,7 @@ function renderTable(container) {
     sumEl.appendChild(document.createTextNode(" · "));
     sumEl.appendChild(el("span", "dlvsum-off", nInactive + " inactive"));
     sumEl.appendChild(document.createTextNode(" " + noun + " "));
-    sumEl.appendChild(el("span", "muted", "(NB status Active + spend in " + W + ")"));
+    sumEl.appendChild(el("span", "muted", "(Status Active + spend in " + W + ")"));
     container.appendChild(sumEl);
   }
   // threshold judges on the >=7d window even in the Yesterday view (L1 accrual
@@ -1075,7 +1075,7 @@ function renderTable(container) {
     return (va < vb ? -1 : va > vb ? 1 : 0) * sortDir;
   });
   const cols = [
-    ["name", "Name"], ["spend", "Spend"], ["roas", "NB ROAS"], ["rev", "NB Rev"],
+    ["name", "Name"], ["spend", "Spend"], ["roas", "ROAS"], ["rev", "Rev"],
     ["txns", "Txns"], ["proas", "Platform ROAS"],
     ...(levelSel === "ad" ? [["hook", "Hook"]] : []),
     ["delta", "Δ WoW"], ["trend", "14d trend"], ["st", "Status"],
@@ -1085,7 +1085,7 @@ function renderTable(container) {
   cols.forEach(([id, label]) => {
     const th = el("th", sortCol === id ? "sorted" : null, label + (sortCol === id ? (sortDir < 0 ? " ↓" : " ↑") : ""));
     if (id === "hook") th.title = "Meta hook rate: 3-second video plays / impressions. <20% = weak opening, >=30% = strong.";
-    if (id === "roas" || id === "rev") th.title = "Northbeam attributed — Clicks + Deterministic Views, 7-day window, accrual. Recent days still maturing.";
+    if (id === "roas" || id === "rev") th.title = "Triple Whale attributed — Triple Attribution (clicks + deterministic), 7-day.";
     if (id === "proas") th.title = "Platform-reported (Google Ads API; Meta via NB's Meta integration at 7d-click/1d-view). Direction only.";
     if (!["trend", "st"].includes(id)) th.addEventListener("click", () => {
       if (sortCol === id) sortDir *= -1; else { sortCol = id; sortDir = -1; }
@@ -1108,7 +1108,7 @@ function renderTable(container) {
     if (!isActive(e)) {
       const [dc, dl] = deliveryBadge(e);
       const dp = el("span", "dlvpill " + dc, dl);
-      dp.title = "NB delivery status: " + (e.status || "unknown")
+      dp.title = "Delivery status: " + (e.status || "unknown")
         + " · " + ((e.windows[W].spend || 0) > 0 ? fm$(e.windows[W].spend) + " spent in " + W : "$0 in " + W);
       nameTd.appendChild(dp);
     }
@@ -1130,10 +1130,10 @@ function renderTable(container) {
       rc.appendChild(roasBar(w.roas7, goal));
     }
     if (e.bucket === "tof" && w.mv_roas != null) {
-      /* DG is judged on Clicks + Modeled Views — deterministic undercounts it */
+      /* DG is judged on Clicks + Total Impact — deterministic undercounts it */
       const mv = el("span", "mult-chip", "MV " + w.mv_roas.toFixed(2));
       mv.style.marginLeft = "7px";
-      mv.title = "Clicks + Modeled Views — the model Demand Gen is judged on. The main number is the deterministic read (comparable across the table).";
+      mv.title = "Clicks + Total Impact — the model Demand Gen is judged on. The main number is the deterministic read (comparable across the table).";
       rc.appendChild(mv);
     }
     tr.appendChild(rc);
@@ -1171,7 +1171,7 @@ function renderTable(container) {
   const notes = [];
   if (rows.length > shown.length) notes.push(`Showing top ${shown.length} of ${rows.length} by current sort — use search to narrow.`);
   if (zeroHidden > 0) notes.push(`${zeroHidden} rows with $0 spend in this window hidden — use "Show $0 rows" to include them.`);
-  if (minRoasOn && roasHidden > 0) notes.push(`${roasHidden} rows below ${ROAS_FILTER} NB ROAS hidden by the working-only filter.`);
+  if (minRoasOn && roasHidden > 0) notes.push(`${roasHidden} rows below ${ROAS_FILTER} ROAS hidden by the working-only filter.`);
   if (notes.length) container.appendChild(el("div", "muted", notes.join(" ")));
 }
 
@@ -1179,7 +1179,7 @@ function renderTable(container) {
 function channelGuidance(label, roas, goal) {
   if (label.includes("Brand")) return "Judge on incrementality, not this ROAS. Pullback in flight — watch capture.";
   if (label.includes("TOF")) return "TOF: judge on MER + first-touch over 2-4 wks, never 7d clicks.";
-  if (label.includes("TikTok")) return "NB attribution broken — decide on model views / MER.";
+  if (label.includes("TikTok")) return "TW attribution broken — decide on model views / MER.";
   if (label.includes("App")) return "Separate goals (installs / Amazon rev) — not ecom ROAS.";
   if (roas == null) return "";
   if (roas >= goal * 1.2) return "Scale in 15-20% steps; watch marginal ROAS.";
@@ -1226,14 +1226,14 @@ function changeLog() {
       cn.style.fontSize = "13px"; tdr.appendChild(cn);
       if (m.maturing || !m.post) {
         tdr.appendChild(el("div", "muted",
-          (m.pre ? "was " + m.pre.roas.toFixed(2) + " NB ROAS · " : "") + "too early to read"));
+          (m.pre ? "was " + m.pre.roas.toFixed(2) + " ROAS · " : "") + "too early to read"));
       } else {
         const line = el("div");
         line.appendChild(el("span", null, (m.pre ? m.pre.roas.toFixed(2) : "–") + " → "));
         const pv = el("b", null, m.post.roas.toFixed(2));
         if (m.pre) pv.style.color = m.post.roas >= m.pre.roas ? "var(--st-good)" : "var(--st-crit)";
         line.appendChild(pv);
-        line.appendChild(el("span", "muted", " NB ROAS"));
+        line.appendChild(el("span", "muted", " ROAS"));
         tdr.appendChild(line);
         tdr.appendChild(el("div", "muted",
           (m.pre ? "$" + Math.round(m.pre.spend_day).toLocaleString() : "–") + " → $" +
@@ -1246,7 +1246,7 @@ function changeLog() {
   const sc = el("div", "tscroll"); sc.appendChild(t); card.appendChild(sc);
   foldRows(chgRows, 8, card, "changes");
   const note = el("div", "maturity-note");
-  note.textContent = "Source: change log in Monday (TRX items marked Done). Reads are NB accrual over up to 7 days after the change — recent days always read low and firm up.";
+  note.textContent = "Source: change log in Monday (TRX items marked Done). Reads are TW attribution over up to 7 days after the change — recent days always read low and firm up.";
   card.appendChild(note);
   return card;
 }
@@ -1264,7 +1264,7 @@ function channelSummary() {
   card.appendChild(el("h2", null, "Channel allocation — where the next dollar goes"));
   const table = el("table");
   const trh = el("tr");
-  ["Bucket", "L7 spend", "share", "L7 NB ROAS", "Δ WoW", "L14 NB ROAS", "Platform ROAS", "What to do"].forEach((h, i) => {
+  ["Bucket", "L7 spend", "share", "L7 ROAS", "Δ WoW", "L14 ROAS", "Platform ROAS", "What to do"].forEach((h, i) => {
     const th = el("th", null, h); if (i === 0 || i === 7) th.style.textAlign = "left"; trh.appendChild(th);
   });
   table.appendChild(trh);
@@ -1295,7 +1295,7 @@ function channelSummary() {
     if (label.includes("TOF") && l7.mv != null) {
       const mv = el("span", "mult-chip", "MV " + l7.mv.toFixed(2));
       mv.style.marginLeft = "7px";
-      mv.title = "Clicks + Modeled Views — the model Demand Gen is judged on.";
+      mv.title = "Clicks + Total Impact — the model Demand Gen is judged on.";
       rcell.appendChild(mv);
     }
     tr.appendChild(rcell);
@@ -1352,7 +1352,7 @@ function creativeHealth() {
     d.appendChild(el("h2", null, title));
     const t = el("table");
     const trh = el("tr");
-    ["Ad", "Hook", "Spend", "NB ROAS"].forEach((h, i) => {
+    ["Ad", "Hook", "Spend", "ROAS"].forEach((h, i) => {
       const th = el("th", null, h); if (i === 0) th.style.textAlign = "left"; th.style.cursor = "default"; trh.appendChild(th);
     });
     t.appendChild(trh);
@@ -1458,7 +1458,7 @@ function creativeIntelligence() {
     if (bits.length) card.appendChild(takeaway(bits.join(" · ") + ".", leanHooks.length ? "good" : "warn"));
   }
   const grid = el("div", "ci-grid"); grid.style.marginTop = "12px";
-  const cols = [["key", ""], ["creatives", "#"], ["spend", "Spend"], ["roas", "NB ROAS"], ["hook_rate", "Hook"], ["verdict", "Verdict"]];
+  const cols = [["key", ""], ["creatives", "#"], ["spend", "Spend"], ["roas", "ROAS"], ["hook_rate", "Hook"], ["verdict", "Verdict"]];
   grid.appendChild(ciTable("By angle", cr.angles.slice(0, 8), cols));
   grid.appendChild(ciTable("By hook theme", cr.hooks.slice(0, 8), cols));
   grid.appendChild(ciTable("By format", cr.formats, cols));
@@ -1648,7 +1648,7 @@ function buildDetail(tcard) {
   zt.setAttribute("aria-pressed", String(showZero));
   zt.addEventListener("click", () => { showZero = !showZero; rebuild(); });
   filters.appendChild(zt);
-  const rt = el("button", "ghost", minRoasOn ? "Show all rows" : "Only ≥ " + ROAS_FILTER.toFixed(2) + " NB ROAS");
+  const rt = el("button", "ghost", minRoasOn ? "Show all rows" : "Only ≥ " + ROAS_FILTER.toFixed(2) + " ROAS");
   rt.setAttribute("aria-pressed", String(minRoasOn));
   rt.addEventListener("click", () => { minRoasOn = !minRoasOn; rebuild(); });
   filters.appendChild(rt);
@@ -1656,7 +1656,7 @@ function buildDetail(tcard) {
   const note = el("div", "maturity-note");
   note.textContent = winSel === "L1"
     ? "Yesterday view: accrual revenue for yesterday is largely unmatured — use for spend/delivery checks, not ROAS judgments. Status badges always judge on the 7-day window."
-    : "Status badges judge NB ROAS on the ≥7-day window with a $250 minimum spend. No kill/scale calls on <72h of data.";
+    : "Status badges judge ROAS on the ≥7-day window with a $250 minimum spend. No kill/scale calls on <72h of data.";
   tcard.appendChild(note);
   const twrap = el("div", "tscroll");
   tcard.appendChild(twrap);
@@ -1726,7 +1726,7 @@ function goalTrackCard(days) {
   const last30 = days.map(d => d.roll).slice(-30);
   const known = last30.filter(v => v != null);
   const w = el("div", "widget");
-  w.appendChild(el("h3", null, "Goal track — rolling " + (inclDG ? "core + DG" : "core") + " NB ROAS, 30 days"));
+  w.appendChild(el("h3", null, "Goal track — rolling " + (inclDG ? "core + DG" : "core") + " ROAS, 30 days"));
   const track = el("div", "gtrack");
   const max = Math.max(goal * 1.25, ...known, 0.1);
   last30.forEach(v => {
@@ -1777,14 +1777,14 @@ const fmN = v => v >= 1e6 ? (v / 1e6).toFixed(1) + "M" : v >= 1e4 ? Math.round(v
   : v >= 1e3 ? (v / 1e3).toFixed(1) + "K" : Math.round(v).toLocaleString("en-US");
 
 /* Judged funnel only: buckets != other (app/amazon managed separately) and no
-   TikTok (NB deterministic attribution broken). Campaign grain — nv/ftx exist
+   TikTok (deterministic attribution broken). Campaign grain — nv/ftx exist
    only there. */
 function funnelAgg(plat, win) {
   const rows = DATA.levels.campaign.filter(c =>
     bucketVisible(c.bucket) && c.platform !== "tiktok" &&
     (plat === "all" || c.platform === plat));
   const sum = f => rows.reduce((a, c) => a + (c.windows[win][f] || 0), 0);
-  // DG revenue is judged on Modeled Views, not deterministic — fold mv_rev for
+  // DG revenue is judged on Total Impact, not deterministic — fold mv_rev for
   // tof rows so an included-DG total never mixes in DG's near-zero det rev7.
   const rev = rows.reduce((a, c) => a +
     (c.bucket === "tof" ? (c.windows[win].mv_rev || 0) : (c.windows[win].rev7 || 0)), 0);
@@ -1925,7 +1925,7 @@ function funnelCard() {
       const mv = dg.mv_roas_l7, det = dg.det_roas_l7;
       const parts = [];
       if (dg.spend_l7 != null) parts.push(fm$(dg.spend_l7) + " Demand Gen (TOF) spend L7");
-      if (mv != null) parts.push("NB Clicks + Modeled Views 7D ROAS " + Number(mv).toFixed(2));
+      if (mv != null) parts.push("Clicks + Total Impact 7D ROAS " + Number(mv).toFixed(2));
       if (det != null) parts.push("deterministic " + Number(det).toFixed(2) + " understates it");
       box.appendChild(el("b", null, "Demand Gen is a modeled-views channel — "));
       box.appendChild(document.createTextNode(parts.join(" · ") + "."));
@@ -1991,7 +1991,7 @@ function integrityCard() {
   card.appendChild(tbl);
 
   if (I.divergence && I.divergence.length) {
-    const dh = el("h2", null, "Attribution check — what platforms claim vs what NB attributes (core, L7)");
+    const dh = el("h2", null, "Attribution check — what platforms claim vs what attributes (core, L7)");
     dh.style.marginTop = "var(--s4)";
     card.appendChild(dh);
     const maxv = Math.max(...I.divergence.map(d => Math.max(d.p_value_l7, d.nb_rev_l7)));
@@ -2003,13 +2003,13 @@ function integrityCard() {
       row.appendChild(l1);
       const b1 = el("div", "dbar claim"); b1.style.width = (d.p_value_l7 / maxv * 100) + "%"; row.appendChild(b1);
       const l2 = el("div", "dl");
-      l2.appendChild(el("span", null, d.label + " — Northbeam attributed"));
+      l2.appendChild(el("span", null, d.label + " — Triple Whale attributed"));
       l2.appendChild(el("b", null, fm$(d.nb_rev_l7)));
       row.appendChild(l2);
       const b2 = el("div", "dbar nb"); b2.style.width = (d.nb_rev_l7 / maxv * 100) + "%"; row.appendChild(b2);
       card.appendChild(row);
     });
-    card.appendChild(el("div", "sub", "Decisions run on Northbeam. Platform numbers are directional only — they double-count and self-attribute."));
+    card.appendChild(el("div", "sub", "Decisions run on Triple Whale. Platform numbers are directional only — they double-count and self-attribute."));
   }
 
   if (I.excluded && I.excluded.length) {
@@ -2046,7 +2046,7 @@ function ltvPage(app) {
   tiles.appendChild(mk2("LTV multiplier", a.multiplier ? a.multiplier.toFixed(2) + "x" : "–", "modeled lifetime ÷ first purchase"));
   tiles.appendChild(mk2("LTV / new customer", a.ltv_per_customer ? fm$(a.ltv_per_customer) : "–", a.ftx + " new customers · 30d"));
   tiles.appendChild(mk2("New-customer CAC", a.cac_ft ? fm$(a.cac_ft) : "–", "LTV:CAC " + (a.cac_ft && a.ltv_per_customer ? (a.ltv_per_customer / a.cac_ft).toFixed(1) + ":1" : "–")));
-  tiles.appendChild(mk2("First purchase vs LTV ROAS", (a.ft_roas ?? "–") + " → " + (a.ltv_roas ?? "–"), "30-day, NB modeled"));
+  tiles.appendChild(mk2("First purchase vs LTV ROAS", (a.ft_roas ?? "–") + " → " + (a.ltv_roas ?? "–"), "30-day, modeled"));
   app.appendChild(tiles);
 
   const card = el("div", "card");
@@ -2201,7 +2201,7 @@ function testingMonitor() {
   const note = el("div", "maturity-note");
   note.textContent = `Framework: every test ad set must spend ${g.mult_min}-${g.mult_max}x its estimated CPA before a verdict. ` +
     `Est. CPA = AOV ÷ ${g.grad_roas} (the acquisition cost at exactly the graduation bar; ad set's own AOV when it has 3+ purchases, else account avg $${Math.round(t.account_aov)}). ` +
-    `Graduate at ≥ ${g.grad_roas} NB ROAS into a scaling campaign; zero purchases through the gate = kill. Spend counted over last ${t.window_days} days.`;
+    `Graduate at ≥ ${g.grad_roas} ROAS into a scaling campaign; zero purchases through the gate = kill. Spend counted over last ${t.window_days} days.`;
   card.appendChild(note);
   if (!t.rows.length) {
     card.appendChild(el("div", "dempty", "No ad sets with spend in the testing campaign right now."));
@@ -2228,7 +2228,7 @@ function testingMonitor() {
   card.appendChild(chips);
   const table = el("table");
   const trh = el("tr");
-  ["Ad set", "Ads", "Days", "Test spend vs gate", "Txns", "NB ROAS", "Est. CPA", "Status", "Action"].forEach((h, i) => {
+  ["Ad set", "Ads", "Days", "Test spend vs gate", "Txns", "ROAS", "Est. CPA", "Status", "Action"].forEach((h, i) => {
     const th = el("th", null, h); th.style.cursor = "default";
     if (i === 0 || i === 8) th.style.textAlign = "left";
     trh.appendChild(th);
@@ -2307,7 +2307,7 @@ function pageNav(cur) {
 /* ---------- cockpit builders ---------- */
 /* Daily Guide strip — the at-a-glance morning read at the top of the cockpit.
    Sheet gear/total revenue + blended MER (vs goals), platform ad spend by
-   channel, and Northbeam new-customer economics + AOV. L7-anchored, WoW deltas,
+   channel, and Triple Whale new-customer economics + AOV. L7-anchored, WoW deltas,
    variance-to-goal color where a goal exists. Reads DATA.daily_guide (additive);
    returns null if the block is absent so the cockpit degrades cleanly. */
 function dailyGuideStrip() {
@@ -2319,12 +2319,12 @@ function dailyGuideStrip() {
   const bits = ["L7 rolling"];
   const md = (iso) => iso ? iso.slice(5).replace("-", "/") : null;
   if (g.sheet_through) bits.push("revenue from pacing sheet thru " + md(g.sheet_through));
-  if (g.nb_through) bits.push("new-customer from Northbeam thru " + md(g.nb_through));
+  if (g.nb_through) bits.push("new-customer from Triple Whale thru " + md(g.nb_through));
   head.appendChild(el("div", "dg-s", bits.join(" · ")));
   wrap.appendChild(head);
 
   const S = g.series || {};
-  // DG toggle: swap in the DG-inclusive variant of each NB new-customer sparkline.
+  // DG toggle: swap in the DG-inclusive variant of each new-customer sparkline.
   const sPick = (base) => (inclDG && S[base + "_incl"]) ? S[base + "_incl"] : S[base];
   const tiles = el("div", "tiles");
   const stColor = (st) => st === "good" ? "var(--st-good)" : st === "bad" ? "var(--st-crit)" : "inherit";
@@ -2394,13 +2394,13 @@ function dailyGuideStrip() {
       wow: sp.managed_wow, prior: fmK(sp.managed_p7), favor: "flat", spark: S.managed_spend,
       basis: ch + " · managed (incl affiliate/trad)" });
   }
-  const ncScope = inclDG ? "core+brand+DG (DG on Modeled Views)" : "core+brand";
+  const ncScope = inclDG ? "core+brand+DG (DG on Total Impact)" : "core+brand";
   const nc = (inclDG && g.nc_incl) ? g.nc_incl : g.nc;
   if (nc) {
     if (nc.rev_l7 != null)
       mkt("New-customer revenue", fmK(nc.rev_l7), {
         wow: nc.rev_wow, prior: fmK(nc.rev_p7), favor: upFavor(nc.rev_wow), spark: sPick("nc_rev"),
-        basis: "first-purchase · " + ncScope + " · Northbeam" });
+        basis: "first-purchase · " + ncScope + " · Triple Whale" });
     if (nc.roas_l7 != null) {
       const rw = nc.roas_p7 ? (nc.roas_l7 - nc.roas_p7) / nc.roas_p7 : null;
       mkt("New-customer ROAS", nc.roas_l7.toFixed(2), {
@@ -2414,7 +2414,7 @@ function dailyGuideStrip() {
     mkt("New-customer CAC", fm$(c.l7), {
       wow: c.wow, prior: c.p7 != null ? fm$(c.p7) : null,
       favor: dnFavor(c.wow), spark: sPick("cac"), status: cacStatus(c.wow),
-      basis: c.new_txns + " new cust · Google+Meta, " + (inclDG ? "incl Demand Gen" : "excl Demand Gen") + " · Northbeam" });
+      basis: c.new_txns + " new cust · Google+Meta, " + (inclDG ? "incl Demand Gen" : "excl Demand Gen") + " · Triple Whale" });
   const av = (inclDG && g.aov_incl) ? g.aov_incl : g.aov;
   if (av && av.l7 != null)
     mkt("AOV", fm$(av.l7), {
@@ -2519,7 +2519,7 @@ function render() {
   sb.appendChild(pageNav(PAGE));
   const foot = el("div", "sb-foot");
   const gc = el("div"); gc.appendChild(document.createTextNode("Goal "));
-  gc.appendChild(el("b", null, m.goal_roas.toFixed(1) + " NB ROAS"));
+  gc.appendChild(el("b", null, m.goal_roas.toFixed(1) + " ROAS"));
   foot.appendChild(gc);
   foot.appendChild(el("div", "attr", m.attribution_label));
   // judge freshness in ET (data days are ET); UTC evenings would false-flag STALE
@@ -2598,11 +2598,11 @@ function render() {
     dgm.appendChild(el("span", "dgmode-dot"));
     dgm.appendChild(el("b", null, "Including Demand Gen"));
     dgm.appendChild(document.createTextNode(
-      " — counted on NB Clicks + Modeled Views (7D). Toggle off in the sidebar for core-only numbers."));
+      " — counted on Clicks + Total Impact (7D). Toggle off in the sidebar for core-only numbers."));
     app.appendChild(dgm);
   }
 
-  /* Daily Guide strip — top-of-cockpit at-a-glance (sheet revenue + NB new-customer) */
+  /* Daily Guide strip — top-of-cockpit at-a-glance (sheet revenue + new-customer) */
   if (PAGE === "cockpit") {
     const dgs = dailyGuideStrip();
     if (dgs) app.appendChild(dgs);
@@ -2676,7 +2676,7 @@ function render() {
   };
   const bandStatus = off => off == null ? "na" : Math.abs(off) <= 0.1 ? "good" : Math.abs(off) <= 0.2 ? "warn" : "bad";
   // headline blend (reads global inclDG): excl == precomputed core numbers,
-  // incl folds Demand Gen (tof) in on NB Clicks + Modeled Views
+  // incl folds Demand Gen (tof) in on Clicks + Total Impact
   const aggL7 = dgAgg("L7"), aggP7 = dgAgg("P7");
   const p7roas = aggP7.roas;
   const coreRoas = aggL7.roas;
@@ -2694,13 +2694,13 @@ function render() {
     d.appendChild(sparkline(vals, 200, 34, goalLine));
     return d;
   };
-  const t1 = mk(inclDG ? "Core + DG NB ROAS" : "Core NB ROAS", coreRoas == null ? "–" : coreRoas.toFixed(2), dTxt, dCls,
+  const t1 = mk(inclDG ? "Core + DG ROAS" : "Core ROAS", coreRoas == null ? "–" : coreRoas.toFixed(2), dTxt, dCls,
     spk(last14.map(d => d.roll), goal),
     coreRoas == null ? "na" : coreRoas >= goal ? "good" : coreRoas >= 1.5 ? "warn" : "bad");
   t1.querySelector(".val").style.color = coreRoas != null && coreRoas >= goal ? "var(--st-good)" : (coreRoas != null && coreRoas < 1.5 ? "var(--st-crit)" : "inherit");
   if (inclDG) {
     const chip = el("span", "dgchip", "incl DG");
-    chip.title = "Demand Gen folded in on NB Clicks + Modeled Views (7D)";
+    chip.title = "Demand Gen folded in on Clicks + Total Impact (7D)";
     t1.querySelector(".tile-top").appendChild(chip);
   }
   tiles.appendChild(t1);
@@ -2753,17 +2753,17 @@ function render() {
     // lower CAC is better: arrow shows direction, color shows goodness
     const cacTile = mk("New-customer CAC", fm$(cacL7),
       (dd == null ? "" : (dd >= 0 ? "+" : "") + Math.round(dd * 100) + "% vs prior 7d · ")
-        + Math.round(aggL7.ftx) + " new customers (NB paid, core+brand" + (inclDG ? "+DG" : "") + ", ex-App/Amazon)",
+        + Math.round(aggL7.ftx) + " new customers (paid, core+brand" + (inclDG ? "+DG" : "") + ", ex-App/Amazon)",
       dd == null ? null : (dd <= 0 ? "up" : "down"),
       spk(last14.map(d => d.cacRoll)), dd == null ? "na" : dd <= 0 ? "good" : dd <= 0.15 ? "warn" : "bad");
-    if (inclDG) cacTile.title = "Demand Gen first-time customers are counted on Northbeam deterministic ftx — Modeled Views gives revenue, not customer counts.";
+    if (inclDG) cacTile.title = "Demand Gen first-time customers are counted on Triple Whale deterministic ftx — Total Impact gives revenue, not customer counts.";
     tiles.appendChild(cacTile);
   }
   const nvL7 = aggL7.nvPct, nvP7 = aggP7.nvPct;
   if (nvL7 != null) {
     const dpp = nvP7 != null ? (nvL7 - nvP7) * 100 : null;
     tiles.appendChild(mk("New visitor %", Math.round(nvL7 * 100) + "%",
-      (dpp == null ? "share of NB paid visits" : (dpp >= 0 ? "+" : "") + dpp.toFixed(1) + "pp vs prior 7d")
+      (dpp == null ? "share of paid visits" : (dpp >= 0 ? "+" : "") + dpp.toFixed(1) + "pp vs prior 7d")
         + (inclDG ? " · core+brand+DG" : ""),
       dpp == null ? null : (dpp >= 0 ? "up" : "down"),
       spk(last14.map(d => d.nvRoll)), dpp == null ? "na" : dpp >= 0 ? "good" : dpp > -3 ? "warn" : "bad"));
@@ -2771,7 +2771,7 @@ function render() {
   // mix-context tiles live on the pacing page; the cockpit stays one screen
   if (typeof PAGE === "undefined" || PAGE === "pacing") {
     {
-      /* DG judged on Clicks + Modeled Views — surface that read on the tile */
+      /* DG judged on Clicks + Total Impact — surface that read on the tile */
       const tof = DATA.levels.campaign.filter(c => c.bucket === "tof");
       const tsp = tof.reduce((a, c) => a + (c.windows.L7.spend || 0), 0);
       const tmv = tof.reduce((a, c) => a + (c.windows.L7.mv_rev || 0), 0);
@@ -2790,7 +2790,7 @@ function render() {
   {
     const ch = el("div", "chead");
     ch.appendChild(el("div", "ct", "Performance trends"));
-    ch.appendChild(el("div", "cs", "Daily core NB ROAS + 7-day rolling line vs goal · spend stacked by channel · 30 days"));
+    ch.appendChild(el("div", "cs", "Daily core ROAS + 7-day rolling line vs goal · spend stacked by channel · 30 days"));
     tc.appendChild(ch);
   }
   {
@@ -2825,7 +2825,7 @@ function render() {
       return d;
     };
     st.appendChild(cell("Judged spend — L7", fmK(c7.spend), c7.spend, p7.spend, false));
-    st.appendChild(cell("NB revenue — L7", fmK(c7.rev), c7.rev, p7.rev));
+    st.appendChild(cell("revenue — L7", fmK(c7.rev), c7.rev, p7.rev));
     const ctr = c7.impr ? c7.clicks / c7.impr : null, pctr = p7.impr ? p7.clicks / p7.impr : null;
     if (ctr != null) st.appendChild(cell("CTR — L7", (ctr * 100).toFixed(2) + "%", ctr, pctr));
     st.appendChild(cell("Purchases — L7", fmN(c7.txns), c7.txns, p7.txns));
@@ -2876,7 +2876,7 @@ function render() {
     ["Scale & cut:", "work the SCALE and WATCH queues plus campaign badges on L7/L14 windows."],
     ["Creative:", "kill weak hooks after $500-1K spend, brief iterations on the strongest angles."],
     ["Allocation:", "move the next dollar where the LAST dollar returned most (channel table guidance)."],
-    ["Reconcile:", "platform vs NB divergence — decide on NB, use platform for direction only."],
+    ["Reconcile:", "platform vs divergence — decide on NB, use platform for direction only."],
   ]));
   rc.appendChild(rgrid);
   if (PAGE === "reference") {
@@ -2888,7 +2888,7 @@ function render() {
   /* weekly section */
   const sh = el("div", "section-h");
   sh.appendChild(el("h2", null, "Creative review"));
-  sh.appendChild(el("span", "sub", "Meta creative on NB numbers · kill/scale creatives only after $500-1K spend"));
+  sh.appendChild(el("span", "sub", "Meta creative on numbers · kill/scale creatives only after $500-1K spend"));
   if (PAGE === "creative") app.appendChild(sh);
 
   if (PAGE === "testing" && DATA.creative && DATA.creative.testing) app.appendChild(testingMonitor());
@@ -2960,7 +2960,7 @@ function render() {
   f.appendChild(el("div", null, "Definitions & data rules"));
   const ful = el("ul");
   (m.notes || []).forEach(nt => ful.appendChild(el("li", null, nt)));
-  ful.appendChild(el("li", null, "Generated " + m.generated_at + " · Sources: Northbeam export API (attribution + Meta platform-reported at 7d-click/1d-view), Google Ads API (platform)."));
+  ful.appendChild(el("li", null, "Generated " + m.generated_at + " · Sources: Triple Whale export API (attribution + Meta platform-reported at 7d-click/1d-view), Google Ads API (platform)."));
   f.appendChild(ful);
   if (PAGE === "reference") app.appendChild(f);
   else app.appendChild(miniFooter());
