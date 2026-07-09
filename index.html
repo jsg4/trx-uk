@@ -1,0 +1,2970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>TRX UK — Lower Cross</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Geist:wght@400;500;650&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@500,600,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* ---- Lower Cross design tokens (v11 — aligned to the LC design system) */
+  /* brand: greens from the DS (#134823 green-ink, #0F2A1D green-dark) */
+  --pine:#123524; --pine-2:#134823; --pine-dark:#0F2A1D; --lime:#DAFF00;
+  --accent:#DAFF00; --on-accent:#123524;
+  /* surfaces + ink (light: brand cream pair, white cards) */
+  --page:#F8F6F4; --surface-1:#FFFFFF; --surface-2:#F0EBE6;
+  --ink-1:#121B16; --ink-2:#57635B; --ink-3:#7E8A81;
+  --border:#E2E0D7; --grid:#EBE9E1; --axis:#B9B6AA;
+  /* status — the ONLY red/amber/green on the page */
+  --st-good:#177A46; --st-warn:#A96A00; --st-serious:#B45309; --st-crit:#BF3B31;
+  --delta-good:#177A46; --delta-bad:#BF3B31;
+  --wash:rgba(18,53,36,0.05);
+  --wash-good:rgba(23,122,70,0.10); --wash-warn:rgba(169,106,0,0.11); --wash-bad:rgba(191,59,49,0.09);
+  /* platform series (charts): harmonized, not neon */
+  --s-meta:#33628F; --s-google:#B9862E; --s-tiktok:#3E8767; --s-other:#8A8FA0;
+  --seq-250:#8FB2CF;
+  /* bucket ramp (spend mix): tonal pine, one hue */
+  --bk-core:#123524; --bk-tof:#4E7A5D; --bk-brand:#8FAC94; --bk-other:#CBC7B8;
+  /* funnel ordinal ramp (validated light: white card): impressions -> purchases */
+  --fn-1:#9FB7A4; --fn-2:#7A9C84; --fn-3:#567F66; --fn-4:#2F5D44; --fn-5:#123524;
+  --tfun:#123524;  /* tornado funnel fill */
+  /* command bar (pine in both themes) */
+  --bar-ink:#F4F6F1; --bar-ink-2:rgba(244,246,241,0.66); --bar-line:rgba(244,246,241,0.16);
+  --bar-good:#6FD49A; --bar-warn:#E9B45B; --bar-crit:#F08D84;
+  /* shape + elevation + spacing (8pt) — DS-leaning radius, slightly deeper card shadow */
+  --r:18px; --r-s:9px;
+  --shadow:0 1px 2px rgba(11,16,21,0.04), 0 10px 32px rgba(11,16,21,0.06);
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px;
+  /* type roles — Switzer is the true LC display face (Space Grotesk = DS fallback) */
+  --f-display:"Switzer","Space Grotesk",sans-serif;
+  --f-ui:"Geist",-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+  --t-cap:12px; --t-sm:13px; --t-body:14.5px; --t-title:22px; --t-kpi:34px;
+}
+:root[data-theme="dark"] {
+  --page:#0D1411; --surface-1:#151D18; --surface-2:#1C2620;
+  --ink-1:#ECEFEA; --ink-2:#A9B4AC; --ink-3:#79857D;
+  --border:#28332B; --grid:#202B24; --axis:#4E5A51;
+  --st-good:#4CC080; --st-warn:#D9A03C; --st-serious:#E08A3C; --st-crit:#E36B60;
+  --delta-good:#4CC080; --delta-bad:#E36B60;
+  --wash:rgba(218,255,0,0.05);
+  --wash-good:rgba(76,192,128,0.13); --wash-warn:rgba(217,160,60,0.13); --wash-bad:rgba(227,107,96,0.13);
+  --s-meta:#5D8DBC; --s-google:#CFA14E; --s-tiktok:#5CAB85; --s-other:#9BA0B0;
+  --seq-250:#4F7DA8;
+  --bk-core:#C7E463; --bk-tof:#79A886; --bk-brand:#48705A; --bk-other:#3A453D;
+  --fn-1:#44604E; --fn-2:#5C7F63; --fn-3:#7B9F72; --fn-4:#9FC276; --fn-5:#C7E463;
+  --tfun:#C7E463;
+  --shadow:0 1px 2px rgba(0,0,0,0.4);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page:#0D1411; --surface-1:#151D18; --surface-2:#1C2620;
+    --ink-1:#ECEFEA; --ink-2:#A9B4AC; --ink-3:#79857D;
+    --border:#28332B; --grid:#202B24; --axis:#4E5A51;
+    --st-good:#4CC080; --st-warn:#D9A03C; --st-serious:#E08A3C; --st-crit:#E36B60;
+    --delta-good:#4CC080; --delta-bad:#E36B60;
+    --wash:rgba(218,255,0,0.05);
+    --wash-good:rgba(76,192,128,0.13); --wash-warn:rgba(217,160,60,0.13); --wash-bad:rgba(227,107,96,0.13);
+    --s-meta:#5D8DBC; --s-google:#CFA14E; --s-tiktok:#5CAB85; --s-other:#9BA0B0;
+    --seq-250:#4F7DA8;
+    --bk-core:#C7E463; --bk-tof:#79A886; --bk-brand:#48705A; --bk-other:#3A453D;
+    --fn-1:#44604E; --fn-2:#5C7F63; --fn-3:#7B9F72; --fn-4:#9FC276; --fn-5:#C7E463;
+    --tfun:#C7E463;
+    --shadow:0 1px 2px rgba(0,0,0,0.4);
+  }
+}
+
+/* ---- base ------------------------------------------------------------ */
+* { box-sizing:border-box; }
+html { -webkit-text-size-adjust:100%; }
+body { margin:0; background:var(--page); color:var(--ink-1); font:var(--t-body)/1.5 var(--f-ui); }
+.wrap { max-width:1240px; margin:0 auto; padding:var(--s4) var(--s4) var(--s7); }
+:focus-visible { outline:2px solid var(--pine); outline-offset:2px; border-radius:4px; }
+:root[data-theme="dark"] :focus-visible { outline-color:var(--lime); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) :focus-visible { outline-color:var(--lime); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition:none !important; animation:none !important; } }
+
+h1 { font-family:var(--f-display); font-size:20px; margin:0; font-weight:700; letter-spacing:-0.02em; }
+/* card section label — one label style everywhere */
+h2 { font-family:var(--f-ui); font-size:var(--t-cap); margin:0 0 var(--s3); font-weight:650; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em; }
+.sub { color:var(--ink-2); font-size:var(--t-sm); }
+.muted { color:var(--ink-3); }
+
+.card { background:var(--surface-1); border:1px solid var(--border); border-radius:var(--r); padding:var(--s4) var(--s4); margin-bottom:var(--s4); box-shadow:var(--shadow); }
+
+/* Lower Cross stacked logotype (homepage mark reproduced typographically) */
+.lc-logo { font-family:var(--f-display); font-weight:700; font-size:21px; line-height:0.94;
+  letter-spacing:0.015em; text-transform:uppercase; color:var(--bar-ink); }
+.lc-logo.small { font-size:15px; }
+#lock .lc-logo { color:var(--pine); margin-bottom:var(--s3); font-size:24px; }
+:root[data-theme="dark"] #lock .lc-logo { color:var(--lime); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) #lock .lc-logo { color:var(--lime); } }
+
+/* ---- sidebar (signature: pine rail carries brand + nav) ---------------- */
+:root { --sbw:236px; --mbh:56px; }
+.sidebar { position:fixed; top:0; bottom:0; left:0; width:var(--sbw); z-index:40;
+  background:linear-gradient(180deg, var(--pine) 0%, var(--pine-dark) 100%);
+  color:var(--bar-ink); display:flex; flex-direction:column;
+  padding:var(--s5) var(--s4) var(--s4); overflow-y:auto; }
+.sb-brand .wordmark { color:var(--lime); }
+.sb-brand h1 { color:var(--bar-ink); font-size:18px; margin-top:var(--s2); }
+.sb-nav { display:flex; flex-direction:column; gap:2px; margin-top:var(--s5); }
+.sb-nav a { display:flex; align-items:center; gap:10px; padding:9px 10px;
+  border-radius:var(--r-s); font-size:15px; font-weight:500; color:var(--bar-ink-2);
+  text-decoration:none; border-left:3px solid transparent; }
+.sb-nav a .nic { display:flex; flex:none; opacity:0.7; }
+.sb-nav a:hover { color:var(--bar-ink); background:rgba(244,246,241,0.06); }
+.sb-nav a.on { color:var(--lime); border-left-color:var(--lime); font-weight:650; background:rgba(218,255,0,0.07); }
+.sb-nav a.on .nic { opacity:1; }
+.sb-foot { margin-top:auto; padding-top:var(--s4); border-top:1px solid var(--bar-line);
+  font-size:var(--t-sm); color:var(--bar-ink-2); display:grid; gap:6px; }
+.sb-foot b { color:var(--bar-ink); font-weight:600; }
+.sb-foot .attr { font-size:var(--t-cap); }
+.sb-foot .stale { color:var(--bar-crit); font-weight:650; }
+.sb-foot button.ghost { border-color:var(--bar-line); color:var(--bar-ink-2); justify-self:start; }
+.sb-foot button.ghost:hover { color:var(--bar-ink); border-color:var(--bar-ink-2); }
+.sidebar :focus-visible { outline-color:var(--lime); }
+:root.shell body { padding-left:var(--sbw); }
+
+/* mobile top bar + hamburger (hidden on desktop) */
+.mobilebar { display:none; position:fixed; top:0; left:0; right:0; height:var(--mbh); z-index:45;
+  background:var(--pine); color:var(--bar-ink); align-items:center; gap:var(--s2); padding:0 var(--s2); }
+.mobilebar .wordmark { color:var(--lime); }
+.mobilebar .mb-client { font-family:var(--f-display); font-weight:700; font-size:16px; }
+.hamb { width:44px; height:44px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  background:none; border:none; cursor:pointer; padding:0; }
+.hamb span { display:block; width:20px; height:2px; background:var(--lime); border-radius:2px; margin:2.5px 0;
+  transition:transform .3s cubic-bezier(0.34,1.56,0.64,1), opacity .2s ease; }
+:root.nav-open .hamb span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+:root.nav-open .hamb span:nth-child(2) { opacity:0; transform:scaleX(0.4); }
+:root.nav-open .hamb span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+.scrim { position:fixed; inset:0; z-index:39; background:rgba(10,20,14,0.5); opacity:0;
+  pointer-events:none; transition:opacity .3s ease; }
+:root.nav-open .scrim { opacity:1; pointer-events:auto; }
+
+@media (max-width:1023px) {
+  :root.shell body { padding-left:0; padding-top:calc(var(--mbh) + var(--s2)); }
+  .mobilebar { display:flex; }
+  .sidebar { width:min(300px, 84vw); transform:translateX(-105%); box-shadow:0 0 44px rgba(0,0,0,0.35);
+    transition:transform .38s cubic-bezier(0.34,1.56,0.64,1); padding-top:calc(var(--mbh) + var(--s3)); }
+  /* the persistent top bar already carries the brand — no duplicate in the drawer */
+  .sidebar .sb-brand { display:none; }
+  .sb-nav { margin-top:0; }
+  :root.nav-open .sidebar { transform:none; }
+  /* whimsy: nav items spring in one after another as the drawer opens */
+  .sb-nav a { opacity:0; transform:translateX(-14px);
+    transition:opacity .22s ease, transform .32s cubic-bezier(0.34,1.56,0.64,1); }
+  :root.nav-open .sb-nav a { opacity:1; transform:none; transition-delay:calc(40ms * var(--i, 0)); }
+  :root.nav-open, :root.nav-open body { overflow:hidden; }
+}
+
+/* verdict strip — cockpit, pine strip at the top of the content column */
+.topstrip { background:var(--pine); border-radius:var(--r); padding:var(--s3) var(--s4); margin-bottom:var(--s4); box-shadow:var(--shadow); }
+.verdict { display:flex; align-items:baseline; gap:var(--s2); font-size:var(--t-body); color:var(--bar-ink); flex-wrap:wrap; }
+.verdict .vdot { width:9px; height:9px; border-radius:50%; flex:none; align-self:center; }
+.verdict.v-good .vdot { background:var(--bar-good); }
+.verdict.v-warn .vdot { background:var(--bar-warn); }
+.verdict.v-bad .vdot { background:var(--bar-crit); }
+.verdict .vh { font-weight:650; }
+.verdict.v-bad .vh { color:var(--bar-crit); }
+.verdict.v-warn .vh { color:var(--bar-warn); }
+.verdict.v-good .vh { color:var(--bar-good); }
+.verdict .vs { color:var(--bar-ink-2); }
+.verdict .vs b { color:var(--bar-ink); font-weight:600; }
+.verdict a { color:var(--lime); text-decoration:none; font-weight:600; }
+.verdict a:hover { text-decoration:underline; }
+
+/* page title */
+.pagehead { margin:var(--s2) 0 var(--s3); display:flex; align-items:baseline; gap:var(--s3); flex-wrap:wrap; }
+.pagehead .ptitle { font-family:var(--f-display); font-size:var(--t-title); font-weight:700; letter-spacing:-0.02em; }
+.pagehead .pctx { margin-left:auto; font-size:var(--t-sm); color:var(--ink-3); font-variant-numeric:tabular-nums; }
+
+/* legacy header pieces (lock screen wordmark) */
+.wordmark { font-family:var(--f-display); font-size:10px; letter-spacing:0.22em; color:var(--ink-3); text-transform:uppercase; font-weight:700; }
+.chip { display:inline-flex; align-items:center; gap:6px; padding:3px 10px; border:1px solid var(--border); border-radius:100px; font-size:var(--t-sm); color:var(--ink-2); background:var(--surface-1); }
+.chip b { color:var(--ink-1); }
+button.ghost { background:none; border:1px solid var(--border); border-radius:var(--r-s); color:var(--ink-2); padding:6px 12px; font:inherit; font-size:var(--t-sm); cursor:pointer; }
+button.ghost:hover { color:var(--ink-1); }
+
+/* ---- decide queues ---------------------------------------------------- */
+.decide { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:var(--s3); }
+.dcol { border:1px solid var(--border); border-top:2px solid var(--border); border-radius:var(--r-s); padding:var(--s3) var(--s4); background:var(--surface-1); }
+.dcol h3 { margin:0 0 var(--s2); font-size:var(--t-cap); letter-spacing:0.08em; display:flex; align-items:center; gap:6px; text-transform:uppercase; font-weight:650; }
+.dcol h3 .dot { width:8px; height:8px; border-radius:50%; }
+.d-now { border-top-color:var(--st-crit); } .d-now h3 { color:var(--st-crit); } .d-now .dot { background:var(--st-crit); }
+.d-scale { border-top-color:var(--st-good); } .d-scale h3 { color:var(--st-good); } .d-scale .dot { background:var(--st-good); }
+.d-watch { border-top-color:var(--st-warn); } .d-watch h3 { color:var(--st-warn); } .d-watch .dot { background:var(--st-warn); }
+.ditem { padding:var(--s2) 0 10px; border-top:1px solid var(--grid); font-size:14px; }
+.ditem:first-of-type { border-top:none; }
+.ditem .w { font-weight:400; color:var(--ink-2); }
+.ditem .w .qname { font-weight:650; color:var(--ink-1); }
+.ditem .a { color:var(--ink-2); margin-top:3px; font-size:var(--t-sm); }
+.ditem .a::before { content:"→ "; color:var(--ink-3); }
+.dempty { color:var(--ink-3); font-size:14px; padding:var(--s2) 0; }
+.dkids { margin-top:6px; border-left:2px solid var(--grid); padding-left:10px; }
+.dkid { display:flex; align-items:baseline; gap:6px; font-size:var(--t-sm); color:var(--ink-2); padding:2px 0; }
+.dkid .kdot { width:6px; height:6px; border-radius:50%; flex:none; align-self:center; }
+.dkid.k-pause .kdot { background:var(--st-crit); }
+.dkid.k-keep .kdot { background:var(--st-good); }
+.dkid.k-best .kdot { background:var(--st-warn); }
+.dkid .knm { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:60%; }
+.dkid .kv { margin-left:auto; font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--ink-1); }
+
+/* ---- Daily Guide strip (cockpit top) — section head above a .tiles strip --- */
+.dgstrip { margin-bottom:var(--s4); }
+.dg-head { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap;
+  gap:var(--s2); margin-bottom:var(--s2); }
+.dg-head .dg-t { font-family:var(--f-display); font-size:16px; font-weight:700; letter-spacing:-0.01em; }
+.dg-head .dg-s { font-size:var(--t-cap); color:var(--ink-3); }
+.dgstrip .tiles { margin-bottom:0; }
+/* prominent week-over-week comparison: bold colored delta over a quiet prior */
+.tile .cmp { display:flex; flex-direction:column; gap:0; margin-top:5px; line-height:1.25; }
+.tile .cmp .cmp-d { font-weight:700; font-size:15px; letter-spacing:-0.01em;
+  font-variant-numeric:tabular-nums; white-space:nowrap; }
+.tile .cmp.up .cmp-d { color:var(--delta-good); }
+.tile .cmp.down .cmp-d { color:var(--delta-bad); }
+.tile .cmp.flat .cmp-d { color:var(--ink-2); }
+.tile .cmp .cmp-vs { color:var(--ink-3); font-weight:500; font-size:var(--t-cap); white-space:nowrap; }
+.dgstrip .tile { flex:1 1 196px; min-width:196px; max-width:300px; }
+.dgstrip .tile .spark { margin-top:7px; }
+.dgstrip .tile .basis { margin-top:6px; }
+
+/* ---- Performance Summary strip: KPIs in one card, divided cells (ref) --- */
+.tiles { display:flex; flex-wrap:wrap; background:var(--surface-1); border:1px solid var(--border);
+  border-radius:var(--r); box-shadow:var(--shadow); margin-bottom:var(--s4); overflow:hidden; }
+.tile { position:relative; flex:1 1 0; min-width:164px; padding:var(--s4) var(--s4) 14px calc(var(--s4) + 6px);
+  border-left:1px solid var(--border); }
+.tile:first-child { border-left:none; }
+/* left status accent bar (the reference's colored tick) */
+.tile::before { content:""; position:absolute; left:0; top:var(--s4); bottom:14px; width:3px;
+  border-radius:0 3px 3px 0; background:var(--ink-3); opacity:0.3; }
+.tile.st-good::before { background:var(--st-good); opacity:1; }
+.tile.st-warn::before { background:var(--st-warn); opacity:1; }
+.tile.st-bad::before  { background:var(--st-crit); opacity:1; }
+.tile-top { display:flex; align-items:flex-start; gap:var(--s2); margin-bottom:6px; min-height:2.7em; }
+.tile .lbl { font-size:var(--t-cap); color:var(--ink-3); text-transform:uppercase; letter-spacing:0.07em;
+  font-weight:650; line-height:1.35; flex:1; }
+.tile .val { font-family:var(--f-display); font-size:29px; font-weight:700; letter-spacing:-0.02em;
+  line-height:1.05; font-variant-numeric:tabular-nums; }
+.tile .delta { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:100px;
+  font-weight:650; font-size:var(--t-cap); background:var(--surface-2); color:var(--ink-2); white-space:nowrap; flex:none; }
+.tile .delta.up { background:var(--wash-good); color:var(--delta-good); }
+.tile .delta.down { background:var(--wash-bad); color:var(--delta-bad); }
+.tile .basis { font-size:var(--t-cap); color:var(--ink-3); margin-top:3px; line-height:1.3; }
+.tile svg { display:block; margin-top:var(--s2); width:100%; }
+@media (max-width:760px) { .tile { flex:1 1 44%; min-width:44%; } .tile:nth-child(odd) { border-left:none; } }
+.sdot { display:none; }
+.goalbar { position:relative; height:4px; border-radius:100px; background:var(--grid); margin-top:var(--s2); overflow:visible; }
+.goalbar > i { display:block; height:100%; border-radius:100px; }
+.goalbar .tick { position:absolute; top:-3px; width:2px; height:10px; background:var(--axis); }
+
+/* ---- routine ---------------------------------------------------------- */
+.routine { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:var(--s4); }
+.routine ol { margin:6px 0 0; padding-left:20px; font-size:14px; color:var(--ink-2); }
+.routine li { margin:4px 0; }
+.routine b { color:var(--ink-1); }
+
+/* ---- charts ------------------------------------------------------------ */
+.chartbox { position:relative; }
+.crosshair { position:absolute; top:0; width:1px; background:var(--axis); pointer-events:none; display:none; }
+.tooltip { position:absolute; pointer-events:none; display:none; z-index:5; background:var(--surface-1); border:1px solid var(--border); border-radius:var(--r-s); padding:var(--s2) 10px; font-size:var(--t-sm); box-shadow:var(--shadow); min-width:150px; }
+.tooltip .tt-date { color:var(--ink-3); margin-bottom:4px; }
+.tooltip .row { display:flex; align-items:center; gap:6px; margin:2px 0; }
+.tooltip .key { width:12px; height:2px; border-radius:1px; flex:none; }
+.tooltip .v { font-weight:650; margin-left:auto; padding-left:12px; font-variant-numeric:tabular-nums; }
+.legend { display:flex; gap:14px; flex-wrap:wrap; font-size:var(--t-sm); color:var(--ink-2); margin-top:var(--s2); }
+.legend .key { display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+.legend .keyline { display:inline-block; width:14px; height:2px; border-radius:1px; margin-right:5px; vertical-align:3px; }
+.legend .keyline.thick { height:3px; }
+
+/* ---- tables ------------------------------------------------------------ */
+table { width:100%; border-collapse:collapse; font-size:14px; }
+th, td { text-align:right; padding:9px 10px; border-bottom:1px solid var(--grid); white-space:nowrap; }
+th:first-child, td:first-child { text-align:left; }
+th { color:var(--ink-3); font-weight:500; font-size:var(--t-cap); text-transform:uppercase; letter-spacing:0.05em; cursor:pointer; user-select:none; position:sticky; top:0; background:var(--surface-1); z-index:1; }
+th.sorted { color:var(--ink-1); font-weight:650; }
+td { font-variant-numeric:tabular-nums; }
+td.name { max-width:340px; overflow:hidden; text-overflow:ellipsis; text-align:left; }
+/* copyable / expandable ad names (click a name -> code-block popover + copy) */
+.copyname { position:relative; cursor:pointer; }
+td.name.copyname { padding-right:20px; }
+.copyname .copyglyph { position:absolute; right:5px; top:8px; font-size:12px; line-height:1;
+  color:var(--ink-3); opacity:0.4; transition:opacity .12s, color .12s; }
+.copyname:hover .copyglyph { opacity:1; color:var(--st-good); }
+.namepop { position:fixed; z-index:60; width:min(560px,92vw); background:var(--surface-1);
+  border:1px solid var(--border); border-radius:var(--r-s); box-shadow:var(--shadow); padding:12px; }
+.namepop-h { font-size:var(--t-cap); color:var(--ink-3); margin-bottom:7px;
+  text-transform:uppercase; letter-spacing:0.05em; }
+.namepop-box { max-height:230px; overflow:auto; background:var(--wash);
+  border:1px solid var(--grid); border-radius:var(--r-s); padding:9px 11px; }
+.namecode { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12.5px;
+  line-height:1.6; color:var(--ink-2); white-space:pre-wrap; word-break:break-all; user-select:text; }
+.namecode .nsep { color:var(--ink-3); opacity:0.45; }
+.namecode .nfile { color:var(--ink-1); font-weight:700; background:var(--wash-good);
+  border-radius:3px; padding:0 2px; }
+.namepop-row { display:flex; gap:8px; margin-top:11px; }
+.namepop-btn { font:inherit; font-size:13px; font-weight:700; padding:8px 14px; border-radius:var(--r-s);
+  border:none; background:var(--lime); color:var(--pine); cursor:pointer; }
+.namepop-btn:hover { filter:brightness(0.95); }
+.namepop-x { font:inherit; font-size:13px; padding:8px 12px; border-radius:var(--r-s);
+  border:1px solid var(--border); background:transparent; color:var(--ink-2); cursor:pointer; }
+.toast { position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(12px);
+  background:var(--ink-1); color:var(--surface-1); font-size:13px; font-weight:650; padding:9px 17px;
+  border-radius:100px; box-shadow:var(--shadow); opacity:0; pointer-events:none; z-index:70;
+  transition:opacity .16s ease, transform .16s ease; }
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+td .pdot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+tr:hover td { background:var(--wash); }
+td.num { font-variant-numeric:tabular-nums; }
+td.guide { text-align:left; color:var(--ink-2); font-size:var(--t-sm); white-space:normal; min-width:150px; }
+.badge { display:inline-flex; align-items:center; gap:5px; font-size:var(--t-cap); padding:2px 8px; border-radius:100px; border:1px solid var(--border); color:var(--ink-2); font-weight:600; }
+.badge .dot { width:6px; height:6px; border-radius:50%; }
+.b-scale { color:var(--st-good); border-color:var(--st-good); } .b-scale .dot { background:var(--st-good); }
+.b-goal .dot { background:var(--st-good); }
+.b-watch .dot { background:var(--st-warn); }
+.b-fix { color:var(--st-crit); border-color:var(--st-crit); } .b-fix .dot { background:var(--st-crit); }
+.b-na .dot { background:var(--ink-3); }
+.roascell { font-weight:650; }
+.tscroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.chg-hidden { display:none !important; }
+.chg-more { background:none; border:none; padding:var(--s2) 0 0; font:inherit; font-size:var(--t-sm); font-weight:650; color:var(--ink-1); cursor:pointer; }
+
+/* ---- section divider --------------------------------------------------- */
+.section-h { display:flex; align-items:baseline; gap:10px; margin:var(--s6) 0 var(--s3); }
+.section-h h2 { font-family:var(--f-display); font-size:15px; margin:0; letter-spacing:-0.01em; color:var(--ink-1); text-transform:none; font-weight:700; }
+.section-h .sub { font-size:var(--t-sm); }
+
+/* ---- insights lists ----------------------------------------------------- */
+.insights { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:var(--s3); }
+.insights ul, ul.insights { margin:0; padding-left:0; list-style:none; }
+.insights li, ul.insights li { padding:9px 0 9px 20px; position:relative; border-bottom:1px solid var(--grid); font-size:14px; }
+.insights li:last-child, ul.insights li:last-child { border-bottom:none; }
+.insights li::before, ul.insights li::before { content:""; position:absolute; left:2px; top:14px; width:7px; height:7px; border-radius:50%; }
+li.sev-good::before { background:var(--st-good); }
+li.sev-warn::before { background:var(--st-warn); }
+li.sev-bad::before { background:var(--st-crit); }
+li.sev-info::before { background:var(--ink-3); }
+.ctx li::before { background:var(--ink-3); }
+.ctx .d { color:var(--ink-3); font-size:var(--t-cap); margin-right:6px; }
+details summary { cursor:pointer; color:var(--ink-2); font-size:14px; font-weight:600; padding:4px 0; }
+footer { color:var(--ink-3); font-size:var(--t-sm); margin-top:var(--s5); }
+footer li { margin:3px 0; }
+
+/* ---- widgets ------------------------------------------------------------ */
+.wrow { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:var(--s3); margin-bottom:var(--s4); }
+.widget { background:var(--surface-1); border:1px solid var(--border); border-radius:var(--r); padding:var(--s4); box-shadow:var(--shadow); }
+.widget h3 { margin:0 0 var(--s3); font-family:var(--f-ui); font-size:var(--t-cap); letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-3); font-weight:650; }
+.mixbar { display:flex; height:10px; border-radius:6px; overflow:hidden; gap:2px; background:var(--grid); }
+.mixbar > div { height:100%; }
+.mixlegend { margin-top:var(--s3); }
+.mixlegend .row { display:flex; align-items:center; gap:8px; font-size:var(--t-sm); padding:3px 0; color:var(--ink-2); }
+.mixlegend .sw { width:9px; height:9px; border-radius:3px; flex:none; }
+.mixlegend .v { margin-left:auto; font-variant-numeric:tabular-nums; color:var(--ink-1); font-weight:600; }
+/* goal track: 30 daily bars vs goal */
+.gtrack { display:flex; align-items:flex-end; gap:2px; height:44px; margin-top:var(--s1); position:relative; }
+.gtrack .gline { position:absolute; left:0; right:0; border-top:1.5px dashed var(--axis); pointer-events:none; }
+.gtrack i { flex:1; min-width:2px; border-radius:2px 2px 0 0; background:var(--grid); }
+.gtrack i.above { background:var(--st-good); }
+.gtrack i.below { background:var(--grid); }
+.gtrack i.below.recent { background:color-mix(in srgb, var(--st-warn) 35%, transparent); }
+.gtrack-cap { font-size:var(--t-sm); color:var(--ink-2); margin-top:var(--s2); }
+.gtrack-cap b { color:var(--ink-1); font-variant-numeric:tabular-nums; }
+.callout { display:flex; gap:9px; padding:var(--s2) 0; border-bottom:1px solid var(--grid); font-size:14px; align-items:baseline; }
+.callout:last-child { border-bottom:none; }
+.callout .cdot { width:7px; height:7px; border-radius:50%; flex:none; align-self:center; }
+
+/* ---- funnel (v11): stage bars + between-stage conversion rates ---------- */
+.funnel-head { display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap; margin-bottom:var(--s3); }
+.funnel-head h2 { margin:0; }
+.funnel-head .seg { margin-left:auto; }
+/* tornado funnel: labels left, smooth mirrored shape center, transition chips right */
+.tfun { display:grid; grid-template-columns:104px minmax(0,1fr) 150px; gap:0 var(--s3); align-items:start; }
+.tfun svg { display:block; width:100%; }
+.tfun .tlabs .tl { height:var(--tfrow); display:flex; flex-direction:column; justify-content:center; font-size:var(--t-cap); color:var(--ink-2); line-height:1.25; }
+.tfun .tlabs .tl b { color:var(--ink-1); font-weight:650; font-size:17px; font-variant-numeric:tabular-nums; }
+.tfun .tdrops { padding-top:calc(var(--tfrow) / 2); }
+.tfun .tdrops .td0 { height:var(--tfrow); display:flex; flex-direction:column; justify-content:center; gap:2px; font-size:var(--t-cap); color:var(--ink-3); }
+.tfun .tdrops .td0 b { color:var(--ink-1); font-weight:650; font-size:var(--t-sm); font-variant-numeric:tabular-nums; }
+.tfun .tdrops .td0.leak b { color:var(--st-crit); }
+.rchip { display:inline-block; font-size:var(--t-cap); font-weight:650; font-variant-numeric:tabular-nums; padding:1px 7px; border-radius:99px; white-space:nowrap; align-self:flex-start; }
+.rchip.up { color:var(--delta-good); background:var(--wash-good); }
+.rchip.down { color:var(--delta-bad); background:var(--wash-bad); }
+.rchip.flat { color:var(--ink-3); background:var(--wash); }
+.fsub { font-size:var(--t-cap); color:var(--ink-3); margin-top:var(--s3); }
+
+/* ---- v12 vertical purchase funnel -------------------------------------- */
+.funnelcard .chead .srcpill { float:right; margin-left:var(--s3); }
+.srcpill { display:inline-block; font-size:var(--t-cap); font-weight:600; color:var(--ink-3);
+  border:1px solid var(--border); border-radius:99px; padding:2px 10px; white-space:nowrap; }
+.vfun { display:grid; grid-template-columns:118px minmax(0,240px) 176px; gap:0 var(--s3); align-items:start;
+  margin:var(--s2) auto 0; max-width:600px; justify-content:center; }
+.vfun svg { display:block; width:100%; }
+.vfun .vlabs .vl { height:var(--vfrow); display:flex; flex-direction:column; justify-content:center;
+  font-size:var(--t-cap); color:var(--ink-2); line-height:1.2; }
+.vfun .vlabs .vl b { color:var(--ink-1); font-weight:700; font-size:20px; font-variant-numeric:tabular-nums;
+  font-family:var(--f-display); letter-spacing:-0.01em; }
+.vfun .vdrops { padding-top:calc(var(--vfrow) / 2); }
+.vfun .vdrops .vd0 { height:var(--vfrow); display:flex; flex-direction:column; justify-content:center; gap:3px;
+  font-size:var(--t-cap); color:var(--ink-3); line-height:1.2; }
+.vfun .vdrops .vd0 b { color:var(--ink-1); font-weight:650; font-size:var(--t-sm); font-variant-numeric:tabular-nums; }
+.vfun .vdrops .vd0.leak b { color:var(--st-crit); }
+@media (max-width:520px) {
+  .vfun { grid-template-columns:92px minmax(0,1fr) 132px; }
+  .vfun .vlabs .vl b { font-size:17px; }
+}
+.funnelseg { font-size:var(--t-cap); }
+.funnelcard .vfun-body { clear:both; }
+.fscope { text-align:center; font-size:var(--t-cap); color:var(--ink-3); margin-top:var(--s3);
+  border:1px solid var(--border); border-radius:99px; padding:3px 12px; display:inline-block;
+  position:relative; left:50%; transform:translateX(-50%); }
+.dgctx { margin-top:var(--s3); padding:var(--s3); border-radius:var(--r-s); background:var(--wash);
+  border:1px solid var(--border); font-size:var(--t-sm); color:var(--ink-2); line-height:1.45; }
+.dgctx b { color:var(--ink-1); font-weight:650; }
+
+/* ---- global Demand Gen toggle: sidebar control + mode banner + tile chip ---- */
+.sb-ctl { display:grid; gap:6px; }
+.sb-ctl-l { font-size:var(--t-cap); letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--bar-ink-2); font-weight:650; }
+.sb-seg { background:transparent; border-color:var(--bar-line); }
+.sb-seg button { color:var(--bar-ink-2); border-right-color:var(--bar-line); padding:6px 12px; font-size:var(--t-sm); }
+.sb-seg button:hover { color:var(--bar-ink); }
+.sb-seg button[aria-pressed="true"] { color:var(--on-accent); background:var(--lime); font-weight:650; }
+/* mode banner — shown only when DG is folded in */
+.dgmode { display:flex; align-items:center; gap:8px; margin:0 0 var(--s3);
+  padding:8px 12px; border-radius:var(--r-s); background:var(--wash);
+  border:1px solid var(--border); font-size:var(--t-sm); color:var(--ink-2); line-height:1.4; }
+.dgmode b { color:var(--ink-1); font-weight:650; }
+.dgmode-dot { width:8px; height:8px; border-radius:50%; background:var(--lime); flex:none;
+  outline:1px solid rgba(11,16,21,0.12); }
+/* "incl DG" chip on the headline ROAS tile */
+.dgchip { display:inline-flex; align-items:center; font-size:var(--t-cap); font-weight:650;
+  padding:1px 7px; border-radius:100px; background:var(--surface-2); color:var(--ink-2);
+  border:1px solid var(--border); text-transform:uppercase; letter-spacing:0.05em;
+  white-space:nowrap; flex:none; align-self:flex-start; }
+
+/* cockpit hero row: trends beside funnel, reference-style */
+.cockrow { display:grid; grid-template-columns:minmax(0,3fr) minmax(0,2fr); gap:var(--s4); margin-bottom:var(--s4); align-items:stretch; }
+.cockrow > .card { margin-bottom:0; }
+@media (max-width: 980px) { .cockrow { grid-template-columns:1fr; } }
+
+/* card head: sentence-case title + quiet subtitle (major cards) */
+.chead { margin-bottom:var(--s3); }
+.chead .ct { font-family:var(--f-display); font-size:16px; font-weight:650; letter-spacing:-0.01em; color:var(--ink-1); }
+.chead .cs { font-size:var(--t-sm); color:var(--ink-3); margin-top:2px; }
+.chead .seg { float:right; margin-left:var(--s3); }
+
+/* stat row under the trend chart */
+.chstats { display:grid; grid-template-columns:repeat(auto-fit,minmax(118px,1fr)); gap:var(--s3); border-top:1px solid var(--grid); margin-top:var(--s3); padding-top:var(--s3); }
+.chstats .cs-l { font-size:var(--t-cap); color:var(--ink-3); font-weight:650; text-transform:uppercase; letter-spacing:0.06em; }
+.chstats .cs-v { font-size:19px; font-weight:650; color:var(--ink-1); margin-top:2px; }
+.chstats .cs-v .delta { display:inline-block; margin-left:8px; }
+
+/* donut (spend mix) */
+.donutwrap { display:flex; gap:var(--s4); align-items:center; }
+.donutwrap .mixlegend { flex:1; margin-top:0; }
+
+/* tile sparkline */
+.tile .spark { margin-top:var(--s2); }
+.tile .spark svg { display:block; width:100%; height:34px; }
+
+@media (max-width: 560px) {
+  .tfun { grid-template-columns:88px minmax(0,1fr) 118px; }
+  .tfun .tlabs .tl b { font-size:15px; }
+}
+
+/* ---- data health (v11) -------------------------------------------------- */
+.dhstrip { display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap; font-size:var(--t-sm); color:var(--ink-2); }
+.dhstrip .dh-label { font-size:var(--t-cap); letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-3); font-weight:650; }
+.dhstrip .dh-src { display:inline-flex; align-items:center; gap:6px; }
+.dhstrip .dh-dot { width:8px; height:8px; border-radius:50%; flex:none; }
+.dhstrip a { color:inherit; margin-left:auto; font-size:var(--t-cap); }
+.integ table { width:100%; border-collapse:collapse; font-size:var(--t-sm); }
+.integ th { text-align:left; font-size:var(--t-cap); color:var(--ink-3); font-weight:650; text-transform:uppercase; letter-spacing:0.06em; padding:6px 10px 6px 0; border-bottom:1px solid var(--border); }
+.integ th, .integ td { text-align:left; }
+.integ td { padding:8px 10px 8px 0; border-bottom:1px solid var(--grid); vertical-align:top; color:var(--ink-2); font-variant-numeric:tabular-nums; }
+.integ td:first-child { color:var(--ink-1); font-weight:600; white-space:nowrap; }
+.integ .ichip { display:inline-block; font-size:var(--t-cap); font-weight:650; padding:1px 8px; border-radius:99px; text-transform:uppercase; letter-spacing:0.04em; }
+.integ .ichip.ok { color:var(--st-good); background:var(--wash-good); }
+.integ .ichip.cache { color:var(--st-warn); background:var(--wash-warn); }
+.integ .ichip.bad { color:var(--st-crit); background:var(--wash-bad); }
+.divrow { margin:var(--s2) 0 var(--s3); }
+.divrow .dl { display:flex; justify-content:space-between; font-size:var(--t-sm); color:var(--ink-2); margin-bottom:3px; }
+.divrow .dl b { color:var(--ink-1); font-variant-numeric:tabular-nums; }
+.divrow .dbar { height:12px; border-radius:0 3px 3px 0; min-width:3px; margin-bottom:3px; }
+.divrow .dbar.claim { background:var(--wash); border:1px dashed var(--ink-3); }
+.divrow .dbar.nb { background:var(--pine); }
+:root[data-theme="dark"] .divrow .dbar.nb { background:var(--bk-core); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .divrow .dbar.nb { background:var(--bk-core); } }
+
+/* ---- brand eyebrow (v11) ------------------------------------------------- */
+.eyebrow { font-size:11px; letter-spacing:0.09em; text-transform:uppercase; color:var(--ink-3); font-weight:650; display:flex; align-items:center; gap:8px; }
+.eyebrow::before { content:""; width:14px; height:3px; background:var(--lime); border-radius:2px;
+  outline:1px solid rgba(11,16,21,0.08); }
+.mult-chip { display:inline-block; padding:1px 8px; border-radius:100px; font-weight:650; font-size:var(--t-sm); background:var(--surface-2); font-variant-numeric:tabular-nums; }
+
+/* ---- takeaways ----------------------------------------------------------- */
+.takeaway { display:flex; gap:8px; align-items:baseline; font-size:14px; font-weight:600; color:var(--ink-1); margin:0 0 var(--s3); }
+.takeaway::before { content:""; width:7px; height:7px; border-radius:50%; flex:none; align-self:center; background:var(--ink-3); }
+.takeaway.tk-good::before { background:var(--st-good); }
+.takeaway.tk-warn::before { background:var(--st-warn); }
+.takeaway.tk-bad::before { background:var(--st-crit); }
+.roasbar { display:inline-block; width:44px; height:4px; border-radius:100px; background:var(--grid); margin-left:7px; vertical-align:2px; overflow:hidden; }
+.roasbar > i { display:block; height:100%; border-radius:100px; }
+
+/* ---- cockpit nav cards ----------------------------------------------------- */
+.navcards { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:var(--s3); margin-bottom:var(--s4); }
+.ncard { display:block; background:var(--surface-1); border:1px solid var(--border); border-radius:var(--r); padding:var(--s4); text-decoration:none; color:var(--ink-1); transition:border-color .15s; box-shadow:var(--shadow); }
+.ncard:hover { border-color:var(--pine); }
+:root[data-theme="dark"] .ncard:hover { border-color:var(--lime); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ncard:hover { border-color:var(--lime); } }
+.nc-title { font-family:var(--f-display); font-weight:700; font-size:15px; letter-spacing:-0.01em; }
+.nc-teaser { color:var(--ink-3); font-size:var(--t-sm); margin-top:var(--s1); }
+.morelink { display:block; margin-top:var(--s2); font-size:var(--t-sm); font-weight:650; color:inherit; }
+
+/* ---- testing monitor ----------------------------------------------------- */
+.tchip { display:inline-flex; align-items:center; gap:5px; font-size:var(--t-cap); padding:2px 9px; border-radius:100px; border:1px solid var(--border); font-weight:650; text-transform:uppercase; letter-spacing:0.06em; white-space:nowrap; }
+.tchip .dot { width:6px; height:6px; border-radius:50%; }
+.t-graduate { color:var(--st-good); border-color:var(--st-good); } .t-graduate .dot { background:var(--st-good); }
+.t-kill { color:var(--st-crit); border-color:var(--st-crit); } .t-kill .dot { background:var(--st-crit); }
+.t-final_stretch { color:var(--st-warn); } .t-final_stretch .dot { background:var(--st-warn); }
+.t-early_signal { color:var(--st-good); } .t-early_signal .dot { background:var(--st-good); }
+.t-in_test { color:var(--ink-2); } .t-in_test .dot { background:var(--ink-3); }
+.meter { width:120px; height:6px; border-radius:100px; background:var(--grid); overflow:hidden; }
+.meter > div { height:100%; border-radius:100px; }
+td.action { text-align:left; white-space:normal; min-width:220px; max-width:330px; color:var(--ink-2); font-size:var(--t-sm); }
+
+/* ---- creative intelligence ----------------------------------------------- */
+.vchip { display:inline-flex; align-items:center; gap:4px; font-size:var(--t-cap); padding:1px 8px; border-radius:100px; border:1px solid var(--border); font-weight:650; text-transform:uppercase; letter-spacing:0.06em; }
+.vchip.lean_in { color:var(--st-good); border-color:var(--st-good); }
+.vchip.cut { color:var(--st-crit); border-color:var(--st-crit); }
+.vchip.iterate { color:var(--ink-2); }
+.vchip.low_data { color:var(--ink-3); }
+.ci-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:var(--s4); }
+.ci-lists { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:var(--s3); margin-top:var(--s4); }
+.comp-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:var(--s3); }
+.comp-card { border:1px solid var(--border); border-radius:var(--r-s); padding:var(--s3) var(--s4); }
+.comp-card h4 { margin:0 0 2px; font-family:var(--f-display); font-size:14px; }
+.comp-card .cat { color:var(--ink-3); font-size:var(--t-cap); margin-bottom:6px; }
+.comp-card .angles { display:flex; flex-wrap:wrap; gap:4px; margin:6px 0; }
+.comp-card .angles span { font-size:var(--t-cap); border:1px solid var(--border); border-radius:100px; padding:1px 8px; color:var(--ink-2); }
+.comp-card .mirror { font-size:var(--t-sm); color:var(--ink-1); margin-top:6px; }
+.comp-card .mirror::before { content:"Mirror: "; font-weight:650; color:var(--ink-2); }
+.comp-thumbs { display:flex; gap:6px; margin-top:var(--s2); }
+.comp-thumbs img { height:74px; border-radius:6px; border:1px solid var(--border); object-fit:cover; }
+.comp-proven { font-size:var(--t-cap); color:var(--ink-3); margin-top:4px; }
+.gapbox { border:1px solid var(--border); border-left:3px solid var(--pine); border-radius:var(--r-s); padding:var(--s3) var(--s4); margin-top:var(--s4); }
+:root[data-theme="dark"] .gapbox { border-left-color:var(--lime); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .gapbox { border-left-color:var(--lime); } }
+.gapbox ul { margin:4px 0 0; padding-left:18px; font-size:14px; color:var(--ink-2); }
+.gapbox li { margin:5px 0; }
+.creative { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:var(--s4); }
+
+/* ---- filters ------------------------------------------------------------- */
+.filters { display:flex; flex-wrap:wrap; gap:var(--s2); align-items:center; margin-bottom:var(--s3); }
+/* ---- delivery (active/inactive) status pills + summary -------------------- */
+.dlvpill { display:inline-block; margin-right:6px; padding:1px 7px; border-radius:100px; font-size:var(--t-cap); font-weight:650; letter-spacing:0.03em; vertical-align:middle; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.dlvpill.dlv-on   { color:var(--st-good); background:var(--wash-good); }
+.dlvpill.dlv-idle { color:var(--st-warn); background:var(--wash-warn); }
+.dlvpill.dlv-off  { color:var(--ink-3); background:var(--wash); }
+.dlvpill.dlv-del  { color:var(--ink-3); background:var(--wash); opacity:0.7; text-decoration:line-through; }
+.dlvpill.dlv-unk  { color:var(--ink-3); background:var(--wash); }
+.dlvsum { font-size:var(--t-sm); margin-bottom:var(--s2); }
+.dlvsum-on  { color:var(--st-good); font-weight:650; }
+.dlvsum-off { color:var(--ink-2); font-weight:650; }
+.seg { display:inline-flex; border:1px solid var(--border); border-radius:var(--r-s); overflow:hidden; background:var(--surface-1); }
+.seg button { background:none; border:none; padding:7px 14px; font:inherit; font-size:14px; color:var(--ink-2); cursor:pointer; border-right:1px solid var(--border); }
+.seg button:last-child { border-right:none; }
+.seg button[aria-pressed="true"] { color:var(--ink-1); font-weight:650; background:var(--surface-2); }
+input.search { background:var(--surface-1); color:var(--ink-1); border:1px solid var(--border); border-radius:var(--r-s); padding:7px 12px; font:inherit; font-size:14px; width:220px; }
+.maturity-note { font-size:var(--t-sm); color:var(--ink-3); margin-top:var(--s1); }
+
+/* ---- unlock ---------------------------------------------------------------- */
+#lock { max-width:360px; width:calc(100% - 32px); margin:18vh auto; text-align:center; }
+#lock .wordmark { color:var(--pine); }
+:root[data-theme="dark"] #lock .wordmark { color:var(--lime); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) #lock .wordmark { color:var(--lime); } }
+#lock input { width:100%; padding:10px 12px; font:inherit; border:1px solid var(--border); border-radius:var(--r-s); background:var(--surface-1); color:var(--ink-1); margin:var(--s4) 0 10px; }
+#lock button { width:100%; padding:11px; font:inherit; font-weight:650; border:none; border-radius:var(--r-s); background:var(--pine); color:var(--lime); cursor:pointer; }
+#lock .err { color:var(--st-crit); font-size:14px; min-height:18px; }
+#app { display:none; }
+
+/* ---- mobile ------------------------------------------------------------------ */
+@media (max-width:720px){
+  .wrap { padding:var(--s3) max(12px, env(safe-area-inset-right)) var(--s7) max(12px, env(safe-area-inset-left)); }
+  input.search, #lock input { font-size:16px; }
+  .card { padding:var(--s3); border-radius:var(--r-s); }
+  .pagehead { margin:var(--s4) 0 var(--s2); }
+  .tiles { grid-template-columns:repeat(2, 1fr); gap:var(--s2); }
+  .tile { padding:var(--s3); }
+  .tile .val { font-size:26px; }
+  .tile svg { max-width:100%; }
+  td.name { max-width:160px; }
+  th, td { padding:8px 8px; font-size:var(--t-sm); }
+  .seg button { padding:6px 10px; }
+  .tscroll th:first-child, .tscroll td:first-child { position:sticky; left:0; background:var(--surface-1); z-index:2; }
+  .tscroll tr:hover td { background:var(--surface-1); }
+  .insights { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="lock" class="card">
+  <div class="lc-logo" aria-label="Lower Cross">LOWER<br>CROSS</div>
+  <div id="lockform">
+    <h1>TRX Dashboard</h1>
+    <p class="sub">Enter the team passphrase to unlock.</p>
+    <input id="pw" type="password" placeholder="Passphrase" autocomplete="current-password">
+    <div class="err" id="pwerr"></div>
+    <button id="unlock">Unlock</button>
+  </div>
+  <div id="lockload" style="display:none">
+    <h1>TRX Dashboard</h1>
+    <p class="sub">Unlocking…</p>
+  </div>
+</div>
+<script>
+// saved-pass sessions show a loading state, never a password-form flash
+if (localStorage.getItem("uk_pass")) {
+  document.getElementById("lockform").style.display = "none";
+  document.getElementById("lockload").style.display = "block";
+}
+</script>
+
+<div id="app" class="wrap"></div>
+
+<script>
+"use strict";
+/* ---------- crypto ---------- */
+async function deriveKey(pass, salt, iter) {
+  const km = await crypto.subtle.importKey("raw", new TextEncoder().encode(pass), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({name:"PBKDF2", salt, iterations:iter, hash:"SHA-256"}, km,
+    {name:"AES-GCM", length:256}, false, ["decrypt"]);
+}
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function decryptEnvelope(env, pass) {
+  const key = await deriveKey(pass, b64(env.salt), env.iter);
+  const pt = await crypto.subtle.decrypt({name:"AES-GCM", iv:b64(env.iv)}, key, b64(env.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+
+/* ---------- state ---------- */
+let DATA = null;
+const PAGE = "cockpit";
+let winSel = "L7", platSel = PAGE === "creative" ? "meta" : "all",
+    levelSel = PAGE === "creative" ? "ad" : "campaign";
+let sortCol = "spend", sortDir = -1, query = "", showZero = false, minRoasOn = false;
+// delivery filter: all | active | inactive. Active = NB status "Active" AND spend>0 in the window.
+let deliverySel = "all";
+// global Demand Gen (TOF) fold-in — persisted so it survives page nav (default: Excluded)
+let inclDG = localStorage.getItem("trx_incl_dg") === "1";
+// Bucket visibility for ALL performance surfaces. App/Amazon (other) is never a
+// performance surface; Demand Gen (tof) is shown / folded into totals ONLY when
+// the sidebar DG toggle is on. Every row list + spend/perf total routes through
+// this so the toggle applies to all data, not just the headline tiles/chart.
+function bucketVisible(bucket) {
+  if (bucket === "other") return false;
+  if (bucket === "tof") return inclDG;
+  return true; // core, brand
+}
+const ROAS_FILTER = 1.75;  // testing graduation bar — "working" threshold
+const PLAT_COLOR = { meta:"var(--s-meta)", google:"var(--s-google)", tiktok:"var(--s-tiktok)" };
+const PLAT_LABEL = { meta:"Meta", google:"Google", tiktok:"TikTok" };
+const fm$ = v => "$" + Math.round(v).toLocaleString("en-US");
+const fmK = v => v >= 10000 ? "$" + (v/1000).toFixed(0) + "K" : fm$(v);
+const fmR = v => v == null ? "–" : v.toFixed(2);
+function el(tag, cls, text) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text != null) n.textContent = text;
+  return n;
+}
+
+/* ---------- boot ---------- */
+async function tryUnlock(pass) {
+  const res = await fetch("data.enc", {cache:"no-store"});
+  if (!res.ok) throw new Error("data.enc not found");
+  DATA = await decryptEnvelope(JSON.parse(await res.text()), pass);
+}
+document.getElementById("unlock").addEventListener("click", go);
+document.getElementById("pw").addEventListener("keydown", e => { if (e.key === "Enter") go(); });
+async function go() {
+  const pass = document.getElementById("pw").value.trim();
+  if (!pass) return;
+  try {
+    await tryUnlock(pass);
+    localStorage.setItem("uk_pass", pass);
+    document.getElementById("lock").style.display = "none";
+    document.getElementById("app").style.display = "block";
+    render();
+  } catch (e) {
+    document.getElementById("pwerr").textContent = "Wrong passphrase (or data missing).";
+  }
+}
+let lastW = window.innerWidth;
+window.addEventListener("resize", () => {
+  if (!DATA || Math.abs(window.innerWidth - lastW) < 40) return;
+  lastW = window.innerWidth;
+  render();
+});
+(async () => {
+  const saved = localStorage.getItem("uk_pass");
+  if (saved) {
+    try {
+      await tryUnlock(saved);
+      document.getElementById("lock").style.display = "none";
+      document.getElementById("app").style.display = "block";
+      render();
+    } catch (e) {
+      localStorage.removeItem("uk_pass");
+      // reveal the form only when the saved pass genuinely fails
+      document.getElementById("lockload").style.display = "none";
+      document.getElementById("lockform").style.display = "block";
+    }
+  }
+})();
+
+/* ---------- derived series ---------- */
+// Buckets are aggregated over ALL platforms (not tiktok-filtered) so that the
+// excl-DG rolling line reproduces the precomputed core numbers exactly, and the
+// incl-DG line folds Demand Gen (tof) in on NB Clicks + Modeled Views (mv_rev).
+function dailySeries() {
+  const by = {};
+  for (const c of DATA.levels.campaign) {
+    for (const d of c.daily) {
+      const o = by[d.date] || (by[d.date] = {meta:0, google:0, tiktok:0,
+                                             coreSpend:0, coreRev:0, tofSpend:0, tofMv:0,
+                                             cbSpend:0, cbFtx:0, cbNv:0, cbVis:0,
+                                             tofFtx:0, tofNv:0, tofVis:0});
+      if (o[c.platform] != null) o[c.platform] += d.spend || 0;
+      if (c.bucket === "core") { o.coreSpend += d.spend || 0; o.coreRev += d.rev7 || 0; }
+      if (c.bucket === "tof") {
+        o.tofSpend += d.spend || 0; o.tofMv += d.mv_rev || 0;
+        o.tofFtx += d.ftx || 0; o.tofNv += d.nv || 0; o.tofVis += d.visits || 0;
+      }
+      if (c.bucket === "core" || c.bucket === "brand") {
+        o.cbSpend += d.spend || 0; o.cbFtx += d.ftx || 0; o.cbNv += d.nv || 0; o.cbVis += d.visits || 0;
+      }
+    }
+  }
+  const days = Object.keys(by).sort().map(date => {
+    const o = by[date];
+    const rev = inclDG ? o.coreRev + o.tofMv : o.coreRev;
+    const sp = inclDG ? o.coreSpend + o.tofSpend : o.coreSpend;
+    return {date, ...o, roas: sp > 0 ? rev / sp : null};
+  });
+  // spend-weighted 7-day rolling ROAS — the line a buyer should read
+  // (+ rolling CAC and new-visitor share for the tile sparklines; per-day ftx is too noisy).
+  // excl: core only / core+brand. incl: folds in Demand Gen (tof) on modeled views.
+  for (let i = 0; i < days.length; i++) {
+    let cs = 0, cr = 0, ts = 0, tm = 0, cbs = 0, cbf = 0, cbn = 0, cbv = 0, tf = 0, tn = 0, tv = 0;
+    for (let j = Math.max(0, i - 6); j <= i; j++) {
+      cs += days[j].coreSpend; cr += days[j].coreRev;
+      ts += days[j].tofSpend; tm += days[j].tofMv;
+      cbs += days[j].cbSpend; cbf += days[j].cbFtx; cbn += days[j].cbNv; cbv += days[j].cbVis;
+      tf += days[j].tofFtx; tn += days[j].tofNv; tv += days[j].tofVis;
+    }
+    const rRev = inclDG ? cr + tm : cr, rSp = inclDG ? cs + ts : cs;
+    const caSp = inclDG ? cbs + ts : cbs, caFx = inclDG ? cbf + tf : cbf;
+    const nvN = inclDG ? cbn + tn : cbn, nvV = inclDG ? cbv + tv : cbv;
+    days[i].roll = i >= 6 && rSp > 0 ? rRev / rSp : null;
+    days[i].cacRoll = i >= 6 && caFx > 0 ? caSp / caFx : null;
+    days[i].nvRoll = i >= 6 && nvV > 0 ? nvN / nvV : null;
+  }
+  return days;
+}
+
+/* Demand Gen (TOF) global blend for the headline tiles + verdict. Reads inclDG.
+   Sums by bucket over ALL platforms — excl core ROAS == summary.core_roas_l7 and
+   incl CAC / new-visitor % reproduce the precomputed (tof-inclusive) values;
+   excl cleanly removes Demand Gen. DG revenue uses mv_rev (Clicks + Modeled
+   Views); DG first-time customers use deterministic ftx (MV gives revenue, not
+   customer counts). */
+function dgAgg(win) {
+  let coreRev = 0, coreSpend = 0, tofMv = 0, tofSpend = 0,
+      cbSpend = 0, cbFtx = 0, cbNv = 0, cbVis = 0, tofFtx = 0, tofNv = 0, tofVis = 0;
+  for (const c of DATA.levels.campaign) {
+    const w = c.windows[win];
+    if (!w) continue;
+    if (c.bucket === "core") { coreRev += w.rev7 || 0; coreSpend += w.spend || 0; }
+    if (c.bucket === "tof") {
+      tofMv += w.mv_rev || 0; tofSpend += w.spend || 0;
+      tofFtx += w.ftx || 0; tofNv += w.nv || 0; tofVis += w.visits || 0;
+    }
+    if (c.bucket === "core" || c.bucket === "brand") {
+      cbSpend += w.spend || 0; cbFtx += w.ftx || 0; cbNv += w.nv || 0; cbVis += w.visits || 0;
+    }
+  }
+  const rev = inclDG ? coreRev + tofMv : coreRev;
+  const spend = inclDG ? coreSpend + tofSpend : coreSpend;
+  const caSp = inclDG ? cbSpend + tofSpend : cbSpend;
+  const caFx = inclDG ? cbFtx + tofFtx : cbFtx;
+  const nvN = inclDG ? cbNv + tofNv : cbNv;
+  const nvV = inclDG ? cbVis + tofVis : cbVis;
+  return {
+    roas: spend > 0 ? rev / spend : null,
+    cac: caFx > 0 ? caSp / caFx : null,
+    ftx: caFx,
+    nvPct: nvV > 0 ? nvN / nvV : null,
+  };
+}
+
+/* ---------- svg helpers ---------- */
+const SVG = "http://www.w3.org/2000/svg";
+function sv(tag, attrs) {
+  const n = document.createElementNS(SVG, tag);
+  for (const k in attrs) n.setAttribute(k, attrs[k]);
+  return n;
+}
+function sparkline(vals, w, h, goal) {
+  const svg = sv("svg", {width:w, height:h, viewBox:`0 0 ${w} ${h}`});
+  const nums = vals.filter(v => v != null);
+  if (nums.length < 2) return svg;
+  const max = Math.max(...nums, goal || 0) * 1.1 || 1;
+  const pts = vals.map((v, i) => v == null ? null :
+    [i / (vals.length - 1) * (w - 6) + 3, h - 3 - v / max * (h - 8)]);
+  if (goal != null) {
+    const gy = h - 3 - goal / max * (h - 8);
+    svg.appendChild(sv("line", {x1:0, x2:w, y1:gy, y2:gy, stroke:"var(--axis)", "stroke-width":1, "stroke-dasharray":"3,3"}));
+  }
+  let d = "", st = false;
+  pts.forEach(p => { if (!p) { st = false; return; }
+    d += (st ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1); st = true; });
+  svg.appendChild(sv("path", {d, fill:"none", stroke:"var(--seq-250)", "stroke-width":2, "stroke-linecap":"round", "stroke-linejoin":"round"}));
+  const last = [...pts].reverse().find(p => p);
+  if (last) svg.appendChild(sv("circle", {cx:last[0], cy:last[1], r:4, fill:"var(--s-meta)", stroke:"var(--surface-1)", "stroke-width":2}));
+  return svg;
+}
+
+/* ---------- main trend chart ---------- */
+function trendChart(days) {
+  const box = el("div", "chartbox");
+  const appW = document.getElementById("app").clientWidth || 1000;
+  const W = Math.min(1180, Math.max(300, appW - 40));
+  const narrow = W < 520;
+  const H1 = narrow ? 130 : 160, H2 = narrow ? 100 : 130, GAP = 26,
+        padL = narrow ? 34 : 44, padR = narrow ? 8 : 14, AXH = 20;
+  const H = H1 + GAP + H2 + AXH;
+  const svg = sv("svg", {width:"100%", height:H, viewBox:`0 0 ${W} ${H}`, style:"display:block"});
+  const n = days.length;
+  const x = i => padL + (n === 1 ? 0 : i / (n - 1) * (W - padL - padR));
+  const goal = DATA.meta.goal_roas;
+
+  /* panel 1: daily (light) + rolling (bold) core ROAS */
+  const allVals = days.flatMap(d => [d.roas, d.roll]).filter(v => v != null);
+  const rmax = Math.max(goal * 1.3, ...allVals) * 1.08;
+  const ry = v => H1 - 8 - (v / rmax) * (H1 - 22);
+  [0, goal].forEach(v => {
+    svg.appendChild(sv("line", {x1:padL, x2:W - padR, y1:ry(v), y2:ry(v), stroke:"var(--grid)", "stroke-width":1}));
+    const t = sv("text", {x:padL - 6, y:ry(v) + 4, "text-anchor":"end", fill:"var(--ink-3)", "font-size":10.5});
+    t.textContent = v.toFixed(1); svg.appendChild(t);
+  });
+  svg.appendChild(sv("line", {x1:padL, x2:W - padR, y1:ry(goal), y2:ry(goal), stroke:"var(--axis)", "stroke-width":1.5, "stroke-dasharray":"5,4"}));
+  const gt = sv("text", {x:W - padR, y:ry(goal) - 5, "text-anchor":"end", fill:"var(--ink-2)", "font-size":10.5, "font-weight":600});
+  gt.textContent = "goal " + goal.toFixed(1); svg.appendChild(gt);
+  if (n > 7) {
+    svg.appendChild(sv("rect", {x:x(n - 7), y:8, width:x(n - 1) - x(n - 7), height:H1 - 16, fill:"var(--wash)"}));
+  }
+  const path = (get, stroke, width) => {
+    let d = "", st = false;
+    days.forEach((dd, i) => { const v = get(dd); if (v == null) { st = false; return; }
+      d += (st ? "L" : "M") + x(i).toFixed(1) + "," + ry(v).toFixed(1); st = true; });
+    svg.appendChild(sv("path", {d, fill:"none", stroke, "stroke-width":width, "stroke-linecap":"round", "stroke-linejoin":"round"}));
+  };
+  path(d => d.roas, "var(--seq-250)", 1.5);
+  path(d => d.roll, "var(--s-meta)", 2.5);
+  const lastRollIdx = (() => { for (let i = n - 1; i >= 0; i--) if (days[i].roll != null) return i; return -1; })();
+  if (lastRollIdx >= 0) {
+    const v = days[lastRollIdx].roll;
+    svg.appendChild(sv("circle", {cx:x(lastRollIdx), cy:ry(v), r:4.5, fill:"var(--s-meta)", stroke:"var(--surface-1)", "stroke-width":2}));
+    const vt = sv("text", {x:x(lastRollIdx) - 8, y:ry(v) - 9, "text-anchor":"end", fill:"var(--ink-1)", "font-size":11.5, "font-weight":650});
+    vt.textContent = v.toFixed(2); svg.appendChild(vt);
+  }
+  const p1t = sv("text", {x:padL, y:14, fill:"var(--ink-2)", "font-size":11, "font-weight":600});
+  p1t.textContent = narrow ? "Core NB ROAS" : "Core NB ROAS by day — read the bold 7-day line, not the daily wiggle";
+  svg.appendChild(p1t);
+
+  /* panel 2: stacked spend bars by channel */
+  const top2 = H1 + GAP;
+  const smax = Math.max(...days.map(d => d.meta + d.google + d.tiktok)) * 1.12 || 1;
+  const sy = v => top2 + (H2 - 14) - (v / smax) * (H2 - 26);
+  [Math.round(smax / 2000) * 1000].filter(v => v > 0).forEach(v => {
+    svg.appendChild(sv("line", {x1:padL, x2:W - padR, y1:sy(v), y2:sy(v), stroke:"var(--grid)", "stroke-width":1}));
+    const t = sv("text", {x:padL - 6, y:sy(v) + 4, "text-anchor":"end", fill:"var(--ink-3)", "font-size":10.5});
+    t.textContent = "$" + (v / 1000) + "K"; svg.appendChild(t);
+  });
+  const bw = Math.min(24, Math.max(3, (W - padL - padR) / n - 2));
+  const order = ["meta", "google", "tiktok"];
+  days.forEach((d, i) => {
+    let acc = 0;
+    order.forEach(p => {
+      const v = d[p]; if (!v) return;
+      const y1 = sy(acc + v), y0 = sy(acc);
+      svg.appendChild(sv("rect", {x:x(i) - bw / 2, y:y1 + (acc ? 1 : 0), width:bw,
+        height:Math.max(0, y0 - y1 - 1), rx:3, fill:`var(--s-${p})`}));
+      acc += v;
+    });
+  });
+  svg.appendChild(sv("line", {x1:padL, x2:W - padR, y1:sy(0), y2:sy(0), stroke:"var(--axis)", "stroke-width":1}));
+  const p2t = sv("text", {x:padL, y:top2 + 4, fill:"var(--ink-2)", "font-size":11, "font-weight":600});
+  p2t.textContent = narrow ? "Daily spend (all buckets)" : "Daily spend by channel — all buckets (core + TOF + brand + support)";
+  svg.appendChild(p2t);
+
+  const step = Math.ceil(n / (narrow ? 5 : 8));
+  days.forEach((d, i) => {
+    if (i % step !== 0 && i !== n - 1) return;
+    if (i !== n - 1 && x(n - 1) - x(i) < 34) return;
+    const t = sv("text", {x:x(i), y:H - 4, "text-anchor":"middle", fill:"var(--ink-3)", "font-size":10.5});
+    t.textContent = d.date.slice(5).replace("-", "/"); svg.appendChild(t);
+  });
+
+  box.appendChild(svg);
+  const leg = el("div", "legend");
+  const mkKey = (cls, color, label) => {
+    const s = el("span"); const k = el("span", cls); k.style.background = color;
+    s.appendChild(k); s.appendChild(document.createTextNode(label)); return s;
+  };
+  leg.appendChild(mkKey("keyline thick", "var(--s-meta)", "7-day rolling ROAS"));
+  leg.appendChild(mkKey("keyline", "var(--seq-250)", "Daily ROAS"));
+  order.forEach(p => leg.appendChild(mkKey("key", `var(--s-${p})`, PLAT_LABEL[p] + " spend")));
+  const mw = el("span", "muted"); mw.textContent = "shaded = accrual still maturing"; leg.appendChild(mw);
+  box.appendChild(leg);
+
+  /* crosshair + tooltip */
+  const ch = el("div", "crosshair"); ch.style.height = (H - AXH) + "px"; box.appendChild(ch);
+  const tt = el("div", "tooltip"); box.appendChild(tt);
+  svg.addEventListener("pointermove", ev => {
+    const rect = svg.getBoundingClientRect();
+    const scale = W / rect.width;
+    const px = (ev.clientX - rect.left) * scale;
+    let best = 0, bd = 1e9;
+    for (let i = 0; i < n; i++) { const dd = Math.abs(x(i) - px); if (dd < bd) { bd = dd; best = i; } }
+    const d = days[best];
+    ch.style.left = (x(best) / scale) + "px"; ch.style.display = "block";
+    tt.replaceChildren();
+    tt.appendChild(el("div", "tt-date", d.date));
+    const addRow = (color, label, val, line) => {
+      const r = el("div", "row");
+      const k = el("span", "key"); k.style.background = color; if (!line) { k.style.height = "8px"; k.style.borderRadius = "2px"; }
+      r.appendChild(k); r.appendChild(el("span", null, label)); r.appendChild(el("span", "v", val));
+      tt.appendChild(r);
+    };
+    addRow("var(--s-meta)", "7d rolling", d.roll == null ? "–" : d.roll.toFixed(2), true);
+    addRow("var(--seq-250)", "Daily ROAS", d.roas == null ? "–" : d.roas.toFixed(2), true);
+    order.forEach(p => addRow(`var(--s-${p})`, PLAT_LABEL[p], fm$(d[p] || 0)));
+    addRow("var(--axis)", "Total spend", fm$(d.meta + d.google + d.tiktok));
+    tt.style.display = "block";
+    const ttw = tt.offsetWidth;
+    const lx = x(best) / scale;
+    tt.style.left = Math.min(Math.max(lx + 12, 0), rect.width - ttw - 4) + "px";
+    tt.style.top = "30px";
+    if (lx + 12 + ttw > rect.width) tt.style.left = (lx - ttw - 12) + "px";
+  });
+  svg.addEventListener("pointerleave", () => { ch.style.display = "none"; tt.style.display = "none"; });
+  return box;
+}
+
+/* ---------- tables (shared with v1) ---------- */
+function statusBadge(e) {
+  const goal = DATA.meta.goal_roas;
+  if (e.platform === "tiktok") return ["b-na", "TikTok — NB broken"];
+  if (e.bucket === "tof") return ["b-na", "TOF"];
+  if (e.bucket === "brand") return ["b-na", "Brand"];
+  if (e.bucket === "other") return ["b-na", "App / Amazon"];
+  if (/zombie/i.test(e.campaign_name || "")) return ["b-na", "Zombie pen"];
+  const w = e.windows[winSel === "L1" ? "L7" : winSel];
+  if (!w || (w.spend || 0) < 250 || w.roas7 == null) return ["b-na", "Low data"];
+  if (w.roas7 >= goal * 1.2) return ["b-scale", "Scale ↑"];
+  if (w.roas7 >= goal) return ["b-goal", "On goal"];
+  if (w.roas7 >= 1.5) return ["b-watch", "Watch"];
+  return ["b-fix", "Fix / cut"];
+}
+// --- delivery status (distinct from the performance verdict above) ------------
+// "Active" = the ad's Northbeam config status is Active AND it actually spent in
+// the selected window. Everything else is inactive: Paused/Deleted, or enabled
+// but $0 in the window ("Idle" — on but not delivering).
+function isActive(e) {
+  return (e.status || "") === "Active" && (e.windows[winSel].spend || 0) > 0;
+}
+function deliveryBadge(e) {
+  const st = e.status || "";
+  const spend = e.windows[winSel].spend || 0;
+  if (st === "Active" && spend > 0) return ["dlv-on", "Active"];
+  if (st === "Active")             return ["dlv-idle", "Idle"];    // enabled, $0 in window
+  if (st === "Paused")             return ["dlv-off", "Paused"];
+  if (st === "Deleted")            return ["dlv-del", "Deleted"];
+  return ["dlv-unk", st || "Unknown"];
+}
+function entityName(e) {
+  if (levelSel === "campaign") return e.campaign_name || e.campaign_id;
+  if (levelSel === "adset") return (e.adset_name || e.adset_id);
+  return (e.ad_name || e.ad_id);
+}
+function entitySub(e) {
+  if (levelSel === "campaign") return "";
+  if (levelSel === "adset") return e.campaign_name;
+  return e.campaign_name + " · " + (e.adset_name || "");
+}
+function renderTable(container) {
+  container.replaceChildren();
+  const goal = DATA.meta.goal_roas;
+  /* App/Amazon: budget managed per the client sheet, performance not judged here */
+  let rows = DATA.levels[levelSel].filter(e => bucketVisible(e.bucket))
+    .filter(e => platSel === "all" || e.platform === platSel);
+  if (query) {
+    const q = query.toLowerCase();
+    rows = rows.filter(e => (entityName(e) + " " + entitySub(e)).toLowerCase().includes(q));
+  }
+  const W = winSel;
+  // active/inactive split over the current scope (computed before the delivery filter)
+  const nActive = rows.filter(isActive).length;
+  const nInactive = rows.length - nActive;
+  if (deliverySel === "active") rows = rows.filter(isActive);
+  else if (deliverySel === "inactive") rows = rows.filter(e => !isActive(e));
+  // $0-spend hide applies only in the default (All) view; the Inactive view
+  // intentionally keeps paused/idle rows that had $0 spend in the window.
+  const preZero = rows.length;
+  if (!showZero && deliverySel === "all") rows = rows.filter(e => (e.windows[W].spend || 0) > 0);
+  const zeroHidden = preZero - rows.length;
+  // active/inactive summary for the current level + platform + search scope
+  {
+    const noun = levelSel === "ad" ? "ads" : levelSel === "adset" ? "ad sets" : "campaigns";
+    const sumEl = el("div", "dlvsum");
+    sumEl.appendChild(el("span", "dlvsum-on", nActive + " active"));
+    sumEl.appendChild(document.createTextNode(" · "));
+    sumEl.appendChild(el("span", "dlvsum-off", nInactive + " inactive"));
+    sumEl.appendChild(document.createTextNode(" " + noun + " "));
+    sumEl.appendChild(el("span", "muted", "(NB status Active + spend in " + W + ")"));
+    container.appendChild(sumEl);
+  }
+  // threshold judges on the >=7d window even in the Yesterday view (L1 accrual
+  // is too immature to threshold on), same mapping the status badges use
+  const preRoas = rows.length;
+  if (minRoasOn) rows = rows.filter(e => {
+    const w = e.windows[W === "L1" ? "L7" : W];
+    if (!w) return false;
+    /* judge each row on its own model: DG (tof) on modeled views, rest on deterministic */
+    const r = e.bucket === "tof" && w.mv_roas != null ? w.mv_roas : w.roas7;
+    return r != null && r >= ROAS_FILTER;
+  });
+  const roasHidden = preRoas - rows.length;
+  const get = {
+    name: e => entityName(e).toLowerCase(),
+    spend: e => e.windows[W].spend || 0,
+    roas: e => e.windows[W].roas7 ?? -1,
+    rev: e => e.windows[W].rev7 || 0,
+    txns: e => e.windows[W].txns || 0,
+    proas: e => e.windows[W].p_roas ?? -1,
+    hook: e => {
+      const w = e.windows[W];
+      const isVideo = !/static|image|carousel/i.test(e.ad_name || "");
+      return isVideo && (w.impressions || 0) >= 1000 && (w.video3s || 0) >= 100
+        ? w.video3s / w.impressions : -1;
+    },
+    delta: e => {
+      const a = e.windows.L7.roas7, b = e.windows.P7.roas7;
+      return (a != null && b) ? (a - b) / b : -99;
+    },
+  };
+  rows.sort((a, b) => {
+    const va = get[sortCol](a), vb = get[sortCol](b);
+    return (va < vb ? -1 : va > vb ? 1 : 0) * sortDir;
+  });
+  const cols = [
+    ["name", "Name"], ["spend", "Spend"], ["roas", "NB ROAS"], ["rev", "NB Rev"],
+    ["txns", "Txns"], ["proas", "Platform ROAS"],
+    ...(levelSel === "ad" ? [["hook", "Hook"]] : []),
+    ["delta", "Δ WoW"], ["trend", "14d trend"], ["st", "Status"],
+  ];
+  const table = el("table");
+  const thead = el("thead"); const trh = el("tr");
+  cols.forEach(([id, label]) => {
+    const th = el("th", sortCol === id ? "sorted" : null, label + (sortCol === id ? (sortDir < 0 ? " ↓" : " ↑") : ""));
+    if (id === "hook") th.title = "Meta hook rate: 3-second video plays / impressions. <20% = weak opening, >=30% = strong.";
+    if (id === "roas" || id === "rev") th.title = "Northbeam attributed — Clicks + Deterministic Views, 7-day window, accrual. Recent days still maturing.";
+    if (id === "proas") th.title = "Platform-reported (Google Ads API; Meta via NB's Meta integration at 7d-click/1d-view). Direction only.";
+    if (!["trend", "st"].includes(id)) th.addEventListener("click", () => {
+      if (sortCol === id) sortDir *= -1; else { sortCol = id; sortDir = -1; }
+      renderTable(container);
+    });
+    trh.appendChild(th);
+  });
+  thead.appendChild(trh); table.appendChild(thead);
+  const tbody = el("tbody");
+  const shown = rows.slice(0, 60);
+  const maxSp = Math.max(...shown.map(e => e.windows[W].spend || 0), 1);
+  for (const e of shown) {
+    const w = e.windows[W];
+    const tr = el("tr");
+    const nameTd = el("td", "name");
+    const pd = el("span", "pdot"); pd.style.background = PLAT_COLOR[e.platform] || "var(--s-other)";
+    nameTd.appendChild(pd);
+    // delivery pill goes BEFORE the (long, ellipsis-truncated) name so it's always
+    // visible; only inactive rows get one — active rows stay clean.
+    if (!isActive(e)) {
+      const [dc, dl] = deliveryBadge(e);
+      const dp = el("span", "dlvpill " + dc, dl);
+      dp.title = "NB delivery status: " + (e.status || "unknown")
+        + " · " + ((e.windows[W].spend || 0) > 0 ? fm$(e.windows[W].spend) + " spent in " + W : "$0 in " + W);
+      nameTd.appendChild(dp);
+    }
+    nameTd.appendChild(document.createTextNode(entityName(e)));
+    if (entitySub(e)) { const s = el("div", "muted"); s.style.fontSize = "13px"; s.textContent = entitySub(e); nameTd.appendChild(s); }
+    nameTd.title = entityName(e) + (entitySub(e) ? " — " + entitySub(e) : "") + " · NB: " + (e.status || "unknown");
+    copyableName(nameTd, entityName(e));
+    tr.appendChild(nameTd);
+    {
+      /* reference-style data bar behind the spend value */
+      const sp = el("td", "num spendcell", fm$(w.spend || 0));
+      const pct = Math.round((w.spend || 0) / maxSp * 100);
+      sp.style.background = `linear-gradient(90deg, var(--wash) ${pct}%, transparent ${pct}%)`;
+      tr.appendChild(sp);
+    }
+    const rc = el("td", "num roascell", fmR(w.roas7));
+    if (w.roas7 != null && (w.spend || 0) >= 100 && e.bucket === "core" && e.platform !== "tiktok") {
+      rc.style.color = w.roas7 >= goal ? "var(--st-good)" : (w.roas7 >= 1.5 ? "inherit" : "var(--st-crit)");
+      rc.appendChild(roasBar(w.roas7, goal));
+    }
+    if (e.bucket === "tof" && w.mv_roas != null) {
+      /* DG is judged on Clicks + Modeled Views — deterministic undercounts it */
+      const mv = el("span", "mult-chip", "MV " + w.mv_roas.toFixed(2));
+      mv.style.marginLeft = "7px";
+      mv.title = "Clicks + Modeled Views — the model Demand Gen is judged on. The main number is the deterministic read (comparable across the table).";
+      rc.appendChild(mv);
+    }
+    tr.appendChild(rc);
+    tr.appendChild(el("td", "num", fm$(w.rev7 || 0)));
+    tr.appendChild(el("td", "num", String(w.txns || 0)));
+    tr.appendChild(el("td", "num muted", fmR(w.p_roas)));
+    if (levelSel === "ad") {
+      const imp = w.impressions || 0, v3 = w.video3s || 0;
+      const isVideo = !/static|image|carousel/i.test(e.ad_name || "");
+      const show = isVideo && imp >= 1000 && v3 >= 100;
+      const htd = el("td", "num muted", show ? Math.round(v3 / imp * 100) + "%" : "–");
+      if (show && imp >= 5000) {
+        const hr = v3 / imp;
+        if (hr < 0.2) htd.className = "num delta down";
+        else if (hr >= 0.3) htd.className = "num delta up";
+      }
+      tr.appendChild(htd);
+    }
+    const dv = get.delta(e);
+    const dtd = el("td", "num", dv <= -90 ? "–" : (dv > 0 ? "+" : "") + Math.round(dv * 100) + "%");
+    if (dv > -90) dtd.className += dv >= 0 ? " delta up" : " delta down";
+    tr.appendChild(dtd);
+    const sp = el("td");
+    sp.appendChild(sparkline(e.daily.slice(-14).map(d => d.spend > 0 ? (d.rev7 || 0) / d.spend : null), 90, 26, goal));
+    tr.appendChild(sp);
+    const [bc, bl] = statusBadge(e);
+    const btd = el("td");
+    const b = el("span", "badge " + bc); b.appendChild(el("span", "dot")); b.appendChild(document.createTextNode(bl));
+    btd.appendChild(b); tr.appendChild(btd);
+    tbody.appendChild(tr);
+  }
+  table.appendChild(tbody);
+  container.appendChild(table);
+  foldRows(Array.from(tbody.children), 12, container, "rows");
+  const notes = [];
+  if (rows.length > shown.length) notes.push(`Showing top ${shown.length} of ${rows.length} by current sort — use search to narrow.`);
+  if (zeroHidden > 0) notes.push(`${zeroHidden} rows with $0 spend in this window hidden — use "Show $0 rows" to include them.`);
+  if (minRoasOn && roasHidden > 0) notes.push(`${roasHidden} rows below ${ROAS_FILTER} NB ROAS hidden by the working-only filter.`);
+  if (notes.length) container.appendChild(el("div", "muted", notes.join(" ")));
+}
+
+/* ---------- channel summary with guidance ---------- */
+function channelGuidance(label, roas, goal) {
+  if (label.includes("Brand")) return "Judge on incrementality, not this ROAS. Pullback in flight — watch capture.";
+  if (label.includes("TOF")) return "TOF: judge on MER + first-touch over 2-4 wks, never 7d clicks.";
+  if (label.includes("TikTok")) return "NB attribution broken — decide on model views / MER.";
+  if (label.includes("App")) return "Separate goals (installs / Amazon rev) — not ecom ROAS.";
+  if (roas == null) return "";
+  if (roas >= goal * 1.2) return "Scale in 15-20% steps; watch marginal ROAS.";
+  if (roas >= goal) return "Hold. Next dollar goes to the scale rows.";
+  if (roas >= 1.5) return "Fix creative/bids first — no new budget.";
+  return "Cut to winners before adding anything.";
+}
+/* ---------- change log (Monday) ---------- */
+function changeLog() {
+  const ch = DATA.changes;
+  const card = el("div", "card");
+  card.appendChild(el("h2", null, "Change log — what we did & how it read"));
+  const t = el("table");
+  const trh = el("tr");
+  ["Date", "Change", "Read since change"].forEach((h, i) => {
+    const th = el("th", null, h); th.style.cursor = "default";
+    if (i < 2) th.style.textAlign = "left";
+    trh.appendChild(th);
+  });
+  t.appendChild(trh);
+  const chgRows = [];
+  ch.items.forEach(it => {
+    const tr = el("tr");
+    chgRows.push(tr);
+    const td0 = el("td", "num muted", it.date.slice(5).replace("-", "/"));
+    td0.style.verticalAlign = "top";
+    tr.appendChild(td0);
+    const tdc = el("td");
+    tdc.style.textAlign = "left"; tdc.style.whiteSpace = "normal";
+    tdc.style.minWidth = "260px"; tdc.style.maxWidth = "520px";
+    const nm = el("div", null, it.name); nm.style.fontWeight = "600";
+    tdc.appendChild(nm);
+    const sub = [it.type, it.owner].filter(Boolean).join(" · ");
+    if (sub) { const s = el("div", "muted", sub); s.style.fontSize = "13px"; tdc.appendChild(s); }
+    if (it.notes) { const no = el("div", "muted", it.notes); no.style.fontSize = "13px"; tdc.appendChild(no); }
+    tr.appendChild(tdc);
+    const tdr = el("td");
+    tdr.style.whiteSpace = "normal"; tdr.style.minWidth = "220px"; tdr.style.verticalAlign = "top";
+    const m = it.match;
+    if (!m) {
+      tdr.appendChild(el("span", "muted", "—"));
+    } else {
+      const cn = el("div", "muted", m.campaign_name + " (" + m.platform + ")");
+      cn.style.fontSize = "13px"; tdr.appendChild(cn);
+      if (m.maturing || !m.post) {
+        tdr.appendChild(el("div", "muted",
+          (m.pre ? "was " + m.pre.roas.toFixed(2) + " NB ROAS · " : "") + "too early to read"));
+      } else {
+        const line = el("div");
+        line.appendChild(el("span", null, (m.pre ? m.pre.roas.toFixed(2) : "–") + " → "));
+        const pv = el("b", null, m.post.roas.toFixed(2));
+        if (m.pre) pv.style.color = m.post.roas >= m.pre.roas ? "var(--st-good)" : "var(--st-crit)";
+        line.appendChild(pv);
+        line.appendChild(el("span", "muted", " NB ROAS"));
+        tdr.appendChild(line);
+        tdr.appendChild(el("div", "muted",
+          (m.pre ? "$" + Math.round(m.pre.spend_day).toLocaleString() : "–") + " → $" +
+          Math.round(m.post.spend_day).toLocaleString() + " /day · " + m.post.days + "d read"));
+      }
+    }
+    tr.appendChild(tdr);
+    t.appendChild(tr);
+  });
+  const sc = el("div", "tscroll"); sc.appendChild(t); card.appendChild(sc);
+  foldRows(chgRows, 8, card, "changes");
+  const note = el("div", "maturity-note");
+  note.textContent = "Source: change log in Monday (TRX items marked Done). Reads are NB accrual over up to 7 days after the change — recent days always read low and firm up.";
+  card.appendChild(note);
+  return card;
+}
+
+function channelSummary() {
+  const goal = DATA.meta.goal_roas;
+  const groups = {
+    "Meta (core)":      e => e.platform === "meta" && e.bucket === "core",
+    "Google (core)":    e => e.platform === "google" && e.bucket === "core",
+    "Google Brand":     e => e.platform === "google" && e.bucket === "brand",
+    "Demand Gen (TOF)": e => e.bucket === "tof",
+    "TikTok":           e => e.platform === "tiktok",
+  };
+  const card = el("div", "card");
+  card.appendChild(el("h2", null, "Channel allocation — where the next dollar goes"));
+  const table = el("table");
+  const trh = el("tr");
+  ["Bucket", "L7 spend", "share", "L7 NB ROAS", "Δ WoW", "L14 NB ROAS", "Platform ROAS", "What to do"].forEach((h, i) => {
+    const th = el("th", null, h); if (i === 0 || i === 7) th.style.textAlign = "left"; trh.appendChild(th);
+  });
+  table.appendChild(trh);
+  /* judged spend only — App/Amazon is managed off the client sheet, not allocated here */
+  const camps = DATA.levels.campaign.filter(c => bucketVisible(c.bucket));
+  const totalL7 = camps.reduce((s, c) => s + (c.windows.L7.spend || 0), 0);
+  const rowsAgg = [];
+  for (const [label, pred] of Object.entries(groups)) {
+    const g = camps.filter(pred);
+    if (!g.length) continue;
+    const agg = w => {
+      const s = g.reduce((a, c) => a + (c.windows[w].spend || 0), 0);
+      const r = g.reduce((a, c) => a + (c.windows[w].rev7 || 0), 0);
+      const pv = g.reduce((a, c) => a + (c.windows[w].p_value || 0), 0);
+      const ps = g.reduce((a, c) => a + (c.windows[w].p_spend || 0), 0);
+      const mvr = g.reduce((a, c) => a + (c.windows[w].mv_rev || 0), 0);
+      return {s, roas: s > 0 ? r / s : null, proas: ps > 0 ? pv / ps : null,
+              mv: s > 0 && mvr > 0 ? mvr / s : null};
+    };
+    const l7 = agg("L7"), p7 = agg("P7"), l14 = agg("L14");
+    rowsAgg.push({label, roas: l7.roas, s: l7.s});
+    const tr = el("tr");
+    const nt = el("td", null, label); nt.style.textAlign = "left"; nt.style.fontWeight = "600"; tr.appendChild(nt);
+    tr.appendChild(el("td", "num", fm$(l7.s)));
+    tr.appendChild(el("td", "num muted", totalL7 ? Math.round(l7.s / totalL7 * 100) + "%" : "–"));
+    const rcell = el("td", "num roascell", fmR(l7.roas));
+    if (label.includes("core") && l7.roas != null) rcell.appendChild(roasBar(l7.roas, goal));
+    if (label.includes("TOF") && l7.mv != null) {
+      const mv = el("span", "mult-chip", "MV " + l7.mv.toFixed(2));
+      mv.style.marginLeft = "7px";
+      mv.title = "Clicks + Modeled Views — the model Demand Gen is judged on.";
+      rcell.appendChild(mv);
+    }
+    tr.appendChild(rcell);
+    const d = (l7.roas != null && p7.roas) ? (l7.roas - p7.roas) / p7.roas : null;
+    const dtd = el("td", "num", d == null ? "–" : (d > 0 ? "+" : "") + Math.round(d * 100) + "%");
+    // color WoW only where 7d click ROAS is a valid judgment (core rows)
+    const judgeable = label.includes("core");
+    if (d != null && judgeable) dtd.className += d >= 0 ? " delta up" : " delta down";
+    else dtd.className += " muted";
+    tr.appendChild(dtd);
+    tr.appendChild(el("td", "num", fmR(l14.roas)));
+    tr.appendChild(el("td", "num muted", l7.proas ? fmR(l7.proas) : "–"));
+    tr.appendChild(el("td", "guide", channelGuidance(label, l7.roas, goal)));
+    table.appendChild(tr);
+  }
+  // takeaway: best and worst judgeable bucket
+  const judge = rowsAgg.filter(r => r.label.includes("core") && r.roas != null);
+  if (judge.length) {
+    judge.sort((a, b) => b.roas - a.roas);
+    const best = judge[0], worst = judge[judge.length - 1];
+    card.insertBefore(takeaway(
+      best.label + " leads at " + best.roas.toFixed(2) +
+      (judge.length > 1 ? " — " + worst.label + " drags at " + worst.roas.toFixed(2) + " on " + fmK(worst.s) + " L7." : "."),
+      best.roas >= goal ? "good" : "warn"), card.children[1]);
+  }
+  const scroll = el("div", "tscroll");
+  scroll.appendChild(table);
+  card.appendChild(scroll);
+  return card;
+}
+
+/* ---------- creative health (Meta video, L7) ---------- */
+function creativeHealth() {
+  const goal = DATA.meta.goal_roas;
+  const vids = DATA.levels.ad.filter(a => {
+    if (a.platform !== "meta" || !bucketVisible(a.bucket)) return false;
+    if (/static|image|carousel/i.test(a.ad_name || "")) return false;
+    const w = a.windows.L7;
+    return (w.impressions || 0) >= 5000 && (w.video3s || 0) >= 100;
+  }).map(a => {
+    const w = a.windows.L7;
+    return {name: a.ad_name, campaign: a.campaign_name, hook: w.video3s / w.impressions,
+            spend: w.spend || 0, roas: w.roas7, imp: w.impressions};
+  });
+  const card = el("div", "card");
+  card.appendChild(el("h2", null, "Creative health — Meta video, last 7 days"));
+  if (!vids.length) {
+    card.appendChild(el("div", "muted", "No video ads with enough delivery this week."));
+    return card;
+  }
+  const grid = el("div", "creative");
+  const mkTable = (title, rows) => {
+    const d = el("div");
+    d.appendChild(el("h2", null, title));
+    const t = el("table");
+    const trh = el("tr");
+    ["Ad", "Hook", "Spend", "NB ROAS"].forEach((h, i) => {
+      const th = el("th", null, h); if (i === 0) th.style.textAlign = "left"; th.style.cursor = "default"; trh.appendChild(th);
+    });
+    t.appendChild(trh);
+    rows.forEach(r => {
+      const tr = el("tr");
+      const nt = el("td", "name"); nt.style.maxWidth = "230px"; nt.textContent = r.name; nt.title = r.name + " — " + r.campaign;
+      copyableName(nt, r.name);
+      tr.appendChild(nt);
+      const hk = el("td", "num", Math.round(r.hook * 100) + "%");
+      hk.className += r.hook >= 0.3 ? " delta up" : (r.hook < 0.2 ? " delta down" : " num");
+      tr.appendChild(hk);
+      tr.appendChild(el("td", "num", fm$(r.spend)));
+      const rc = el("td", "num roascell", fmR(r.roas));
+      if (r.roas != null) rc.style.color = r.roas >= goal ? "var(--st-good)" : (r.roas < 1.5 ? "var(--st-crit)" : "inherit");
+      tr.appendChild(rc);
+      t.appendChild(tr);
+    });
+    const sc = el("div", "tscroll"); sc.appendChild(t); d.appendChild(sc);
+    return d;
+  };
+  const top = [...vids].sort((a, b) => b.hook - a.hook).slice(0, 5);
+  const weak = vids.filter(v => v.hook < 0.2).sort((a, b) => b.spend - a.spend).slice(0, 5);
+  grid.appendChild(mkTable("Strongest hooks — iterate on these angles", top));
+  grid.appendChild(mkTable("Weak hooks — money on ads nobody stops for", weak));
+  card.appendChild(grid);
+  card.appendChild(el("div", "maturity-note",
+    "Hook = 3-second plays / impressions. >=30% strong, <20% kill-or-rehook after $500-1,000 spend. Statics excluded. " +
+    "A strong hook with weak ROAS means the opening works but the body/offer doesn't — iterate the back half, keep the hook."));
+  return card;
+}
+
+/* ---------- creative intelligence ---------- */
+function ciTable(title, rows, cols) {
+  const d = el("div");
+  d.appendChild(el("h2", null, title));
+  const t = el("table");
+  const trh = el("tr");
+  cols.forEach(([_, label], i) => {
+    const th = el("th", null, label); th.style.cursor = "default";
+    if (i === 0) th.style.textAlign = "left";
+    trh.appendChild(th);
+  });
+  t.appendChild(trh);
+  rows.forEach(r => {
+    const tr = el("tr");
+    cols.forEach(([key], i) => {
+      let v = r[key];
+      let td;
+      if (key === "verdict") {
+        td = el("td");
+        if (v) { const c = el("span", "vchip " + v,
+          v === "lean_in" ? "Lean in" : v === "cut" ? "Cut" : v === "iterate" ? "Iterate" : "Low data");
+          td.appendChild(c); }
+      } else if (key === "spend") { td = el("td", "num", fmK(v)); }
+      else if (key === "roas") {
+        td = el("td", "num roascell", fmR(v));
+        if (v != null) td.style.color = v >= (DATA.creative.account_avg_roas || 1) * 1.25 ? "var(--st-good)" : (v <= (DATA.creative.account_avg_roas || 1) * 0.6 ? "var(--st-crit)" : "inherit");
+      }
+      else if (key === "hook_rate") { td = el("td", "num muted", v != null ? Math.round(v * 100) + "%" : "–"); }
+      else if (key === "creatives") { td = el("td", "num muted", String(v)); }
+      else { td = el("td", null, String(v)); td.style.textAlign = "left"; td.className = "name"; td.style.maxWidth = "150px"; td.title = String(v); }
+      tr.appendChild(td);
+    });
+    t.appendChild(tr);
+  });
+  const sc = el("div", "tscroll"); sc.appendChild(t); d.appendChild(sc);
+  return d;
+}
+function ciList(title, rows, mode) {
+  const d = el("div", "dcol " + (mode === "good" ? "d-scale" : mode === "warn" ? "d-watch" : "d-now"));
+  const h = el("h3"); h.appendChild(el("span", "dot")); h.appendChild(document.createTextNode(title));
+  d.appendChild(h);
+  if (!rows || !rows.length) d.appendChild(el("div", "dempty", "Nothing at current thresholds."));
+  (rows || []).forEach(r => {
+    const it = el("div", "ditem");
+    const w = el("div", "w", r.name.length > 64 ? r.name.slice(0, 64) + "…" : r.name);
+    w.title = r.name; copyableName(w, r.name); it.appendChild(w);
+    const bits = [r.angle, r.product !== "Unspecified" ? r.product : null,
+      fm$(r.spend_l14) + " L14", "ROAS " + fmR(r.roas_l14),
+      r.hook_rate != null ? "hook " + Math.round(r.hook_rate * 100) + "%" : null].filter(Boolean);
+    it.appendChild(el("div", "a", bits.join(" · ")));
+    d.appendChild(it);
+  });
+  foldRows(Array.from(d.querySelectorAll(".ditem")), 4, d, "creatives");
+  return d;
+}
+function creativeIntelligence() {
+  const cr = DATA.creative;
+  const card = el("div", "card");
+  card.appendChild(el("h2", null, "Creative intelligence — what to make next"));
+  const sub = el("div", "maturity-note");
+  sub.textContent = `Meta creative, last 14 days, NB-attributed (clicks + det. views 7d). ${cr.n_creatives} creatives live; account-average creative ROAS ${fmR(cr.account_avg_roas)} vs ${DATA.meta.goal_roas.toFixed(1)} goal. Verdicts steer production (relative to account average); budget calls stay upstream in Decide today.`;
+  card.appendChild(sub);
+  {
+    const leanHooks = cr.hooks.filter(h => h.verdict === "lean_in").map(h => h.key);
+    const cutHooks = cr.hooks.filter(h => h.verdict === "cut").map(h => h.key);
+    const vf = cr.formats.find(f => f.key === "video"), sf = cr.formats.find(f => f.key === "static");
+    const bits = [];
+    if (vf && sf && vf.roas != null && sf.roas != null)
+      bits.push("Video (" + vf.roas.toFixed(2) + ") beats static (" + sf.roas.toFixed(2) + ")");
+    if (leanHooks.length) bits.push("lean into " + leanHooks.slice(0, 3).join(", "));
+    if (cutHooks.length) bits.push("stop making " + cutHooks.slice(0, 2).join(", ") + " creative");
+    if (bits.length) card.appendChild(takeaway(bits.join(" · ") + ".", leanHooks.length ? "good" : "warn"));
+  }
+  const grid = el("div", "ci-grid"); grid.style.marginTop = "12px";
+  const cols = [["key", ""], ["creatives", "#"], ["spend", "Spend"], ["roas", "NB ROAS"], ["hook_rate", "Hook"], ["verdict", "Verdict"]];
+  grid.appendChild(ciTable("By angle", cr.angles.slice(0, 8), cols));
+  grid.appendChild(ciTable("By hook theme", cr.hooks.slice(0, 8), cols));
+  grid.appendChild(ciTable("By format", cr.formats, cols));
+  card.appendChild(grid);
+  const lists = el("div", "ci-lists");
+  lists.appendChild(ciList("Make variations of these", cr.lean_in, "good"));
+  lists.appendChild(ciList("Strong hook, fix the body/offer", cr.fix_body, "warn"));
+  lists.appendChild(ciList("Cut or rework", cr.cut, "bad"));
+  card.appendChild(lists);
+
+  const comp = cr.competitors;
+  if (comp && comp.competitors) {
+    const sh = el("div", "section-h"); sh.style.margin = "20px 0 10px";
+    sh.appendChild(el("h2", null, "Competitor watch"));
+    sh.appendChild(el("span", "sub", (comp.source || "") + " · snapshot " + comp.as_of));
+    card.appendChild(sh);
+    const cg = el("div", "comp-grid");
+    comp.competitors.forEach(c => {
+      if (c.active_meta_ads == null) return;  // unresolved brands live in data_notes
+      const cc = el("div", "comp-card");
+      cc.appendChild(el("h4", null, c.name));
+      cc.appendChild(el("div", "cat", c.category + (c.active_meta_ads != null ? " · " + c.active_meta_ads + " active Meta ads" : "") + (c.format_mix ? " · " + c.format_mix : "")));
+      const an = el("div", "angles");
+      (c.dominant_angles || []).forEach(a => an.appendChild(el("span", null, a)));
+      cc.appendChild(an);
+      const thumbs = el("div", "comp-thumbs");
+      let anyThumb = false;
+      (c.proven_ads || []).forEach(p => {
+        if (p.thumb) { const img = document.createElement("img"); img.src = p.thumb; img.alt = p.headline || ""; img.title = (p.headline || "") + " — " + (p.gist || "") + " (" + (p.running || "") + ")"; img.loading = "lazy"; thumbs.appendChild(img); anyThumb = true; }
+      });
+      if (anyThumb) cc.appendChild(thumbs);
+      (c.proven_ads || []).slice(0, 2).forEach(p => {
+        cc.appendChild(el("div", "comp-proven", "▸ " + (p.headline || "") + " — " + (p.gist || "") + (p.running ? " (" + p.running + ")" : "")));
+      });
+      if (c.mirror) cc.appendChild(el("div", "mirror", c.mirror));
+      cg.appendChild(cc);
+    });
+    card.appendChild(cg);
+    foldRows(Array.from(cg.children), 3, card, "competitors");
+    if (comp.gaps && comp.gaps.length) {
+      const gb = el("div", "gapbox");
+      const gt = el("div"); gt.style.fontWeight = "650"; gt.style.fontSize = "13px";
+      gt.textContent = "Whitespace — angles the market is proving that TRX isn't running";
+      gb.appendChild(gt);
+      const ul = el("ul");
+      comp.gaps.forEach(g => { const li = el("li"); li.textContent = g; ul.appendChild(li); });
+      gb.appendChild(ul);
+      card.appendChild(gb);
+    }
+    if (comp.next_steps && comp.next_steps.length) {
+      const gb = el("div", "gapbox");
+      const gt = el("div"); gt.style.fontWeight = "650"; gt.style.fontSize = "13px";
+      gt.textContent = "Creative next steps";
+      gb.appendChild(gt);
+      const ul = el("ul");
+      comp.next_steps.forEach(g => { const li = el("li"); li.textContent = g; ul.appendChild(li); });
+      gb.appendChild(ul);
+      card.appendChild(gb);
+    }
+    if (comp.data_notes && comp.data_notes.length) {
+      card.appendChild(el("div", "maturity-note", "Data notes: " + comp.data_notes.join(" ")));
+    }
+  }
+  return card;
+}
+
+/* ---------- copyable / expandable names -----------------------------------
+   TRX ad names are 150-200 chars of key-value taxonomy tokens (s-/as-/h-/p-/…)
+   with the actual asset FILE NAME buried mid-string. Click any name to pop a
+   selectable code block — the free-text file-name tokens are highlighted so you
+   can grab them to search — plus a one-click "copy full name". */
+function toast(msg) {
+  let t = document.getElementById("toast");
+  if (!t) { t = el("div", "toast"); t.id = "toast"; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 1600);
+}
+function copyText(s) {
+  const done = () => toast("Copied to clipboard");
+  const fallback = () => {
+    const ta = document.createElement("textarea");
+    ta.value = s; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText)
+    navigator.clipboard.writeText(s).then(done, fallback);
+  else fallback();
+}
+// taxonomy keys are a KNOWN small set (s-/as-/h-/p-/c-/o-/lp-/a-/m-/t-/gen-/WL=/…);
+// a token that isn't one of these and isn't a bare format word is a free-text
+// asset/file-name token (e.g. AorB-061526, TSS_TRX_020626_9x16_V2) -> highlight it.
+const _TAXO = /^(s|as|m|h|p|c|t|o|lp|a|gen|wl|whitelist|creative)[-=]/i,
+      _FMT = /^(video|static|image|carousel|gif)$/i;
+function nameCode(fullName) {
+  // split on "_"; a token is a "file name" token if it's not key-value taxonomy
+  // and not a bare format word — those get highlighted.
+  const code = el("code", "namecode");
+  (fullName || "").split("_").forEach((tok, i) => {
+    if (i) code.appendChild(el("span", "nsep", "_"));
+    const isFile = tok && !_TAXO.test(tok) && !_FMT.test(tok);
+    code.appendChild(el("span", isFile ? "nfile" : null, tok));
+  });
+  return code;
+}
+let _namepop = null;
+function closeNamePop() {
+  if (!_namepop) return;
+  _namepop.remove(); _namepop = null;
+  document.removeEventListener("mousedown", _onDocDown, true);
+  document.removeEventListener("keydown", _onPopKey);
+}
+function _onDocDown(e) { if (_namepop && !_namepop.contains(e.target)) closeNamePop(); }
+function _onPopKey(e) { if (e.key === "Escape") closeNamePop(); }
+function openNamePop(anchor, fullName) {
+  closeNamePop();
+  const pop = el("div", "namepop");
+  pop.appendChild(el("div", "namepop-h", "Full name — select the file name to search, or copy all"));
+  const box = el("div", "namepop-box");
+  box.appendChild(nameCode(fullName));
+  pop.appendChild(box);
+  const row = el("div", "namepop-row");
+  const cbtn = el("button", "namepop-btn", "Copy full name");
+  cbtn.addEventListener("click", (e) => { e.stopPropagation(); copyText(fullName); });
+  const x = el("button", "namepop-x", "Close");
+  x.addEventListener("click", (e) => { e.stopPropagation(); closeNamePop(); });
+  row.appendChild(cbtn); row.appendChild(x);
+  pop.appendChild(row);
+  document.body.appendChild(pop);
+  const r = anchor.getBoundingClientRect();
+  const pw = pop.offsetWidth, ph = pop.offsetHeight;
+  const left = Math.max(8, Math.min(r.left, window.innerWidth - pw - 12));
+  let top = r.bottom + 6;
+  if (top + ph > window.innerHeight - 8) top = Math.max(8, r.top - ph - 6);
+  pop.style.left = left + "px"; pop.style.top = top + "px";
+  _namepop = pop;
+  setTimeout(() => {
+    document.addEventListener("mousedown", _onDocDown, true);
+    document.addEventListener("keydown", _onPopKey);
+  }, 0);
+}
+function copyableName(node, fullName) {
+  if (!fullName) return node;
+  node.classList.add("copyname");
+  if (!node.title) node.title = fullName;          // keep any richer tooltip already set
+  node.appendChild(el("span", "copyglyph", "⧉"));
+  node.addEventListener("click", (e) => { e.stopPropagation(); openNamePop(node, fullName); });
+  return node;
+}
+
+/* ---------- performance detail card (rebuilds in place, no page scroll) ---------- */
+function buildDetail(tcard) {
+  tcard.replaceChildren();
+  const creativePage = typeof PAGE !== "undefined" && PAGE === "creative";
+  tcard.appendChild(el("h2", null, creativePage ? "Ad-level detail" : "Performance detail"));
+  const rebuild = () => {
+    // keep the card visually pinned: neutralize scroll-anchoring drift
+    const before = tcard.getBoundingClientRect().top;
+    buildDetail(tcard);
+    window.scrollBy(0, tcard.getBoundingClientRect().top - before);
+  };
+  const filters = el("div", "filters");
+  const mkSeg = (options, cur, cb) => {
+    const seg = el("div", "seg");
+    options.forEach(([id, label]) => {
+      const b = el("button", null, label);
+      b.setAttribute("aria-pressed", String(id === cur));
+      b.addEventListener("click", () => cb(id));
+      seg.appendChild(b);
+    });
+    return seg;
+  };
+  filters.appendChild(mkSeg([["campaign", "Campaigns"], ["adset", "Ad sets"], ["ad", "Ads"]], levelSel,
+    id => { levelSel = id; rebuild(); }));
+  filters.appendChild(mkSeg([["L1", "Yesterday"], ["L7", "Last 7"], ["L14", "Last 14"]], winSel,
+    id => { winSel = id; rebuild(); }));
+  filters.appendChild(mkSeg([["all", "All"], ["meta", "Meta"], ["google", "Google"], ["tiktok", "TikTok"]], platSel,
+    id => { platSel = id; rebuild(); }));
+  filters.appendChild(mkSeg([["all", "All"], ["active", "Active"], ["inactive", "Inactive"]], deliverySel,
+    id => { deliverySel = id; rebuild(); }));
+  const se = el("input", "search"); se.placeholder = "Search name…"; se.value = query;
+  se.addEventListener("input", () => { query = se.value; renderTable(twrap); });
+  filters.appendChild(se);
+  const zt = el("button", "ghost", showZero ? "Hide $0 rows" : "Show $0 rows");
+  zt.setAttribute("aria-pressed", String(showZero));
+  zt.addEventListener("click", () => { showZero = !showZero; rebuild(); });
+  filters.appendChild(zt);
+  const rt = el("button", "ghost", minRoasOn ? "Show all rows" : "Only ≥ " + ROAS_FILTER.toFixed(2) + " NB ROAS");
+  rt.setAttribute("aria-pressed", String(minRoasOn));
+  rt.addEventListener("click", () => { minRoasOn = !minRoasOn; rebuild(); });
+  filters.appendChild(rt);
+  tcard.appendChild(filters);
+  const note = el("div", "maturity-note");
+  note.textContent = winSel === "L1"
+    ? "Yesterday view: accrual revenue for yesterday is largely unmatured — use for spend/delivery checks, not ROAS judgments. Status badges always judge on the 7-day window."
+    : "Status badges judge NB ROAS on the ≥7-day window with a $250 minimum spend. No kill/scale calls on <72h of data.";
+  tcard.appendChild(note);
+  const twrap = el("div", "tscroll");
+  tcard.appendChild(twrap);
+  renderTable(twrap);
+}
+
+/* ---------- v7 widgets ---------- */
+const PAGE_TITLES = {cockpit: "Daily cockpit", pacing: "Pacing & trend", performance: "Performance & allocation",
+                     creative: "Creative studio", testing: "Testing lab", reference: "Reference", ltv: "LTV economics"};
+function pageHead() {
+  const d = el("div", "pagehead");
+  const tw = el("div");
+  tw.appendChild(el("div", "eyebrow", "Lower Cross — Media Pulse"));
+  tw.appendChild(el("div", "ptitle", PAGE_TITLES[PAGE] || ""));
+  d.appendChild(tw);
+  d.appendChild(el("div", "pctx", "Data through " + DATA.meta.data_through +
+    " · " + (DATA.meta.attribution_label || "Triple Whale, 7-day")));
+  return d;
+}
+function spendMixCard() {
+  const s0 = DATA.insights.summary;
+  // DG (TOF) segment follows the sidebar toggle; total recomputed from shown parts
+  const parts = [["Core", s0.core_spend_l7, "var(--bk-core)"],
+                 ...(inclDG ? [["TOF", s0.tof_spend_l7, "var(--bk-tof)"]] : []),
+                 ["Brand", s0.brand_spend_l7, "var(--bk-brand)"], ["App/Amazon — managed", s0.other_spend_l7, "var(--bk-other)"]]
+    .filter(p => p[1] > 0);
+  const tot = parts.reduce((a, p) => a + (p[1] || 0), 0) || 1;
+  const w = el("div", "widget");
+  w.appendChild(el("h3", null, "Spend mix — last 7 days"));
+  const wrap = el("div", "donutwrap");
+  /* donut, center total (reference-style); 2px surface gaps between segments */
+  const R = 44, C = 2 * Math.PI * R, SW = 15, gap = 2.5;
+  const svg = sv("svg", {width: 116, height: 116, viewBox: "0 0 116 116", role: "img"});
+  let off = -C / 4;  /* start at 12 o'clock */
+  parts.forEach(([label, v, color]) => {
+    const frac = v / tot, len = Math.max(0, frac * C - gap);
+    const arc = sv("circle", {cx: 58, cy: 58, r: R, fill: "none", stroke: color,
+      "stroke-width": SW, "stroke-dasharray": `${len} ${C - len}`,
+      "stroke-dashoffset": -off, "stroke-linecap": "butt"});
+    const t = sv("title", {}); t.textContent = label + " " + fm$(v) + " · " + Math.round(frac * 100) + "%";
+    arc.appendChild(t);
+    svg.appendChild(arc);
+    off += frac * C;
+  });
+  const tv = sv("text", {x: 58, y: 55, "text-anchor": "middle",
+    style: "font:650 17px var(--f-ui); fill:var(--ink-1)"});
+  tv.textContent = fmK(tot);
+  const tl = sv("text", {x: 58, y: 71, "text-anchor": "middle",
+    style: "font:650 10px var(--f-ui); fill:var(--ink-3); letter-spacing:0.06em"});
+  tl.textContent = "L7 SPEND";
+  svg.appendChild(tv); svg.appendChild(tl);
+  wrap.appendChild(svg);
+  const leg = el("div", "mixlegend");
+  parts.forEach(([label, v, color]) => {
+    const r = el("div", "row");
+    const sw = el("span", "sw"); sw.style.background = color; r.appendChild(sw);
+    r.appendChild(el("span", null, label));
+    r.appendChild(el("span", "v", fm$(v) + " · " + Math.round(v / tot * 100) + "%"));
+    leg.appendChild(r);
+  });
+  wrap.appendChild(leg);
+  w.appendChild(wrap);
+  return w;
+}
+function goalTrackCard(days) {
+  const goal = DATA.meta.goal_roas;
+  const last30 = days.map(d => d.roll).slice(-30);
+  const known = last30.filter(v => v != null);
+  const w = el("div", "widget");
+  w.appendChild(el("h3", null, "Goal track — rolling " + (inclDG ? "core + DG" : "core") + " NB ROAS, 30 days"));
+  const track = el("div", "gtrack");
+  const max = Math.max(goal * 1.25, ...known, 0.1);
+  last30.forEach(v => {
+    const bar = document.createElement("i");
+    if (v != null) {
+      bar.style.height = Math.max(8, v / max * 100) + "%";
+      bar.className = v >= goal ? "above" : "below";
+      bar.title = v.toFixed(2);
+    } else bar.style.height = "8%";
+    track.appendChild(bar);
+  });
+  const gl = el("span", "gline");
+  gl.style.bottom = (goal / max * 100) + "%";
+  gl.title = "Goal " + goal.toFixed(1);
+  track.appendChild(gl);
+  w.appendChild(track);
+  const above = known.filter(v => v >= goal).length;
+  const cap = el("div", "gtrack-cap");
+  cap.appendChild(el("b", null, above + "/" + known.length));
+  cap.appendChild(document.createTextNode(" days at or above the " + goal.toFixed(1) + " goal."));
+  w.appendChild(cap);
+  return w;
+}
+function calloutsCard() {
+  const ins = DATA.insights;
+  const rows = [];
+  const up = (ins.working || []).find(x => x.scope === "trend");
+  const down = (ins.issues || []).find(x => x.scope === "trend");
+  if (up) rows.push(["var(--st-good)", up.text]);
+  if (down) rows.push(["var(--st-warn)", down.text]);
+  const burn = (ins.issues || []).find(x => x.sev === "bad");
+  if (burn && rows.length < 3) rows.push(["var(--st-crit)", burn.text]);
+  const att = (ins.issues || []).find(x => x.scope === "attribution");
+  if (att && rows.length < 3) rows.push(["var(--ink-3)", att.text]);
+  const w = el("div", "widget");
+  w.appendChild(el("h3", null, "Callouts"));
+  if (!rows.length) w.appendChild(el("div", "dempty", "Quiet day — no notable movers."));
+  rows.slice(0, 3).forEach(([color, text]) => {
+    const c = el("div", "callout");
+    const d0 = el("span", "cdot"); d0.style.background = color; c.appendChild(d0);
+    c.appendChild(el("span", null, text));
+    w.appendChild(c);
+  });
+  return w;
+}
+/* ---------- v11: funnel ---------- */
+const fmN = v => v >= 1e6 ? (v / 1e6).toFixed(1) + "M" : v >= 1e4 ? Math.round(v / 1e3) + "K"
+  : v >= 1e3 ? (v / 1e3).toFixed(1) + "K" : Math.round(v).toLocaleString("en-US");
+
+/* Judged funnel only: buckets != other (app/amazon managed separately) and no
+   TikTok (NB deterministic attribution broken). Campaign grain — nv/ftx exist
+   only there. */
+function funnelAgg(plat, win) {
+  const rows = DATA.levels.campaign.filter(c =>
+    bucketVisible(c.bucket) && c.platform !== "tiktok" &&
+    (plat === "all" || c.platform === plat));
+  const sum = f => rows.reduce((a, c) => a + (c.windows[win][f] || 0), 0);
+  // DG revenue is judged on Modeled Views, not deterministic — fold mv_rev for
+  // tof rows so an included-DG total never mixes in DG's near-zero det rev7.
+  const rev = rows.reduce((a, c) => a +
+    (c.bucket === "tof" ? (c.windows[win].mv_rev || 0) : (c.windows[win].rev7 || 0)), 0);
+  return {impr: sum("impressions"), clicks: sum("clicks"), visits: sum("visits"),
+          nv: sum("nv"), txns: sum("txns"), ftx: sum("ftx"), rev,
+          spend: sum("spend")};
+}
+
+function funnelCard() {
+  const F = DATA.funnel;
+  const card = el("div", "card funnelcard");
+  if (!F) return card;
+  const src = F.source || "google";
+  /* scopes with back-compat: fall back to the old platforms.google shape */
+  const scopes = F.scopes || (F.platforms && F.platforms[src]
+    ? {excl_dg: {label: F.label, L7: F.platforms[src].L7, P7: F.platforms[src].P7}} : null);
+  if (!scopes) return card;
+  const scopeKeys = Object.keys(scopes);
+  // funnel follows the GLOBAL Demand Gen toggle (no local seg control)
+  const scope = inclDG && scopes.incl_dg ? "incl_dg"
+              : scopes.excl_dg ? "excl_dg"
+              : (F.default_scope && scopes[F.default_scope] ? F.default_scope : scopeKeys[0]);
+  const stagesDef = F.stages || [];
+  if (!stagesDef.length) return card;
+
+  const fm$ = v => "$" + Math.round(v).toLocaleString("en-US");
+
+  const head = el("div", "chead");
+  head.appendChild(el("div", "ct", "Funnel"));
+  head.appendChild(el("div", "cs", "Clicks to purchase — last 7 days vs prior 7"
+    + (scope === "incl_dg" ? " · incl. Demand Gen" : "")));
+  card.appendChild(head);
+
+  const body = el("div", "vfun-body");
+  card.appendChild(body);
+
+  function rebuild() {
+    body.replaceChildren();
+    const sc = scopes[scope];
+    const L7 = sc.L7 || {}, P7 = sc.P7 || {};
+    const stages = stagesDef.map(s => [s.label, +L7[s.key] || 0, +P7[s.key] || 0, s.key]);
+    const L = stages.map(s => s[1]), P = stages.map(s => s[2]);
+    const conv = (arr, i) => arr[i] && arr[i + 1] != null ? arr[i + 1] / arr[i] : null;
+
+    /* biggest week-over-week leak among step conversions */
+    let leak = null;
+    for (let i = 0; i < stages.length - 1; i++) {
+      const c = conv(L, i), p = conv(P, i);
+      if (c == null || !p) continue;
+      const rel = (c - p) / p;
+      if (rel < -0.10 && (!leak || rel < leak.rel)) leak = {i, rel};
+    }
+    body.appendChild(takeaway(leak
+      ? "Biggest WoW leak: " + stages[leak.i][0] + " → " + stages[leak.i + 1][0] + " down " +
+        Math.round(-leak.rel * 100) + "% vs prior 7 days."
+      : "No funnel step leaking week-over-week past 10%.",
+      leak ? (leak.rel < -0.25 ? "bad" : "warn") : "good"));
+
+    /* vertical mirrored funnel, log-scaled half-widths (drops are large) */
+    const n = stages.length, ROWH = 74;
+    const VW = 300, VH = n * ROWH;
+    const cx = VW / 2, maxHW = VW / 2 - 8, floorHW = 11;
+    const pos = L.filter(v => v > 0);
+    const vmax = Math.max(...L, 1);
+    const vmin = Math.max(1, pos.length ? Math.min(...pos) : 1);
+    const hw = L.map(v => {
+      if (!v || vmax <= vmin) return floorHW;
+      const f = (Math.log(v) - Math.log(vmin)) / (Math.log(vmax) - Math.log(vmin));
+      return floorHW + f * (maxHW - floorHW);
+    });
+    const yc = i => i * ROWH + ROWH / 2;
+    const pts = [[hw[0], 0], ...hw.map((v, i) => [v, yc(i)]), [hw[n - 1], VH]];
+    let right = `M ${cx + pts[0][0]} ${pts[0][1]}`;
+    for (let i = 1; i < pts.length; i++) {
+      const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], my = (y0 + y1) / 2;
+      right += ` C ${cx + x0} ${my}, ${cx + x1} ${my}, ${cx + x1} ${y1}`;
+    }
+    let left = "";
+    for (let i = pts.length - 1; i > 0; i--) {
+      const [x0, y0] = pts[i], [x1, y1] = pts[i - 1], my = (y0 + y1) / 2;
+      left += ` C ${cx - x0} ${my}, ${cx - x1} ${my}, ${cx - x1} ${y1}`;
+    }
+    const dPath = right + ` L ${cx - pts[pts.length - 1][0]} ${VH}` + left + " Z";
+
+    const grid = el("div", "vfun");
+    grid.style.setProperty("--vfrow", ROWH + "px");
+    const labs = el("div", "vlabs");
+    stages.forEach(([label, v, pv]) => {
+      const t = el("div", "vl");
+      t.appendChild(el("b", null, fmN(v)));
+      t.appendChild(document.createTextNode(label));
+      t.title = label + ": " + Math.round(v).toLocaleString("en-US") +
+        (pv ? " · prior 7d " + Math.round(pv).toLocaleString("en-US") : "");
+      labs.appendChild(t);
+    });
+    grid.appendChild(labs);
+    const svg = sv("svg", {viewBox: `0 0 ${VW} ${VH}`, preserveAspectRatio: "none", style: `height:${VH}px`});
+    const defs = sv("defs", {});
+    const lg = sv("linearGradient", {id: "vfgrad", x1: "0", y1: "0", x2: "0", y2: "1"});
+    lg.appendChild(sv("stop", {offset: "0%", "stop-color": "var(--fn-2)"}));
+    lg.appendChild(sv("stop", {offset: "55%", "stop-color": "var(--fn-4)"}));
+    lg.appendChild(sv("stop", {offset: "100%", "stop-color": "var(--fn-5)"}));
+    defs.appendChild(lg); svg.appendChild(defs);
+    svg.appendChild(sv("path", {d: dPath, fill: "url(#vfgrad)"}));
+    for (let i = 1; i < n; i++) {
+      const bw = Math.min(maxHW, (hw[i - 1] + hw[i]) / 2);
+      svg.appendChild(sv("line", {x1: cx - bw, x2: cx + bw, y1: i * ROWH, y2: i * ROWH,
+                                  stroke: "var(--surface-1)", "stroke-width": 2}));
+    }
+    grid.appendChild(svg);
+    const drops = el("div", "vdrops");
+    for (let i = 0; i < n - 1; i++) {
+      const c = conv(L, i), p = conv(P, i);
+      const d0 = el("div", "vd0" + (leak && leak.i === i ? " leak" : ""));
+      const line1 = el("div");
+      line1.appendChild(el("b", null, c == null ? "–" : (c * 100).toFixed(c < 0.1 ? 1 : 0) + "%"));
+      line1.appendChild(document.createTextNode(" " + stages[i][0].toLowerCase() + " → " + stages[i + 1][0].toLowerCase()));
+      d0.appendChild(line1);
+      if (c != null && p) {
+        const rel = (c - p) / p, cls = Math.abs(rel) < 0.03 ? "flat" : rel > 0 ? "up" : "down";
+        const chip = el("span", "rchip " + cls,
+          (cls === "flat" ? "· flat" : (rel > 0 ? "▲ " : "▼ ") + Math.round(Math.abs(rel) * 100) + "%") + " WoW");
+        chip.title = "prior 7 days: " + (p * 100).toFixed(1) + "%";
+        d0.appendChild(chip);
+      }
+      drops.appendChild(d0);
+    }
+    grid.appendChild(drops);
+    body.appendChild(grid);
+
+    /* scope label pill */
+    if (sc.label) body.appendChild(el("div", "fscope", sc.label));
+
+    /* Demand Gen modeled-views context — only when DG is included */
+    if (scope === "incl_dg" && F.dg) {
+      const dg = F.dg;
+      const box = el("div", "dgctx");
+      const mv = dg.mv_roas_l7, det = dg.det_roas_l7;
+      const parts = [];
+      if (dg.spend_l7 != null) parts.push(fm$(dg.spend_l7) + " Demand Gen (TOF) spend L7");
+      if (mv != null) parts.push("NB Clicks + Modeled Views 7D ROAS " + Number(mv).toFixed(2));
+      if (det != null) parts.push("deterministic " + Number(det).toFixed(2) + " understates it");
+      box.appendChild(el("b", null, "Demand Gen is a modeled-views channel — "));
+      box.appendChild(document.createTextNode(parts.join(" · ") + "."));
+      body.appendChild(box);
+    }
+    if (F.note) body.appendChild(el("div", "fsub", F.note));
+  }
+
+  rebuild();
+  return card;
+}
+/* ---------- v11: data integrity ---------- */
+const DH_STATUS = {ok: ["ok", "live"], cache: ["cache", "cached"], config: ["cache", "config fallback"], missing: ["bad", "missing"]};
+
+function integrityStrip() {
+  const I = DATA.integrity;
+  if (!I) return null;
+  const card = el("div", "card");
+  const s = el("div", "dhstrip");
+  s.appendChild(el("span", "dh-label", "Data health"));
+  (I.sources || []).forEach(src => {
+    const it = el("span", "dh-src");
+    const dot = el("span", "dh-dot");
+    const [cls] = DH_STATUS[src.status] || ["bad"];
+    dot.style.background = cls === "ok" ? "var(--st-good)" : cls === "cache" ? "var(--st-warn)" : "var(--st-crit)";
+    it.title = src.label + " — " + (DH_STATUS[src.status] || ["", src.status])[1] +
+      (src.pulled_at ? " · pulled " + src.pulled_at.slice(0, 16).replace("T", " ") + " UTC" : "");
+    it.appendChild(dot);
+    it.appendChild(document.createTextNode(src.label));
+    s.appendChild(it);
+  });
+  (I.divergence || []).forEach(d => {
+    s.appendChild(el("span", "muted", d.label + " self-reports +" + Math.round(d.div * 100) + "% vs NB"));
+  });
+  const a = document.createElement("a");
+  a.href = "reference.html"; a.textContent = "integrity details →";
+  s.appendChild(a);
+  card.appendChild(s);
+  return card;
+}
+
+function integrityCard() {
+  const I = DATA.integrity;
+  if (!I) return null;
+  const card = el("div", "card integ");
+  card.appendChild(el("h2", null, "Data integrity"));
+
+  const tbl = el("table");
+  const thead = el("thead"); const trh = el("tr");
+  ["Source", "Status", "Last pull (UTC)", "Detail"].forEach(h => trh.appendChild(el("th", null, h)));
+  thead.appendChild(trh); tbl.appendChild(thead);
+  const tb = el("tbody");
+  (I.sources || []).forEach(src => {
+    const tr = el("tr");
+    tr.appendChild(el("td", null, src.label));
+    const [cls, word] = DH_STATUS[src.status] || ["bad", src.status];
+    const td2 = el("td"); td2.appendChild(el("span", "ichip " + cls, word)); tr.appendChild(td2);
+    tr.appendChild(el("td", null, src.pulled_at ? src.pulled_at.slice(0, 16).replace("T", " ") : "–"));
+    tr.appendChild(el("td", null, src.detail || ""));
+    tb.appendChild(tr);
+  });
+  tbl.appendChild(tb);
+  card.appendChild(tbl);
+
+  if (I.divergence && I.divergence.length) {
+    const dh = el("h2", null, "Attribution check — what platforms claim vs what NB attributes (core, L7)");
+    dh.style.marginTop = "var(--s4)";
+    card.appendChild(dh);
+    const maxv = Math.max(...I.divergence.map(d => Math.max(d.p_value_l7, d.nb_rev_l7)));
+    I.divergence.forEach(d => {
+      const row = el("div", "divrow");
+      const l1 = el("div", "dl");
+      l1.appendChild(el("span", null, d.label + " platform-reported"));
+      l1.appendChild(el("b", null, fm$(d.p_value_l7) + "  (+" + Math.round(d.div * 100) + "%)"));
+      row.appendChild(l1);
+      const b1 = el("div", "dbar claim"); b1.style.width = (d.p_value_l7 / maxv * 100) + "%"; row.appendChild(b1);
+      const l2 = el("div", "dl");
+      l2.appendChild(el("span", null, d.label + " — Northbeam attributed"));
+      l2.appendChild(el("b", null, fm$(d.nb_rev_l7)));
+      row.appendChild(l2);
+      const b2 = el("div", "dbar nb"); b2.style.width = (d.nb_rev_l7 / maxv * 100) + "%"; row.appendChild(b2);
+      card.appendChild(row);
+    });
+    card.appendChild(el("div", "sub", "Decisions run on Northbeam. Platform numbers are directional only — they double-count and self-attribute."));
+  }
+
+  if (I.excluded && I.excluded.length) {
+    const eh = el("h2", null, "Excluded from judgments — and why");
+    eh.style.marginTop = "var(--s4)";
+    card.appendChild(eh);
+    const ul = el("ul");
+    I.excluded.forEach(x => {
+      const li = el("li");
+      li.appendChild(el("b", null, x.label + ": "));
+      li.appendChild(document.createTextNode(x.reason));
+      ul.appendChild(li);
+    });
+    card.appendChild(ul);
+  }
+  if (I.accrual_note) card.appendChild(el("div", "sub", I.accrual_note));
+  return card;
+}
+
+function ltvPage(app) {
+  const L = DATA.ltv;
+  if (!L) { app.appendChild(el("div", "card", "LTV data not in payload yet.")); return; }
+  const goal = DATA.meta.goal_roas;
+  // account tiles follow the DG toggle (excl = core+brand, incl = +Demand Gen)
+  const a = (inclDG && L.account_incl) ? L.account_incl : L.account;
+  const tiles = el("div", "tiles");
+  const mk2 = (lbl, val, sub) => {
+    const t = el("div", "tile");
+    t.appendChild(el("div", "lbl", lbl));
+    t.appendChild(el("div", "val", val));
+    if (sub) t.appendChild(el("div", "basis", sub));
+    return t;
+  };
+  tiles.appendChild(mk2("LTV multiplier", a.multiplier ? a.multiplier.toFixed(2) + "x" : "–", "modeled lifetime ÷ first purchase"));
+  tiles.appendChild(mk2("LTV / new customer", a.ltv_per_customer ? fm$(a.ltv_per_customer) : "–", a.ftx + " new customers · 30d"));
+  tiles.appendChild(mk2("New-customer CAC", a.cac_ft ? fm$(a.cac_ft) : "–", "LTV:CAC " + (a.cac_ft && a.ltv_per_customer ? (a.ltv_per_customer / a.cac_ft).toFixed(1) + ":1" : "–")));
+  tiles.appendChild(mk2("First purchase vs LTV ROAS", (a.ft_roas ?? "–") + " → " + (a.ltv_roas ?? "–"), "30-day, NB modeled"));
+  app.appendChild(tiles);
+
+  const card = el("div", "card");
+  card.appendChild(el("h2", null, "LTV by channel"));
+  if (a.multiplier) card.appendChild(takeaway(
+    "Every $1 of first-purchase revenue becomes ~$" + a.multiplier.toFixed(2) + " over the modeled lifetime — a campaign at " +
+    (goal / a.multiplier).toFixed(2) + " first-purchase ROAS is LTV-breakeven against the " + goal.toFixed(1) + " goal.",
+    a.multiplier >= 1.3 ? "good" : "warn"));
+  const mkTable = rows => {
+    const t = el("table");
+    const trh = el("tr");
+    ["", "Spend 30d", "New cust.", "CAC", "FT ROAS", "LTV ROAS", "Multiplier", "LTV/cust."].forEach((h, i) => {
+      const th = el("th", null, h); th.style.cursor = "default"; if (i === 0) th.style.textAlign = "left"; trh.appendChild(th);
+    });
+    t.appendChild(trh);
+    rows.forEach(r => {
+      const tr = el("tr");
+      const nt = el("td", "name"); nt.style.maxWidth = "260px"; nt.style.fontWeight = "600";
+      nt.textContent = r.label; nt.title = r.label; copyableName(nt, r.label); tr.appendChild(nt);
+      tr.appendChild(el("td", "num", fm$(r.spend)));
+      tr.appendChild(el("td", "num muted", String(r.ftx)));
+      tr.appendChild(el("td", "num", r.cac_ft ? fm$(r.cac_ft) : "–"));
+      const ft = el("td", "num roascell", fmR(r.ft_roas)); if (r.ft_roas != null) ft.appendChild(roasBar(r.ft_roas, goal)); tr.appendChild(ft);
+      const lt = el("td", "num roascell", fmR(r.ltv_roas));
+      if (r.ltv_roas != null) { lt.style.color = r.ltv_roas >= goal ? "var(--st-good)" : (r.ltv_roas < goal * 0.6 ? "var(--st-crit)" : "inherit"); lt.appendChild(roasBar(r.ltv_roas, goal)); }
+      tr.appendChild(lt);
+      const mc = el("td", "num");
+      if (r.multiplier) { const chip = el("span", "mult-chip", r.multiplier.toFixed(2) + "x"); mc.appendChild(chip); } else mc.textContent = "–";
+      tr.appendChild(mc);
+      tr.appendChild(el("td", "num muted", r.ltv_per_customer ? fm$(r.ltv_per_customer) : "–"));
+      t.appendChild(tr);
+    });
+    const sc = el("div", "tscroll"); sc.appendChild(t);
+    const wrapd = el("div");
+    wrapd.appendChild(sc);
+    foldRows(Array.from(t.querySelectorAll("tr")).slice(1), 8, wrapd, "campaigns");
+    return wrapd;
+  };
+  // DG channel row + DG campaigns follow the toggle
+  card.appendChild(mkTable(inclDG ? L.channels : L.channels.filter(r => !/Demand Gen/i.test(r.label || ""))));
+  app.appendChild(card);
+
+  const card2 = el("div", "card");
+  card2.appendChild(el("h2", null, "LTV by campaign — 30 days, min $400 / 3 new customers"));
+  card2.appendChild(mkTable(inclDG ? L.campaigns : L.campaigns.filter(r => r.bucket !== "tof")));
+  app.appendChild(card2);
+
+  if (L.recommendations && L.recommendations.length) {
+    const gb = el("div", "card");
+    gb.appendChild(el("h2", null, "Recommendations"));
+    const ul = el("ul", "insights");
+    L.recommendations.forEach(t => { const li = el("li", "sev-info"); li.textContent = t; ul.appendChild(li); });
+    gb.appendChild(ul);
+    app.appendChild(gb);
+  }
+  const f = el("footer");
+  const ful = el("ul");
+  (L.notes || []).forEach(n => ful.appendChild(el("li", null, n)));
+  f.appendChild(ful);
+  app.appendChild(f);
+}
+
+/* v10: progressive disclosure — hide list items past `limit` behind one toggle */
+function foldRows(nodes, limit, mount, noun) {
+  const extra = nodes.slice(limit);
+  if (!extra.length) return;
+  extra.forEach(n => n.classList.add("chg-hidden"));
+  const more = el("button", "chg-more");
+  let open = false;
+  const setLabel = () => { more.textContent = open
+    ? "Show fewer \u2191" : "Show all " + nodes.length + " " + noun + " \u2193"; };
+  setLabel();
+  more.addEventListener("click", () => {
+    open = !open;
+    extra.forEach(n => n.classList.toggle("chg-hidden", !open));
+    setLabel();
+  });
+  mount.appendChild(more);
+}
+
+/* ---------- verdict + takeaway helpers ---------- */
+function takeaway(text, sev) {
+  return el("div", "takeaway tk-" + (sev || "na"), text);
+}
+/* queue item text: entity name strong, metric prose quiet */
+function qwhat(text) {
+  const w = el("div", "w");
+  const ci = (text || "").indexOf(": ");
+  if (ci > 0) {
+    w.appendChild(el("span", "qname", text.slice(0, ci)));
+    w.appendChild(document.createTextNode(": " + text.slice(ci + 2)));
+  } else {
+    w.appendChild(el("span", "qname", text));
+  }
+  return w;
+}
+function roasBar(v, goal) {
+  const bar = el("span", "roasbar");
+  const fill = document.createElement("i");
+  const pct = v == null ? 0 : Math.min(1, v / (goal * 1.25));
+  fill.style.width = (pct * 100) + "%";
+  fill.style.background = v == null ? "var(--grid)" :
+    v >= goal ? "var(--st-good)" : v >= goal * 0.75 ? "var(--st-warn)" : "var(--st-crit)";
+  bar.appendChild(fill);
+  bar.title = v == null ? "" : v.toFixed(2) + " vs " + goal.toFixed(2) + " goal";
+  return bar;
+}
+function verdictBanner() {
+  const m = DATA.meta, s = DATA.insights.summary, pac = DATA.insights.pacing || {};
+  const dec = DATA.insights.decide || {do_now: [], scale: []};
+  const goal = m.goal_roas;
+  const roas = dgAgg("L7").roas;  // excl == summary.core_roas_l7; incl folds in Demand Gen
+  const paceOff = pac.pace != null ? Math.abs(pac.pace - 1) : 0;
+  let sev = "good";
+  if ((roas != null && roas < goal * 0.75) || dec.do_now.length >= 3 || paceOff > 0.2) sev = "bad";
+  else if ((roas != null && roas < goal) || dec.do_now.length >= 1 || paceOff > 0.1) sev = "warn";
+  const bits = [];
+  if (roas != null) bits.push((inclDG ? "core + DG ROAS " : "core ROAS ") + roas.toFixed(2) + " vs " + goal.toFixed(1) + " goal");
+  if (pac.pace != null) bits.push("spend " + Math.round(pac.pace * 100) + "% of plan");
+  if (dec.do_now.length) bits.push(dec.do_now.length + " campaign" + (dec.do_now.length > 1 ? "s" : "") + " need action today");
+  const head = sev === "bad" ? "Action needed" : sev === "warn" ? "Off goal — fixable" : "On track";
+  const v = el("div", "verdict v-" + sev);
+  v.appendChild(el("span", "vdot"));
+  v.appendChild(el("span", "vh", head));
+  v.appendChild(el("span", "vs", bits.join(" · ")));
+  const sub = el("span", "vs");
+  if (dec.do_now.length) {
+    sub.appendChild(document.createTextNode("Biggest lever: "));
+    sub.appendChild(el("b", null, dec.do_now[0].what));
+    sub.appendChild(document.createTextNode(" "));
+    const a = document.createElement("a");
+    a.href = "performance.html"; a.textContent = "Open actions →";
+    sub.appendChild(a);
+  } else if (dec.scale && dec.scale.length) {
+    sub.appendChild(document.createTextNode("Scale candidate ready: "));
+    sub.appendChild(el("b", null, dec.scale[0].what));
+  } else {
+    sub.textContent = "No urgent moves. Work the weekly queues.";
+  }
+  v.appendChild(sub);
+  return v;
+}
+
+/* ---------- creative testing monitor ---------- */
+const T_LABEL = { graduate: "Graduate", kill: "Kill", final_stretch: "Final stretch",
+                  early_signal: "Early signal", in_test: "In test" };
+function testingMonitor() {
+  const t = DATA.creative.testing;
+  const g = t.gate;
+  const card = el("div", "card");
+  card.appendChild(el("h2", null, "Creative testing monitor — " + (t.campaigns.join(", ") || "testing campaign")));
+  const note = el("div", "maturity-note");
+  note.textContent = `Framework: every test ad set must spend ${g.mult_min}-${g.mult_max}x its estimated CPA before a verdict. ` +
+    `Est. CPA = AOV ÷ ${g.grad_roas} (the acquisition cost at exactly the graduation bar; ad set's own AOV when it has 3+ purchases, else account avg $${Math.round(t.account_aov)}). ` +
+    `Graduate at ≥ ${g.grad_roas} NB ROAS into a scaling campaign; zero purchases through the gate = kill. Spend counted over last ${t.window_days} days.`;
+  card.appendChild(note);
+  if (!t.rows.length) {
+    card.appendChild(el("div", "dempty", "No ad sets with spend in the testing campaign right now."));
+    return card;
+  }
+  {
+    const c = t.counts;
+    const parts = [];
+    if (c.graduate) parts.push(c.graduate + " ready to graduate");
+    if (c.kill) parts.push(c.kill + " to kill today");
+    if (c.final_stretch) parts.push(c.final_stretch + " in the final stretch");
+    if (c.in_test || c.early_signal) parts.push(((c.in_test || 0) + (c.early_signal || 0)) + " still earning a verdict");
+    card.appendChild(takeaway(parts.join(" · ") + ". Clear the verdicts before feeding new tests in.",
+      c.graduate ? "good" : c.kill ? "bad" : "warn"));
+  }
+  const chips = el("div", "filters"); chips.style.margin = "10px 0 4px";
+  ["graduate", "kill", "final_stretch", "early_signal", "in_test"].forEach(k => {
+    if (!t.counts[k]) return;
+    const c = el("span", "tchip t-" + k);
+    c.appendChild(el("span", "dot"));
+    c.appendChild(document.createTextNode(t.counts[k] + " " + T_LABEL[k]));
+    chips.appendChild(c);
+  });
+  card.appendChild(chips);
+  const table = el("table");
+  const trh = el("tr");
+  ["Ad set", "Ads", "Days", "Test spend vs gate", "Txns", "NB ROAS", "Est. CPA", "Status", "Action"].forEach((h, i) => {
+    const th = el("th", null, h); th.style.cursor = "default";
+    if (i === 0 || i === 8) th.style.textAlign = "left";
+    trh.appendChild(th);
+  });
+  table.appendChild(trh);
+  t.rows.forEach(r => {
+    const tr = el("tr");
+    const nt = el("td", "name"); nt.style.maxWidth = "230px";
+    nt.textContent = r.adset_name; nt.title = r.adset_name + " — " + r.campaign_name;
+    copyableName(nt, r.adset_name);
+    tr.appendChild(nt);
+    tr.appendChild(el("td", "num muted", String(r.ads || "–")));
+    tr.appendChild(el("td", "num muted", String(r.days_active)));
+    const st = el("td", "num");
+    const wrap = el("div"); wrap.style.display = "flex"; wrap.style.alignItems = "center"; wrap.style.gap = "8px"; wrap.style.justifyContent = "flex-end";
+    const label = el("span", null, fm$(r.spend) + " / " + fm$(r.required));
+    const meter = el("div", "meter");
+    const fill = el("div");
+    const pct = Math.min(1, r.progress || 0);
+    fill.style.width = (pct * 100) + "%";
+    fill.style.background = r.status === "kill" ? "var(--st-crit)"
+      : r.status === "graduate" ? "var(--st-good)"
+      : pct >= 1 ? "var(--st-warn)" : "var(--axis)";
+    meter.appendChild(fill);
+    wrap.appendChild(label); wrap.appendChild(meter);
+    st.appendChild(wrap); tr.appendChild(st);
+    tr.appendChild(el("td", "num", String(r.txns)));
+    const rc = el("td", "num roascell", fmR(r.roas));
+    if (r.roas != null && r.spend >= r.required * 0.6)
+      rc.style.color = r.roas >= g.grad_roas ? "var(--st-good)" : (r.roas < g.grad_roas * 0.6 ? "var(--st-crit)" : "inherit");
+    tr.appendChild(rc);
+    const ct = el("td", "num muted", fm$(r.est_cpa));
+    ct.title = "AOV $" + r.aov + " (" + r.aov_src + ") ÷ " + g.grad_roas;
+    tr.appendChild(ct);
+    const stt = el("td");
+    const chip = el("span", "tchip t-" + r.status);
+    chip.appendChild(el("span", "dot"));
+    chip.appendChild(document.createTextNode(T_LABEL[r.status]));
+    stt.appendChild(chip); tr.appendChild(stt);
+    const at = el("td", "action", r.action);
+    tr.appendChild(at);
+    table.appendChild(tr);
+  });
+  const sc = el("div", "tscroll"); sc.appendChild(table); card.appendChild(sc);
+  foldRows(Array.from(table.querySelectorAll("tr")).slice(1), 8, card, "test ad sets");
+  return card;
+}
+
+/* 16px geometric line icons, currentColor strokes */
+const NAV_ICONS = {
+  cockpit: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7.5 8 2.5l5.5 5v5.5a1 1 0 0 1-1 1H9.5V10h-3v4H3.5a1 1 0 0 1-1-1z"/></svg>',
+  pacing: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 13.5h12M3.5 10.5 7 7l2.5 2.5 4-4.5"/><path d="M10.5 5h3v3"/></svg>',
+  ltv: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><ellipse cx="8" cy="4" rx="5" ry="2"/><path d="M3 4v4c0 1.1 2.2 2 5 2s5-.9 5-2V4"/><path d="M3 8v4c0 1.1 2.2 2 5 2s5-.9 5-2V8"/></svg>',
+  performance: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="3"/><circle cx="8" cy="8" r="0.5" fill="currentColor"/></svg>',
+  creative: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5c.4 2.7 1.4 3.9 4 4.5-2.6.6-3.6 1.8-4 4.5-.4-2.7-1.4-3.9-4-4.5 2.6-.6 3.6-1.8 4-4.5z"/><path d="M12.8 10.2c.2 1.3.7 1.9 2 2.2-1.3.3-1.8.9-2 2.2-.2-1.3-.7-1.9-2-2.2 1.3-.3 1.8-.9 2-2.2z"/></svg>',
+  testing: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h4M6.8 2v4.2L3 12.5a1.2 1.2 0 0 0 1 1.9h8a1.2 1.2 0 0 0 1-1.9L9.2 6.2V2"/><path d="M5 10h6"/></svg>',
+  reference: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 3A1.5 1.5 0 0 1 4 1.5h9.5v11H4A1.5 1.5 0 0 0 2.5 14z"/><path d="M2.5 12.5A1.5 1.5 0 0 1 4 11h9.5"/></svg>',
+};
+function pageNav(cur) {
+  const n = el("nav", "sb-nav");
+  [["cockpit", "Overview", "index.html"],
+   ["performance", "Performance", "performance.html"]
+  ].forEach(([id, label, href], i) => {
+    const a = document.createElement("a");
+    a.href = href;
+    a.style.setProperty("--i", i);
+    const ic = el("span", "nic"); ic.innerHTML = NAV_ICONS[id] || "";
+    a.appendChild(ic);
+    a.appendChild(document.createTextNode(label));
+    if (id === cur) { a.className = "on"; a.setAttribute("aria-current", "page"); }
+    n.appendChild(a);
+  });
+  return n;
+}
+
+/* ---------- cockpit builders ---------- */
+/* Daily Guide strip — the at-a-glance morning read at the top of the cockpit.
+   Sheet gear/total revenue + blended MER (vs goals), platform ad spend by
+   channel, and Northbeam new-customer economics + AOV. L7-anchored, WoW deltas,
+   variance-to-goal color where a goal exists. Reads DATA.daily_guide (additive);
+   returns null if the block is absent so the cockpit degrades cleanly. */
+function dailyGuideStrip() {
+  const g = DATA.daily_guide;
+  if (!g) return null;
+  const wrap = el("div", "dgstrip");
+  const head = el("div", "dg-head");
+  head.appendChild(el("div", "dg-t", "Daily guide"));
+  const bits = ["L7 rolling"];
+  const md = (iso) => iso ? iso.slice(5).replace("-", "/") : null;
+  if (g.sheet_through) bits.push("revenue from pacing sheet thru " + md(g.sheet_through));
+  if (g.nb_through) bits.push("new-customer from Northbeam thru " + md(g.nb_through));
+  head.appendChild(el("div", "dg-s", bits.join(" · ")));
+  wrap.appendChild(head);
+
+  const S = g.series || {};
+  // DG toggle: swap in the DG-inclusive variant of each NB new-customer sparkline.
+  const sPick = (base) => (inclDG && S[base + "_incl"]) ? S[base + "_incl"] : S[base];
+  const tiles = el("div", "tiles");
+  const stColor = (st) => st === "good" ? "var(--st-good)" : st === "bad" ? "var(--st-crit)" : "inherit";
+  const sparkEl = (vals, goal) => {
+    if (!vals || vals.filter(v => v != null).length < 2) return null;
+    const d = el("div", "spark");
+    d.appendChild(sparkline(vals, 200, 34, goal));
+    return d;
+  };
+  // Each tile: label, big value, a PROMINENT week-over-week comparison row
+  // (arrow + delta% + prior value), a 30-day sparkline, then a quiet basis line.
+  // favor = which direction is good: "good" (up=green), "bad", or "flat" (neutral).
+  const mkt = (lbl, val, o) => {
+    o = o || {};
+    const t = el("div", "tile" + (o.status && o.status !== "na" ? " st-" + o.status : ""));
+    const top = el("div", "tile-top");
+    top.appendChild(el("div", "lbl", lbl));
+    t.appendChild(top);
+    const v = el("div", "val", val);
+    if (o.valColor) v.style.color = o.valColor;
+    t.appendChild(v);
+    if (o.wow != null) {
+      const pct = Math.round(o.wow * 100);
+      const cls = o.favor === "good" ? "up" : o.favor === "bad" ? "down" : "flat";
+      const cmp = el("div", "cmp " + cls);
+      cmp.appendChild(el("span", "cmp-d", (pct >= 0 ? "▲ +" + pct : "▼ " + Math.abs(pct)) + "%"));
+      if (o.prior) cmp.appendChild(el("span", "cmp-vs", "vs " + o.prior + " last wk"));
+      t.appendChild(cmp);
+    }
+    const sp = sparkEl(o.spark, o.sparkGoal);
+    if (sp) t.appendChild(sp);
+    if (o.basis) t.appendChild(el("div", "basis", o.basis));
+    tiles.appendChild(t);
+  };
+  const revStatus = (l7, goal) => !goal ? "na" : (l7 / goal >= 0.95 ? "good" : l7 / goal >= 0.8 ? "warn" : "bad");
+  const upFavor = (w) => (w == null ? "flat" : w >= 0 ? "good" : "bad");   // higher is better
+  const dnFavor = (w) => (w == null ? "flat" : w <= 0 ? "good" : "bad");   // lower is better
+  const cacStatus = (w) => w == null ? "na" : w <= 0 ? "good" : w <= 0.15 ? "warn" : "bad";
+
+  const r = g.revenue;
+  if (r) {
+    let st = revStatus(r.gear.l7, r.gear.goal_l7);
+    mkt("Gear revenue", fmK(r.gear.l7), {
+      wow: r.gear.wow, prior: fmK(r.gear.p7), favor: upFavor(r.gear.wow), spark: S.gear_rev,
+      basis: "of " + fmK(r.gear.goal_l7) + " goal · yest " + fmK(r.gear.yday),
+      status: st, valColor: stColor(st) });
+    st = revStatus(r.total.l7, r.total.goal_l7);
+    mkt("Total Shopify revenue", fmK(r.total.l7), {
+      wow: r.total.wow, prior: fmK(r.total.p7), favor: upFavor(r.total.wow), spark: S.total_rev,
+      basis: "of " + fmK(r.total.goal_l7) + " goal · yest " + fmK(r.total.yday),
+      status: st, valColor: stColor(st) });
+    if (r.mer && r.mer.l7 != null) {
+      const mt = r.mer.target || 2.5;
+      const st2 = r.mer.l7 >= mt ? "good" : r.mer.l7 >= mt * 0.75 ? "warn" : "bad";
+      mkt("Blended MER", r.mer.l7.toFixed(2), {
+        wow: r.mer.wow, prior: r.mer.p7 != null ? r.mer.p7.toFixed(2) : null, favor: upFavor(r.mer.wow),
+        spark: S.mer, sparkGoal: mt,
+        basis: "target " + mt.toFixed(1) + (r.mer.yday != null ? " · yest " + r.mer.yday.toFixed(2) : ""),
+        status: st2, valColor: stColor(st2) });
+    }
+  }
+  const sp = g.spend;
+  if (sp && sp.managed_l7 != null) {
+    const chList = (inclDG && sp.by_channel_incl) ? sp.by_channel_incl : sp.by_channel;
+    const ch = (chList || []).map(c => c.label + " " + fmK(c.l7)).join(" · ");
+    mkt("Ad spend", fmK(sp.managed_l7), {
+      wow: sp.managed_wow, prior: fmK(sp.managed_p7), favor: "flat", spark: S.managed_spend,
+      basis: ch + " · managed (incl affiliate/trad)" });
+  }
+  const ncScope = inclDG ? "core+brand+DG (DG on Modeled Views)" : "core+brand";
+  const nc = (inclDG && g.nc_incl) ? g.nc_incl : g.nc;
+  if (nc) {
+    if (nc.rev_l7 != null)
+      mkt("New-customer revenue", fmK(nc.rev_l7), {
+        wow: nc.rev_wow, prior: fmK(nc.rev_p7), favor: upFavor(nc.rev_wow), spark: sPick("nc_rev"),
+        basis: "first-purchase · " + ncScope + " · Northbeam" });
+    if (nc.roas_l7 != null) {
+      const rw = nc.roas_p7 ? (nc.roas_l7 - nc.roas_p7) / nc.roas_p7 : null;
+      mkt("New-customer ROAS", nc.roas_l7.toFixed(2), {
+        wow: rw, prior: nc.roas_p7 != null ? nc.roas_p7.toFixed(2) : null, favor: upFavor(rw),
+        spark: sPick("nc_roas"), sparkGoal: nc.roas_goal || 2,
+        basis: "first-purchase · " + ncScope + " · goal " + (nc.roas_goal || 2).toFixed(1) });
+    }
+  }
+  const c = (inclDG && g.cac_incl) ? g.cac_incl : g.cac;
+  if (c && c.l7 != null)
+    mkt("New-customer CAC", fm$(c.l7), {
+      wow: c.wow, prior: c.p7 != null ? fm$(c.p7) : null,
+      favor: dnFavor(c.wow), spark: sPick("cac"), status: cacStatus(c.wow),
+      basis: c.new_txns + " new cust · Google+Meta, " + (inclDG ? "incl Demand Gen" : "excl Demand Gen") + " · Northbeam" });
+  const av = (inclDG && g.aov_incl) ? g.aov_incl : g.aov;
+  if (av && av.l7 != null)
+    mkt("AOV", fm$(av.l7), {
+      wow: av.wow, prior: av.p7 != null ? fm$(av.p7) : null, favor: "flat", spark: sPick("aov"),
+      basis: av.src === "L7 cash" ? "paid cash · promo weeks compress it" : "account cash avg" });
+
+  wrap.appendChild(tiles);
+  return wrap;
+}
+
+function decideMini() {
+  const dec = DATA.insights.decide || {do_now: [], scale: [], watch: []};
+  const card = el("div", "card");
+  card.appendChild(el("h2", null, "Decide today"));
+  const grid = el("div", "decide");
+  [["d-now", "DO NOW", dec.do_now, "Nothing bleeding."],
+   ["d-scale", "SCALE", dec.scale, "No campaign meets the scale gate."],
+   ["d-watch", "WATCH", dec.watch, "Nothing deteriorating."]].forEach(([cls, title, items, empty]) => {
+    const c = el("div", "dcol " + cls);
+    const h = el("h3"); h.appendChild(el("span", "dot"));
+    h.appendChild(document.createTextNode(title + " (" + items.length + ")"));
+    c.appendChild(h);
+    if (!items.length) c.appendChild(el("div", "dempty", empty));
+    items.slice(0, 3).forEach(it => {
+      const d = el("div", "ditem");
+      d.appendChild(qwhat(it.what));
+      c.appendChild(d);
+    });
+    if (items.length > 3) {
+      const more = document.createElement("a");
+      more.href = "performance.html"; more.className = "morelink";
+      more.textContent = "+" + (items.length - 3) + " more with actions →";
+      c.appendChild(more);
+    } else if (items.length) {
+      const more = document.createElement("a");
+      more.href = "performance.html"; more.className = "morelink";
+      more.textContent = "Open actions →";
+      c.appendChild(more);
+    }
+    grid.appendChild(c);
+  });
+  card.appendChild(grid);
+  return card;
+}
+function navCards() {
+  const s = DATA.insights.summary, pac = DATA.insights.pacing || {};
+  const cr = DATA.creative || {}, t = (cr.testing || {counts: {}}).counts;
+  const camps = DATA.levels.campaign.filter(c => c.bucket !== "other" && (c.windows.L7.spend || 0) > 0).length;
+  const dec = DATA.insights.decide || {do_now: []};
+  const weakHooks = (cr.fix_body || []).length;
+  const leanIn = (cr.lean_in || []).length;
+  const cards = [
+    ["pacing.html", "Pacing & trend",
+     (pac.pace != null ? Math.round(pac.pace * 100) + "% vs plan MTD" : "") +
+     (pac.yday && pac.yday.mer ? " · MER " + pac.yday.mer.toFixed(2) + " y'day" : "")],
+    ["performance.html", "Performance & allocation",
+     dec.do_now.length + " do-now · " + camps + " campaigns live"],
+    ["creative.html", "Creative studio",
+     leanIn + " variation candidates · " + weakHooks + " hooks to fix"],
+    ["testing.html", "Testing lab",
+     (t.graduate ? t.graduate + " graduate · " : "") + (t.kill || 0) + " kill · " + (t.in_test || 0) + " in test"],
+    ["reference.html", "Reference",
+     "routines · playbook · definitions"],
+  ];
+  const g = el("div", "navcards");
+  cards.forEach(([href, title, teaser]) => {
+    const a = document.createElement("a");
+    a.href = href; a.className = "ncard";
+    a.appendChild(el("div", "nc-title", title + " →"));
+    a.appendChild(el("div", "nc-teaser", teaser));
+    g.appendChild(a);
+  });
+  return g;
+}
+function miniFooter() {
+  const f = el("footer");
+  const a = document.createElement("a");
+  a.href = "index.html"; a.style.color = "inherit";
+  a.textContent = "TRX UK · Triple Whale attribution";
+  f.appendChild(document.createTextNode("Data through " + DATA.meta.data_through + " · " + DATA.meta.attribution_label + " · "));
+  f.appendChild(a);
+  return f;
+}
+
+/* ---------- render ---------- */
+function render() {
+  const app = document.getElementById("app");
+  app.replaceChildren();
+  const m = DATA.meta;
+  document.title = m.client + " — " + (PAGE_TITLES[PAGE] || PAGE);
+
+  /* shell: pine sidebar carries brand + nav; drawer behind a hamburger on mobile */
+  document.documentElement.classList.add("shell");
+  const sb = el("aside", "sidebar");
+  const brand = el("div", "sb-brand");
+  const logo = el("div", "lc-logo");
+  logo.setAttribute("aria-label", "Lower Cross");
+  logo.append("LOWER", document.createElement("br"), "CROSS");
+  brand.appendChild(logo);
+  brand.appendChild(el("h1", null, m.client));
+  sb.appendChild(brand);
+  sb.appendChild(pageNav(PAGE));
+  const foot = el("div", "sb-foot");
+  const gc = el("div"); gc.appendChild(document.createTextNode("Goal "));
+  gc.appendChild(el("b", null, m.goal_roas.toFixed(1) + " NB ROAS"));
+  foot.appendChild(gc);
+  foot.appendChild(el("div", "attr", m.attribution_label));
+  // judge freshness in ET (data days are ET); UTC evenings would false-flag STALE
+  const yesterday = new Date(Date.now() - 5 * 3600e3 - 864e5).toISOString().slice(0, 10);
+  const fresh = m.data_through >= yesterday;
+  foot.appendChild(el("div", fresh ? null : "stale",
+    (fresh ? "Data through " : "STALE — data through ") + m.data_through));
+  /* global Demand Gen fold-in — applies to the whole dashboard, persisted across pages */
+  const dgCtl = el("div", "sb-ctl");
+  const dgLabel = el("span", "sb-ctl-l");
+  dgLabel.append("Demand Gen");
+  dgCtl.appendChild(dgLabel);
+  const dgSeg = el("div", "seg sb-seg");
+  dgSeg.setAttribute("role", "group");
+  dgSeg.setAttribute("aria-label", "Demand Gen — include in performance metrics");
+  [["Excluded", false], ["Included", true]].forEach(([lbl, val]) => {
+    const b = el("button", null, lbl);
+    b.type = "button";
+    b.setAttribute("aria-pressed", String(inclDG === val));
+    b.addEventListener("click", () => {
+      if (inclDG === val) return;
+      inclDG = val;
+      localStorage.setItem("trx_incl_dg", val ? "1" : "0");
+      render();
+    });
+    dgSeg.appendChild(b);
+  });
+  dgCtl.appendChild(dgSeg);
+  foot.appendChild(dgCtl);
+  const th = el("button", "ghost", "Theme");
+  th.addEventListener("click", () => {
+    const r = document.documentElement;
+    const cur = r.getAttribute("data-theme") ||
+      (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    r.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+    render();
+  });
+  foot.appendChild(th);
+  sb.appendChild(foot);
+  app.appendChild(sb);
+
+  /* mobile top bar: hamburger + brand; drawer toggles via .nav-open on <html> */
+  const setNav = open => {
+    document.documentElement.classList.toggle("nav-open", open);
+    hb.setAttribute("aria-expanded", String(open));
+  };
+  const mb = el("div", "mobilebar");
+  const hb = el("button", "hamb");
+  hb.setAttribute("aria-label", "Menu");
+  hb.setAttribute("aria-expanded", "false");
+  for (let i = 0; i < 3; i++) hb.appendChild(el("span"));
+  hb.addEventListener("click", () => setNav(!document.documentElement.classList.contains("nav-open")));
+  mb.appendChild(hb);
+  const mlogo = el("span", "lc-logo small");
+  mlogo.setAttribute("aria-label", "Lower Cross");
+  mlogo.append("LOWER", document.createElement("br"), "CROSS");
+  mb.appendChild(mlogo);
+  mb.appendChild(el("span", "mb-client", m.client));
+  app.appendChild(mb);
+  const scrim = el("div", "scrim");
+  scrim.addEventListener("click", () => setNav(false));
+  app.appendChild(scrim);
+  document.onkeydown = ev => { if (ev.key === "Escape") setNav(false); };
+  setNav(false);
+
+  if (typeof PAGE !== "undefined" && PAGE === "cockpit") {
+    const ts = el("div", "topstrip");
+    ts.appendChild(verdictBanner());
+    app.appendChild(ts);
+  }
+  app.appendChild(pageHead());
+
+  /* global mode indicator — visible only when Demand Gen is folded in */
+  if (inclDG) {
+    const dgm = el("div", "dgmode");
+    dgm.appendChild(el("span", "dgmode-dot"));
+    dgm.appendChild(el("b", null, "Including Demand Gen"));
+    dgm.appendChild(document.createTextNode(
+      " — counted on NB Clicks + Modeled Views (7D). Toggle off in the sidebar for core-only numbers."));
+    app.appendChild(dgm);
+  }
+
+  /* Daily Guide strip — top-of-cockpit at-a-glance (sheet revenue + NB new-customer) */
+  if (PAGE === "cockpit") {
+    const dgs = dailyGuideStrip();
+    if (dgs) app.appendChild(dgs);
+  }
+
+  const ins = DATA.insights;
+  const dec = ins.decide || {do_now: [], scale: [], watch: []};
+  /* decide today (rendered after tiles + trend) */
+  const dcard = el("div", "card");
+  dcard.appendChild(el("h2", null, "Decide today"));
+  const dgrid = el("div", "decide");
+  const mkCol = (cls, title, items, empty) => {
+    const c = el("div", "dcol " + cls);
+    const h = el("h3"); h.appendChild(el("span", "dot")); h.appendChild(document.createTextNode(title));
+    c.appendChild(h);
+    if (!items || !items.length) c.appendChild(el("div", "dempty", empty));
+    (items || []).forEach(it => {
+      const d = el("div", "ditem");
+      d.appendChild(qwhat(it.what));
+      d.appendChild(el("div", "a", it.action));
+      if (it.detail && it.detail.length) {
+        const kids = el("div", "dkids");
+        it.detail.forEach(k => {
+          const row = el("div", "dkid k-" + k.kind);
+          row.appendChild(el("span", "kdot"));
+          const prefix = k.kind === "pause" ? "pause: " : (k.kind === "best" ? "best inside: " : "winner: ");
+          const nm = el("span", "knm", prefix + k.name);
+          nm.title = k.name;
+          row.appendChild(nm);
+          row.appendChild(el("span", "kv", "$" + Math.round(k.spend).toLocaleString() + " · " + k.roas.toFixed(2)));
+          kids.appendChild(row);
+        });
+        d.appendChild(kids);
+      }
+      c.appendChild(d);
+    });
+    foldRows(Array.from(c.querySelectorAll(".ditem")), 3, c, "items");
+    return c;
+  };
+  dgrid.appendChild(mkCol("d-now", "DO NOW", dec.do_now, "Nothing bleeding. Good."));
+  dgrid.appendChild(mkCol("d-scale", "SCALE", dec.scale, "No campaign meets the scale gate this week (needs " + (m.goal_roas * 1.2).toFixed(1) + "+ on $250+ L7)."));
+  dgrid.appendChild(mkCol("d-watch", "WATCH", dec.watch, "Nothing deteriorating."));
+  dcard.appendChild(dgrid);
+
+  /* tiles */
+  const s = ins.summary;
+  const pacing = ins.pacing;
+  const goal = m.goal_roas;
+  const days = dailySeries();
+  const tiles = el("div", "tiles");
+  const mk = (lbl, val, deltaTxt, deltaCls, spark, status) => {
+    const t = el("div", "tile" + (status && status !== "na" ? " st-" + status : ""));
+    const top = el("div", "tile-top");
+    top.appendChild(el("div", "lbl", lbl));
+    /* chip carries ONLY the leading signed delta token; the rest is a quiet basis line */
+    let chipTxt = null, basisTxt = deltaTxt || null;
+    if (deltaTxt) {
+      const m = deltaTxt.match(/^([+-][\d.]+(?:%|pp)?)[\s·]*(.*)$/);
+      if (m) { chipTxt = m[1]; basisTxt = m[2] || null; }
+    }
+    if (chipTxt) {
+      if (/^\+/.test(chipTxt)) chipTxt = "▲ " + chipTxt.slice(1);
+      else if (/^-\d/.test(chipTxt)) chipTxt = "▼ " + chipTxt.slice(1);
+      top.appendChild(el("div", "delta " + (deltaCls || ""), chipTxt));
+    }
+    t.appendChild(top);
+    t.appendChild(el("div", "val", val));
+    if (basisTxt) t.appendChild(el("div", "basis", basisTxt));
+    if (spark) t.appendChild(spark);
+    return t;
+  };
+  const bandStatus = off => off == null ? "na" : Math.abs(off) <= 0.1 ? "good" : Math.abs(off) <= 0.2 ? "warn" : "bad";
+  // headline blend (reads global inclDG): excl == precomputed core numbers,
+  // incl folds Demand Gen (tof) in on NB Clicks + Modeled Views
+  const aggL7 = dgAgg("L7"), aggP7 = dgAgg("P7");
+  const p7roas = aggP7.roas;
+  const coreRoas = aggL7.roas;
+  let dTxt = null, dCls = null;
+  if (coreRoas != null && p7roas) {
+    const dd = (coreRoas - p7roas) / p7roas;
+    dTxt = (dd >= 0 ? "+" : "") + Math.round(dd * 100) + "% vs prior 7d";
+    dCls = dd >= 0 ? "up" : "down";
+  }
+  /* reference-style KPI sparklines: last 14 days, goal line where one exists */
+  const last14 = days.slice(-14);
+  const spk = (vals, goalLine) => {
+    if (vals.filter(v => v != null).length < 2) return null;
+    const d = el("div", "spark");
+    d.appendChild(sparkline(vals, 200, 34, goalLine));
+    return d;
+  };
+  const t1 = mk(inclDG ? "Core + DG NB ROAS" : "Core NB ROAS", coreRoas == null ? "–" : coreRoas.toFixed(2), dTxt, dCls,
+    spk(last14.map(d => d.roll), goal),
+    coreRoas == null ? "na" : coreRoas >= goal ? "good" : coreRoas >= 1.5 ? "warn" : "bad");
+  t1.querySelector(".val").style.color = coreRoas != null && coreRoas >= goal ? "var(--st-good)" : (coreRoas != null && coreRoas < 1.5 ? "var(--st-crit)" : "inherit");
+  if (inclDG) {
+    const chip = el("span", "dgchip", "incl DG");
+    chip.title = "Demand Gen folded in on NB Clicks + Modeled Views (7D)";
+    t1.querySelector(".tile-top").appendChild(chip);
+  }
+  tiles.appendChild(t1);
+  const ydayFromSheet = pacing && pacing.yday && pacing.yday.spend;
+  if (ydayFromSheet) {
+    const plan = pacing.yday.plan;
+    const dd = plan ? (pacing.yday.spend - plan) / plan : null;
+    tiles.appendChild(mk("Spend yesterday", fmK(pacing.yday.spend),
+      plan ? (dd >= 0 ? "+" : "") + Math.round(dd * 100) + "% vs " + fmK(plan) + " plan" : null,
+      dd != null && Math.abs(dd) > 0.1 ? "down" : "up",
+      spk(last14.map(d => d.meta + d.google + d.tiktok)), bandStatus(dd)));
+  } else if (s.yday_spend != null) {
+    const dd = s.avg7_daily_spend ? (s.yday_spend - s.avg7_daily_spend) / s.avg7_daily_spend : null;
+    tiles.appendChild(mk("Spend yesterday", fmK(s.yday_spend),
+      dd == null ? null : (dd >= 0 ? "+" : "") + Math.round(dd * 100) + "% vs 7-day avg",
+      dd != null && Math.abs(dd) > 0.25 ? "down" : null,
+      spk(last14.map(d => d.meta + d.google + d.tiktok))));
+  }
+  if (pacing && pacing.pace != null) {
+    const pc = pacing.pace;
+    const cls = Math.abs(pc - 1) <= 0.1 ? "up" : "down";
+    const est = pacing.estimated_days ? ` (${pacing.estimated_days}d est.)` : "";
+    const t = mk("MTD vs plan", Math.round(pc * 100) + "%",
+      fmK(pacing.mtd_spend) + " vs " + fmK(pacing.mtd_plan) + " plan" + est, cls,
+      null, bandStatus(pc - 1));
+    t.title = pacing.source || "";
+    t.querySelector(".val").style.color = Math.abs(pc - 1) <= 0.1 ? "var(--st-good)"
+      : (Math.abs(pc - 1) <= 0.2 ? "inherit" : "var(--st-crit)");
+    tiles.appendChild(t);
+  }
+  {
+    // yesterday's sheet cells can be mid-edit (zero) — fall back to the last populated day
+    const merRow = (pacing && pacing.yday && pacing.yday.mer) ? {...pacing.yday, when: "yesterday"}
+      : (pacing && pacing.last_mer) ? {...pacing.last_mer, when: pacing.last_mer.date.slice(5).replace("-", "/")} : null;
+    if (merRow) {
+      const merT = DATA.meta.mer_target || 2.5;
+      const t = mk("Blended MER", merRow.mer.toFixed(2),
+        "rev " + fmK(merRow.rev || 0) + " · target " + merT.toFixed(1) + " · pacing workbook",
+        null, null, merRow.mer >= merT ? "good" : merRow.mer >= merT * 0.75 ? "warn" : "bad");
+      t.querySelector(".val").style.color = merRow.mer >= merT ? "var(--st-good)"
+        : (merRow.mer < merT * 0.75 ? "var(--st-crit)" : "inherit");
+      tiles.appendChild(t);
+    }
+  }
+  // New-customer CAC — core+brand spend/ftx (excl); +tof (incl). Client-side so
+  // excl-DG cleanly removes Demand Gen (the precomputed cac_new_l7 baked tof in).
+  const cacL7 = aggL7.cac, cacP7 = aggP7.cac;
+  if (cacL7 != null) {
+    const dd = cacP7 ? (cacL7 - cacP7) / cacP7 : null;
+    // lower CAC is better: arrow shows direction, color shows goodness
+    const cacTile = mk("New-customer CAC", fm$(cacL7),
+      (dd == null ? "" : (dd >= 0 ? "+" : "") + Math.round(dd * 100) + "% vs prior 7d · ")
+        + Math.round(aggL7.ftx) + " new customers (NB paid, core+brand" + (inclDG ? "+DG" : "") + ", ex-App/Amazon)",
+      dd == null ? null : (dd <= 0 ? "up" : "down"),
+      spk(last14.map(d => d.cacRoll)), dd == null ? "na" : dd <= 0 ? "good" : dd <= 0.15 ? "warn" : "bad");
+    if (inclDG) cacTile.title = "Demand Gen first-time customers are counted on Northbeam deterministic ftx — Modeled Views gives revenue, not customer counts.";
+    tiles.appendChild(cacTile);
+  }
+  const nvL7 = aggL7.nvPct, nvP7 = aggP7.nvPct;
+  if (nvL7 != null) {
+    const dpp = nvP7 != null ? (nvL7 - nvP7) * 100 : null;
+    tiles.appendChild(mk("New visitor %", Math.round(nvL7 * 100) + "%",
+      (dpp == null ? "share of NB paid visits" : (dpp >= 0 ? "+" : "") + dpp.toFixed(1) + "pp vs prior 7d")
+        + (inclDG ? " · core+brand+DG" : ""),
+      dpp == null ? null : (dpp >= 0 ? "up" : "down"),
+      spk(last14.map(d => d.nvRoll)), dpp == null ? "na" : dpp >= 0 ? "good" : dpp > -3 ? "warn" : "bad"));
+  }
+  // mix-context tiles live on the pacing page; the cockpit stays one screen
+  if (typeof PAGE === "undefined" || PAGE === "pacing") {
+    {
+      /* DG judged on Clicks + Modeled Views — surface that read on the tile */
+      const tof = DATA.levels.campaign.filter(c => c.bucket === "tof");
+      const tsp = tof.reduce((a, c) => a + (c.windows.L7.spend || 0), 0);
+      const tmv = tof.reduce((a, c) => a + (c.windows.L7.mv_rev || 0), 0);
+      const mvTxt = tsp > 0 && tmv > 0 ? " · MV ROAS " + (tmv / tsp).toFixed(2) : "";
+      tiles.appendChild(mk("TOF / Demand Gen", fmK(s.tof_spend_l7),
+        (s.total_spend_l7 ? Math.round(s.tof_spend_l7 / s.total_spend_l7 * 100) + "% of L7 platform spend" : "") + mvTxt, null));
+    }
+    tiles.appendChild(mk("Brand L7", fmK(s.brand_spend_l7),
+      s.total_spend_l7 ? Math.round(s.brand_spend_l7 / s.total_spend_l7 * 100) + "% of L7 platform spend" : "", null));
+  }
+  if (PAGE === "pacing" || PAGE === "cockpit") app.appendChild(tiles);
+
+
+  /* trend */
+  const tc = el("div", "card");
+  {
+    const ch = el("div", "chead");
+    ch.appendChild(el("div", "ct", "Performance trends"));
+    ch.appendChild(el("div", "cs", "Daily core NB ROAS + 7-day rolling line vs goal · spend stacked by channel · 30 days"));
+    tc.appendChild(ch);
+  }
+  {
+    const rolls = days.map(d => d.roll).filter(v => v != null);
+    const above = rolls.filter(v => v >= goal).length;
+    const dir = rolls.length >= 8 ? (rolls[rolls.length - 1] - rolls[rolls.length - 8]) / rolls[rolls.length - 8] : null;
+    const dirTxt = dir == null ? "" : Math.abs(dir) < 0.05 ? " and flat week-over-week" : dir > 0 ? " and improving (" + Math.round(dir * 100) + "% WoW)" : " and declining (" + Math.round(dir * 100) + "% WoW)";
+    tc.appendChild(takeaway(
+      above === 0
+        ? "The 7-day line has not touched the " + goal.toFixed(1) + " goal once in 30 days — currently " + (rolls.length ? rolls[rolls.length - 1].toFixed(2) : "–") + dirTxt + ". This is structural, not a bad day."
+        : above + " of the last " + rolls.length + " days at/above goal — currently " + rolls[rolls.length - 1].toFixed(2) + dirTxt + ".",
+      above === 0 ? "bad" : above < rolls.length / 2 ? "warn" : "good"));
+  }
+  tc.appendChild(trendChart(days));
+  {
+    /* reference-style stat row under the chart: L7 totals with WoW deltas */
+    const c7 = funnelAgg("all", "L7"), p7 = funnelAgg("all", "P7");
+    const st = el("div", "chstats");
+    const cell = (lbl, val, cur, prev, upGood = true) => {
+      const d = el("div");
+      d.appendChild(el("div", "cs-l", lbl));
+      const v = el("div", "cs-v", val);
+      if (prev) {
+        const rel = (cur - prev) / prev;
+        if (Math.abs(rel) >= 0.005) {
+          const good = upGood ? rel >= 0 : rel <= 0;
+          v.appendChild(el("span", "delta " + (good ? "up" : "down"),
+            (rel >= 0 ? "▲ " : "▼ ") + Math.abs(Math.round(rel * 100)) + "%"));
+        }
+      }
+      d.appendChild(v);
+      return d;
+    };
+    st.appendChild(cell("Judged spend — L7", fmK(c7.spend), c7.spend, p7.spend, false));
+    st.appendChild(cell("NB revenue — L7", fmK(c7.rev), c7.rev, p7.rev));
+    const ctr = c7.impr ? c7.clicks / c7.impr : null, pctr = p7.impr ? p7.clicks / p7.impr : null;
+    if (ctr != null) st.appendChild(cell("CTR — L7", (ctr * 100).toFixed(2) + "%", ctr, pctr));
+    st.appendChild(cell("Purchases — L7", fmN(c7.txns), c7.txns, p7.txns));
+    tc.appendChild(st);
+  }
+  if (PAGE === "pacing") app.appendChild(tc);
+  if (PAGE === "cockpit") {
+    /* hero row: trends beside the funnel, reference layout */
+    const row = el("div", "cockrow");
+    row.appendChild(tc);
+    row.appendChild(funnelCard());
+    app.appendChild(row);
+  }
+
+  /* decide today — after the numbers, before allocation */
+  if (PAGE === "performance") app.appendChild(dcard);
+  if (PAGE === "performance" && DATA.changes && DATA.changes.items && DATA.changes.items.length)
+    app.appendChild(changeLog());
+
+  /* channel allocation */
+  if (PAGE === "performance") app.appendChild(channelSummary());
+  if (PAGE === "performance") app.appendChild(funnelCard());
+
+  /* routine */
+  const rc = el("div", "card");
+  rc.appendChild(el("h2", null, "How to run this dashboard"));
+  const rgrid = el("div", "routine");
+  const mkRoutine = (title, steps) => {
+    const d = el("div");
+    d.appendChild(el("h2", null, title));
+    const ol = el("ol");
+    steps.forEach(([b, rest]) => {
+      const li = el("li");
+      li.appendChild(el("b", null, b + " "));
+      li.appendChild(document.createTextNode(rest));
+      ol.appendChild(li);
+    });
+    d.appendChild(ol);
+    return d;
+  };
+  rgrid.appendChild(mkRoutine("Daily — 5 minutes", [
+    ["Freshness:", "the chip up top must say data through yesterday. If STALE, fix the pipeline before trusting anything."],
+    ["Clear DO NOW:", "act on every red item, today. That's the whole daily job."],
+    ["Pacing:", "spend yesterday + MTD vs plan. Off by >10%, adjust budgets."],
+    ["Don't judge ROAS daily:", "recent accrual is still maturing (shaded zone). No kill/scale calls on <72h."],
+  ]));
+  rgrid.appendChild(mkRoutine("Weekly — Monday, 30 minutes", [
+    ["Scale & cut:", "work the SCALE and WATCH queues plus campaign badges on L7/L14 windows."],
+    ["Creative:", "kill weak hooks after $500-1K spend, brief iterations on the strongest angles."],
+    ["Allocation:", "move the next dollar where the LAST dollar returned most (channel table guidance)."],
+    ["Reconcile:", "platform vs NB divergence — decide on NB, use platform for direction only."],
+  ]));
+  rc.appendChild(rgrid);
+  if (PAGE === "reference") {
+    app.appendChild(rc);
+    const ic = integrityCard();
+    if (ic) app.appendChild(ic);
+  }
+
+  /* weekly section */
+  const sh = el("div", "section-h");
+  sh.appendChild(el("h2", null, "Creative review"));
+  sh.appendChild(el("span", "sub", "Meta creative on NB numbers · kill/scale creatives only after $500-1K spend"));
+  if (PAGE === "creative") app.appendChild(sh);
+
+  if (PAGE === "testing" && DATA.creative && DATA.creative.testing) app.appendChild(testingMonitor());
+  if (PAGE === "creative") app.appendChild(creativeHealth());
+  if (PAGE === "creative" && DATA.creative) app.appendChild(creativeIntelligence());
+
+  /* detail tables — self-rebuilding card so toggles never repaint the page */
+  const tcard = el("div", "card");
+  buildDetail(tcard);
+  if (PAGE === "performance" || PAGE === "creative") app.appendChild(tcard);
+  if (PAGE === "cockpit") {
+    const wrow = el("div", "wrow");
+    wrow.appendChild(goalTrackCard(days));
+    wrow.appendChild(spendMixCard());
+    wrow.appendChild(calloutsCard());
+    app.appendChild(wrow);
+    app.appendChild(decideMini());
+    const dh = integrityStrip();
+    if (dh) app.appendChild(dh);
+    /* nav cards retired — the sidebar owns navigation; no duplicate wayfinding */
+  }
+  if (PAGE === "ltv") ltvPage(app);
+
+  /* working / attention (weekly evidence) */
+  const insWrap = el("div", "card");
+  insWrap.appendChild(el("h2", null, "Evidence — what's working / what needs attention"));
+  const grid = el("div", "insights");
+  const mkList = (title, items) => {
+    const d = el("div");
+    d.appendChild(el("h2", null, title));
+    const ul = el("ul");
+    (items || []).forEach(it => {
+      const li = el("li", "sev-" + (it.sev || "info"));
+      li.textContent = it.text;
+      ul.appendChild(li);
+    });
+    if (!items || !items.length) ul.appendChild(el("li", "muted", "Nothing at current thresholds."));
+    d.appendChild(ul);
+    foldRows(Array.from(ul.children), 4, d, "items");
+    return d;
+  };
+  grid.appendChild(mkList("Working", ins.working));
+  grid.appendChild(mkList("Needs attention", ins.issues));
+  insWrap.appendChild(grid);
+  if (PAGE === "performance") app.appendChild(insWrap);
+
+  /* context + playbook */
+  const cx = el("div", "card ctx");
+  cx.appendChild(el("h2", null, "Context — what's in flight"));
+  const cul = el("ul", "insights");
+  (m.context || []).forEach(c => {
+    const li = el("li");
+    li.appendChild(el("span", "d", c.date));
+    li.appendChild(document.createTextNode(c.text));
+    cul.appendChild(li);
+  });
+  cx.appendChild(cul);
+  foldRows(Array.from(cul.children), 5, cx, "updates");
+  const det = el("details");
+  det.appendChild(el("summary", null, "Playbook rules this dashboard applies"));
+  const pul = el("ul");
+  (m.playbook || []).forEach(p => { const li = el("li"); li.style.margin = "6px 0"; li.style.fontSize = "12.5px"; li.textContent = p; pul.appendChild(li); });
+  det.appendChild(pul);
+  cx.appendChild(det);
+  if (PAGE === "pacing") app.appendChild(cx);
+
+  /* footer */
+  const f = el("footer");
+  f.appendChild(el("div", null, "Definitions & data rules"));
+  const ful = el("ul");
+  (m.notes || []).forEach(nt => ful.appendChild(el("li", null, nt)));
+  ful.appendChild(el("li", null, "Generated " + m.generated_at + " · Sources: Northbeam export API (attribution + Meta platform-reported at 7d-click/1d-view), Google Ads API (platform)."));
+  f.appendChild(ful);
+  if (PAGE === "reference") app.appendChild(f);
+  else app.appendChild(miniFooter());
+}
+</script>
+</body>
+</html>
